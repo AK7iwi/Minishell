@@ -6,7 +6,7 @@
 /*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/11 11:49:26 by diguler          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:53:55 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	exec_command(char **env, t_cmd *cmd)
 //     int fd_in = 0;
 //     int i = 0;
 //     printf("arg 1 : %s\n", cmds->args[0]);
-//     while (cmds->args[i] != NULL)
+//     while (cmds->args[i] != NULL) 
 //     {
 //         if (cmds->args[i + 1] != NULL)
 //             create_pipe(tube);
@@ -116,7 +116,7 @@ void	exec_ast_pipeline(t_ast *ast, char **env, t_data *data)
 		else
 			data->token = data->token->next;
 	}
-	if (ast->type == AST_OPERATOR && ast->operator.type == AST_PIPE)
+	if (ast->type == AST_OPERATOR)
 	{
 		handle_pipe_creation(tube);
 		fork_and_exec_left(ast, env, tube, data);
@@ -127,6 +127,10 @@ void	exec_ast_pipeline(t_ast *ast, char **env, t_data *data)
 		pid = fork();
 		if (pid == 0)
 		{
+			if (ast->cmd.output_file)
+				redir_output(ast->cmd.output_file, ast->cmd.append);
+			if (ast->cmd.input_file)
+				redir_input(ast->cmd.input_file);
 			exec_cmd(ast->cmd.args, env);
 			exit(EXIT_FAILURE);
 		}

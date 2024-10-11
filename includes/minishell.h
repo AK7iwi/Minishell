@@ -181,7 +181,7 @@ void    child_process(int output_fd, char *delimiter);
 void    create_heredoc(char *delimiter);
 
 /*redir.c*/
-void    redir_output(const char *filename, int append);
+void    redir_output(char *filename, int append);
 void    redir_input(const char *filename);
 
 //**********************************************//

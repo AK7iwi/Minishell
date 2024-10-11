@@ -6,16 +6,15 @@
 /*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 12:40:50 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/05 15:37:29 by diguler          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:12:26 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void redir_output(const char *filename, int append)
+void redir_output(char *filename, int append)
 {
     int fd;
-
     if (append)
         fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
     else
