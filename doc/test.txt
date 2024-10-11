@@ -11,6 +11,8 @@ cat |
 
 2) special char : ? * #, ...
 
+echo $$$
+
 3) echo "|"|
 
 4)SH_LVL 

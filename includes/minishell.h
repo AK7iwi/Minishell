@@ -6,6 +6,7 @@
 //**********************************************//
 
 #include "errors.h"
+#include <signal.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -294,6 +295,7 @@ bool	init(t_data *data, char **argv, char **envp);
 
 /* free.c */
 void	free_loop(t_data *data);
+void	free_all(t_data *data);
 
 //////////////// Libft ////////////////
 

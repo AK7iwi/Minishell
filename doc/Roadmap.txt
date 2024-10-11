@@ -1,15 +1,15 @@
 General: 
 
 !!!!!!!ERROR handling
+Leak when malloc = NULL;
+error in stderr
 
 Finish to rename(free and print ) ~~
 modif proto of ast_printer = like ast_exec 
-Leak when malloc = NULL;
-int --> int32t
+int --> int32t / norme
 protect ft_strdup
 protect readline
 utils-->tools
-error in stderr
 Use strcmp instead of strncmp
 EXIT_SUCCESS/EXIT_FAILURE logique
 

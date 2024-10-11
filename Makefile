@@ -21,7 +21,7 @@ SRCS			:=	main.c \
 					exec/builtins/builtins_cmds/cd.c  exec/builtins/builtins_cmds/unset.c exec/builtins/builtins_cmds/export.c \
 				 	exec/builtins/builtins_cmds/exit.c \
 					tools/lib/lib_checker.c tools/lib/lib_len.c tools/lib/lib_memory.c tools/lib/lib_str_manip.c \
-					tools/free.c
+					tools/free/free.c
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
