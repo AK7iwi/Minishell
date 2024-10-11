@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:08:47 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/11 11:17:09 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:30:56 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ static bool update_dir(t_env *env, char *old_cwd) //two errors to handle
 	if (!cwd)
 		return (EXIT_FAILURE);
 	
-	new_pwd = ft_strjoin("PWD=", cwd);
-	n_old_pwd = ft_strjoin("OLDPWD=", old_cwd);
+	new_pwd = ft_strjoin("PWD=", cwd); // protect 
+	n_old_pwd = ft_strjoin("OLDPWD=", old_cwd); //protect 
 	if (set_env_var(&env, "PWD", new_pwd))
 		return (EXIT_FAILURE);
 	if (set_env_var(&env, "OLD_PWD", n_old_pwd))
 		return (EXIT_FAILURE);
 		
 	free(cwd);
+	free(new_pwd);
+	free(n_old_pwd);
 	return (EXIT_SUCCESS);
 }
 

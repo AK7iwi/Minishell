@@ -65,7 +65,7 @@ should expand to their values.
 Handle $? Which should expand to the exit status of the most recently executed
 foreground pipeline
 
-h)Signaux
+h)Signaux OK
 
 Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 • In interactive mode:
@@ -73,7 +73,6 @@ Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 ◦ ctrl-D exits the shell.
 ◦ ctrl-\ does nothing.
 
-Need to free env
 
 i) here-doc
 
