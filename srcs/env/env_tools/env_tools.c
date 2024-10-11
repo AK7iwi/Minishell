@@ -6,13 +6,13 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 08:40:13 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/10 12:40:38 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/11 11:13:32 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_env(t_env **env_var)
+void	free_env(t_env **env_var)
 {
     t_env	*tmp;
 
@@ -31,24 +31,19 @@ void	unset_env_var(t_env **env, char *var)
 	current = *env;
     while (current)
     {
-        if (ft_strncmp(current->str, var, ft_strlen(var)) == 0 
-			&& (current->str[ft_strlen(var)] == '='
-			|| current->str[ft_strlen(var)] == '\0'))
+        if (is_var(current, var))
             return (remove_env_node(env, current));
         current = current->next;
     }
 }
-bool set_env_var(t_env **env, char *var_name, char *new_env_var)
+bool	set_env_var(t_env **env, char *var_name, char *new_env_var)
 {
 	t_env *current;
 
 	current = *env;
-	//get_my_env
 	while (current)
 	{
-		if (ft_strncmp(current->str, var_name, ft_strlen(var_name)) == 0
-			&& (current->str[ft_strlen(var_name)] == '=' 
-			|| current->str[ft_strlen(var_name)] == '\0'))
+		if (is_var(current, var_name))
 		{
 			free(current->str);
 			current->str = ft_strdup(new_env_var);
@@ -60,23 +55,7 @@ bool set_env_var(t_env **env, char *var_name, char *new_env_var)
 	
 	return (EXIT_SUCCESS);
 }
-bool 	get_my_env(t_env *env, char *var_name)
-{
-	t_env *current;
-
-	current = env;
-	while (current)
-	{
-		if (ft_strncmp(current->str, var_name, ft_strlen(var_name)) == 0
-			&& (current->str[ft_strlen(var_name)] == '='
-			|| current->str[ft_strlen(var_name)] == '\0'))
-			return (true);
-		current = current->next;
-	}
-	
-	return (false);
-}
-bool add_env_var(t_env **env_var, char *str)
+bool	add_env_var(t_env **env_var, char *str)
 {
     t_env *new_node;
     t_env *last;

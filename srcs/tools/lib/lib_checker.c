@@ -1,20 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lib_checker.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 11:06:25 by mfeldman          #+#    #+#             */
+/*   Updated: 2024/10/11 11:06:28 by mfeldman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-
-bool find_equal(char *var)
-{
-	size_t i;
-
-	i = 0;
-
-	while (var[i])
-	{
-		if (var[i] == '=')
-			return (true);
-		i++;
-	}
-	
-	return (false);
-}
 
 bool is_number(char *c)
 {

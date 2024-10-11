@@ -5,7 +5,8 @@ OBJ_DIR			:= obj
 
 SRCS			:=	main.c \
 					errors/errors_displayer.c errors/errors_tools.c \
-					initializer/init.c env/init_env.c env/env_tools.c env/env_tools2.c \
+					initializer/init.c \
+					env/init_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
 					parser/lexer/tokenizer.c \
 					parser/lexer/str_handler/str_handler.c parser/lexer/str_handler/str_extracter.c parser/lexer/str_handler/str_len.c \
 					parser/lexer/special_char_handler/special_char_handler.c parser/lexer/special_char_handler/special_char_extracter.c parser/lexer/special_char_handler/special_char_len.c \
@@ -17,8 +18,8 @@ SRCS			:=	main.c \
 					exec/exec.c \
 					exec/builtins/builtins.c \
 					exec/builtins/builtins_cmds/echo.c exec/builtins/builtins_cmds/pwd.c exec/builtins/builtins_cmds/env.c \
-					exec/builtins/builtins_cmds/cd.c exec/builtins/builtins_cmds/export.c exec/builtins/builtins_cmds/unset.c \
-					exec/builtins/builtins_cmds/exit.c \
+					exec/builtins/builtins_cmds/cd.c  exec/builtins/builtins_cmds/unset.c exec/builtins/builtins_cmds/export.c \
+				 	exec/builtins/builtins_cmds/exit.c \
 					tools/lib/lib_checker.c tools/lib/lib_len.c tools/lib/lib_memory.c tools/lib/lib_str_manip.c \
 					tools/free.c
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)

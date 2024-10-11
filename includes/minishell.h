@@ -149,10 +149,11 @@ bool	cd(t_data *data, char **args);
 /* echo.c */
 bool	echo(char **args);
 
-///////////////// 
+//////// builtins ///////// 
 /* builtins.c */
 bool 	is_builtins(t_data *data, char **args);
 
+/* exec.c */
 bool 	ast_exec(t_data *data, t_ast *ast);
 
 //**********************************************//
@@ -254,15 +255,27 @@ bool		tokenizer(t_data *data, char *input);
 //												//
 //**********************************************// 
 
+//////// env_tools ///////
+
 /* env_tools2.c */
 void 	remove_env_node(t_env **env, t_env *to_remove);
+bool	is_var(t_env *current, char *var_name);
+bool 	is_in_env(t_env *env, char *var_name);
+bool 	find_equal(char *var);
+bool	is_valid_var(char *var);
 
 /* env_tools.c */
 void	free_env(t_env **env_var);
-bool 	get_my_env(t_env *env, char *var_name);
-void	unset_env_var(t_env **env, char *var);
+void	unset_env_var(t_env **env, char *var_name);
 bool 	set_env_var(t_env **env, char *var_name, char *new_env_var);
 bool	add_env_var(t_env **env_var, char *str);
+
+/* extract_env.c */
+char 	*extract_var_value(char *args);
+char 	*extract_var_name(char *args);
+/* sort_env.c */
+bool	print_sorted_env(t_env *env);
+
 /* init_env.c */
 bool	init_env(t_data *data, char **envp);
 
@@ -285,7 +298,6 @@ void	free_loop(t_data *data);
 //////////////// Libft ////////////////
 
 /* lib_checker.c */
-bool 	find_equal(char *var);
 bool 	is_number(char *c);
 bool	ft_isdigit(int c);
 bool	ft_isalnum(int c);

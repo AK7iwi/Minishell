@@ -1,5 +1,7 @@
 General: 
 
+!!!!!!!ERROR handling
+
 Finish to rename(free and print ) ~~
 modif proto of ast_printer = like ast_exec 
 Leak when malloc = NULL;

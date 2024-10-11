@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:28:19 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/07 08:52:38 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/11 10:04:41 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ bool	pwd(t_error *error)
 		printf("%s\n", cwd);
 	
 	free(cwd);
-	
 	return (EXIT_FAILURE);
 }
