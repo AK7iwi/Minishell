@@ -6,7 +6,7 @@
 /*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/09 17:09:00 by diguler          ###   ########.fr       */
+/*   Updated: 2024/10/11 11:49:26 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ void	exec_ast_pipeline(t_ast *ast, char **env, t_data *data)
 	if (ast->type == AST_OPERATOR && ast->operator.type == AST_PIPE)
 	{
 		handle_pipe_creation(tube);
-		fork_and_exec_left(ast, env, tube);
-		handle_pipe_parent(tube, ast, env);
+		fork_and_exec_left(ast, env, tube, data);
+		handle_pipe_parent(tube, ast, env, data);
 	}
 	else if (ast->type == AST_COMMAND)
 	{

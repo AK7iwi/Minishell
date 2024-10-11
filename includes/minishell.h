@@ -166,9 +166,9 @@ void    exec_pipeline(t_ast *ast, char **env);
 
 /*process_handling.c*/
 void exec_ast_pipeline(t_ast *ast, char **env, t_data *data);
-void fork_and_exec_left(t_ast *ast, char **env, int tube[2]);
-void fork_and_exec_right(t_ast *ast, char **env, int fd_in);
-void handle_pipe_parent(int tube[2], t_ast *ast, char **env);
+void fork_and_exec_left(t_ast *ast, char **env, int tube[2], t_data *data);
+void fork_and_exec_right(t_ast *ast, char **env, int fd_in, t_data *data);
+void handle_pipe_parent(int tube[2], t_ast *ast, char **env, t_data *data);
 
 /*heredoc_utils.c*/
 char    *ft_getline(void);
