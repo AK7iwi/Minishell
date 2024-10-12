@@ -16,6 +16,11 @@ if [[ ! -f $TEST_FILE ]]; then
   exit 1
 fi
 
+# Color codes
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 # Read test cases from the file
 while IFS= read -r test_case || [ -n "$test_case" ]; do
   echo "Running test: '${test_case}'"
@@ -37,9 +42,10 @@ while IFS= read -r test_case || [ -n "$test_case" ]; do
 
   # Compare the outputs
   if [ "$cleaned_minishell_output" == "$bash_output" ]; then
-    echo "Test passed!"
+    echo -e "${GREEN}Test passed!${NC}"
+	echo "$cleaned_minishell_output"
   else
-    echo "Test failed!"
+    echo -e "${RED}Test failed!${NC}"
     echo "Expected (bash): '$bash_output'"
     echo "Got (minishell): '$cleaned_minishell_output'"
   fi
