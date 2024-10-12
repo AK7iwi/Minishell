@@ -37,13 +37,16 @@ while IFS= read -r test_case || [ -n "$test_case" ]; do
   # Run the command in minishell using input redirection
   minishell_output=$($MINISHELL < temp_input.txt 2>&1)
 
-  # Clean up the minishell output by removing the prompt, command lines, and the 'exit' line
-  cleaned_minishell_output=$(echo "$minishell_output" | sed -E '/Minishell> /d; /exit/d; s/^ *//; s/ *$//')
+  # Clean up the minishell output to extract only the actual output
+  # Capture everything between the prompts
+  cleaned_minishell_output=$(echo "$minishell_output" | sed -E -n 's/.*Minishell> //; s/exit//; /^$/d; P; D')
+
+  # Remove any leading or trailing whitespace
+  cleaned_minishell_output=$(echo "$cleaned_minishell_output" | sed -E 's/^[ \t]+|[ \t]+$//g')
 
   # Compare the outputs
   if [ "$cleaned_minishell_output" == "$bash_output" ]; then
     echo -e "${GREEN}Test passed!${NC}"
-	echo "$cleaned_minishell_output"
   else
     echo -e "${RED}Test failed!${NC}"
     echo "Expected (bash): '$bash_output'"

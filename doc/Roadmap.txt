@@ -27,7 +27,11 @@ check parser_rules file(doc)
 Find the right precedence
 Handle error 
 
-4) Exec: 
+4)ENV:
+
+create small env for env -i
+
+5) Exec: 
 
 handle error in ast_exec
 
@@ -35,9 +39,8 @@ a) Prompt: OK
 
 b) Working History
 
-c) Builtins
+c) Builtins OK~~
 
-handle redir
 handle error, check error for builtins
 test with no env
 handle paramaters (if args[1]) return ;

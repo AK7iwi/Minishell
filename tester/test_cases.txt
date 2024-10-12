@@ -1,4 +1,9 @@
 echo Hello World
+echo -n Hello World
+echo -nnnnnnn Hello
+echo -n -n -n -n World
+echo -nnnnnnnnnn -no oui
+cd ..
 pwd
 cd .. && pwd
 export TEST=123 && echo $TEST
