@@ -155,7 +155,7 @@ bool	echo(char **args);
 bool 	is_builtins(t_data *data, char **args);
 
 /* exec.c */
-bool 	ast_exec(t_data *data, t_ast *ast);
+bool 	exec(t_data *data, t_ast *ast);
 
 //**********************************************//
 //												//
