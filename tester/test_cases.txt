@@ -1,0 +1,5 @@
+echo Hello World
+pwd
+cd .. && pwd
+export TEST=123 && echo $TEST
+
