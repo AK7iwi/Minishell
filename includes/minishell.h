@@ -7,6 +7,8 @@
 
 #include "errors.h"
 #include <signal.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -131,6 +133,12 @@ typedef struct s_data
 //**********************************************//
 
 //**********************************************//
+//					CMDS		   				//
+//**********************************************//
+
+bool	cmds(t_data *data, char **args);
+
+//**********************************************//
 //					BUILTINS	   				//
 //**********************************************//
 
@@ -152,7 +160,7 @@ bool	echo(char **args);
 
 //////// builtins ///////// 
 /* builtins.c */
-bool 	is_builtins(t_data *data, char **args);
+bool	builtins(t_data *data, char **args);
 
 /* exec.c */
 bool 	exec(t_data *data, t_ast *ast);
@@ -274,6 +282,7 @@ bool	add_env_var(t_env **env_var, char *str);
 /* extract_env.c */
 char 	*extract_var_value(char *args);
 char 	*extract_var_name(char *args);
+char 	**copy_env(t_env *env);
 /* sort_env.c */
 bool	print_sorted_env(t_env *env);
 
@@ -297,7 +306,7 @@ bool	init(t_data *data, char **argv, char **envp);
 void	free_loop(t_data *data);
 void	free_all(t_data *data);
 
-//////////////// Libft ////////////////
+//////////////// Lib ////////////////
 
 /* lib_checker.c */
 bool 	is_number(char *c);
@@ -309,6 +318,11 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s);
 /* lib_len.c */
 size_t	ft_strlen(const char *s);
+
+///////// lib_str_manip ///////////
+
+/* lib_str_manip2.c */
+char	**ft_split(char const *str, char c);
 /* lib_str_manip.c */
 int		ft_atoi(const char *nptr);
 void	ft_swap(char **a, char **b);

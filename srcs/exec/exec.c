@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/12 08:12:13 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:49:45 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@ static bool subshell(t_data *data, t_subshell *subsh)
 
 static bool cmd(t_data *data, t_cmd *cmd)
 {	
-	if (is_builtins(data, cmd->args))
+	if (builtins(data, cmd->args))
 		return (EXIT_SUCCESS);
-	// else if ()
-	// {
-		
-	// }
+	else if (cmds(data, cmd->args))
+		return (EXIT_SUCCESS);
 	
 	return (EXIT_FAILURE);
 }
 static bool operator(t_data *data, t_operator *op)
 {
+	
 	if (op->left)
     	exec(data, op->left);
     if (op->right)

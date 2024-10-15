@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:55:21 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/11 10:56:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:48:43 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,41 @@ char *extract_var_name(char *args)
 	}
 	var_name[i] = '\0';
 	return (var_name);
+}
+
+#include <stdlib.h>
+#include <string.h>
+
+char **copy_env(t_env *env)
+{
+    t_env *tmp;
+    char **env_array;
+    size_t size;
+    size_t i;
+
+    tmp = env;
+	size = 0;
+    while (tmp)
+    {
+        size++;
+        tmp = tmp->next;
+    }
+
+    env_array = (char **)malloc(sizeof(char *) * (size + 1));
+    if (!env_array)
+        return (NULL);
+
+    tmp = env;
+	i = 0;
+    while (tmp)
+    {
+        env_array[i] = strdup(tmp->str);
+        if (!env_array[i])
+            return (NULL);
+        tmp = tmp->next;
+        i++;
+    }
+
+    env_array[i] = NULL;
+    return (env_array);
 }
