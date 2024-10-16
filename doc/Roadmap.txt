@@ -53,9 +53,12 @@ env: OK,
 unset OK,
 exit OK
 
-d) Command
+d) Command 
 Search and launch the right executable (based on the PATH variable or using a
-relative or an absolute path).
+relative or an absolute path). 
+
+New_env?
+Subshell for env
 
 e) Implement redirections 
 

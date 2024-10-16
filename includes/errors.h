@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/16 10:49:39 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:32:43 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@
 
 # define ERROR_EXECVE			0x40
 # define ERROR_FORK				0x80
+
 
 # define E_EXECVE	"Error\nexecve"
 # define E_FORK 	"Error\nfork"

@@ -3,10 +3,7 @@ AST:
 https://eli.thegreenplace.net/2012/08/02/parsing-expressions-by-precedence-climbing
 
 1) Be sure of the precedence
-
-
-int prec and int assoc in token struct 
-
+ 
 Parenthese exemple:
 
 bash-5.1$ pwd
