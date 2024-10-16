@@ -1,7 +1,7 @@
 General: 
 
 !!!!!!!ERROR handling
-Leak when malloc = NULL;
+Leak when malloc = NULL; free before return 
 error in stderr
 
 Finish to rename(free and print ) ~~

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/10 17:25:32 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:49:39 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define E_PARAN 	"Error\nClose the paranthese bro.\n"
 
 /* Exec errors */
+
+/* Builtins errors */
 # define ERROR_PWD				0x1
 # define ERROR_CD1 				0x2
 # define ERROR_CD2 				0x4
@@ -59,6 +61,14 @@
 # define E_EXPORT	"Error\nunset: not enough arguments\n"
 # define E_UNSET	"Error\nunset: not enough arguments\n"
 # define E_EXIT 	"bash: exit: too many arguments\n"
+
+/* CMDS errors */
+
+# define ERROR_EXECVE			0x40
+# define ERROR_FORK				0x80
+
+# define E_EXECVE	"Error\nexecve"
+# define E_FORK 	"Error\nfork"
 
 //**********************************************//
 //					STRUCTURES					//

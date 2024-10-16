@@ -303,6 +303,7 @@ bool	init(t_data *data, char **argv, char **envp);
 //**********************************************//
 
 /* free.c */
+void 	free_tab(char **tab);
 void	free_loop(t_data *data);
 void	free_all(t_data *data);
 
