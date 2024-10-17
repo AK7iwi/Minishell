@@ -38,9 +38,9 @@
 
 typedef enum e_op_type
 {
-    AST_PIPE,
-	AST_AND,
-	AST_OR,
+    OP_PIPE,
+	OP_AND,
+	OP_OR,
 }	t_op_type;
 
 typedef enum e_ast_type

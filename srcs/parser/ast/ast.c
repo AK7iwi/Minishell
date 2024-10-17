@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/06 14:14:41 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:36:14 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ t_op_type get_operator_type(t_tok_type type)
 	operator_type = 0; //verif 
 	
 	if (is_pipe(type))
-		operator_type = AST_PIPE;	
+		operator_type = OP_PIPE;	
 	else if (is_and(type))
-		operator_type = AST_AND;
+		operator_type = OP_AND;
 	else if (is_or(type))
-		operator_type = AST_OR;
+		operator_type = OP_OR;
 
 	return (operator_type);
 }
@@ -47,7 +47,6 @@ void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec)
 	
 	while ((*current) && is_operator((*current)->type) && get_prec((*current)->type) >= min_prec)
 	{
-		//verif if assoc
 		next_min_prec = get_prec((*current)->type);
 		op_type = get_operator_type((*current)->type);
 		(*current) = (*current)->next;

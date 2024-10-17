@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:57:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/09/30 11:39:56 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:03:06 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void print_cmd(t_ast *ast)
 static void print_operator(t_ast *ast, int *depth)
 {	
 	printf("[Operator] ");
-    if (ast->operator.type == AST_PIPE)
+    if (ast->operator.type == OP_PIPE)
 		printf("'|'");
-	else if (ast->operator.type == AST_AND)
+	else if (ast->operator.type == OP_AND)
 		printf("'&&'");
-	else if (ast->operator.type == AST_OR)
+	else if (ast->operator.type == OP_OR)
 		printf("'||'");
 	
 	printf("\n");
