@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/16 12:46:29 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:29:12 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,46 +41,41 @@ static	char	*find_command_in_path(char *cmd)
 	return (free_tab(paths), NULL);
 }
 
+static bool handle_child_proc(t_data *data, char **args, pid_t *pid, char *cmd_path)
+{
+	(*pid) = fork();
+	if ((*pid) == 0)
+    {
+        if (execve(cmd_path , args, NULL) == -1)
+        {
+			perror("execve");
+			free(cmd_path);
+			free_all(data);
+            exit(EXIT_FAILURE);
+        }
+    }
+	else if ((*pid) == -1)
+        return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE);
+	
+	return (EXIT_SUCCESS);
+}	
 bool	cmds(t_data *data, char **args)
 {
 	char	*cmd_path;
 	pid_t 	pid;
     int 	status;
-	char	**cpy_env;
 
 	cmd_path = find_command_in_path(args[0]);
 	if (cmd_path == NULL)
 	{
 		printf("command not found: %s\n", args[0]); //in stderr
-		return (free(cmd_path), EXIT_FAILURE);
+		return (free(cmd_path), false);
 	}
-	//fct 
-	pid = fork();
-	// pid = -1; to test
-	if (pid == 0)
-    {
-		cpy_env = copy_env(data->env);
-		if (!cpy_env)
-			exit(EXIT_FAILURE); ///free
-		// char *cmd_fail = ft_strjoin(cmd_path, "oui"); //to test because leaks in child process
-		//free_all here?
-        if (execve(cmd_path , args, cpy_env) == -1)
-        {
-            free(cmd_path);
-			free_tab(cpy_env);
-            exit(EXIT_FAILURE);
-        }
-		free_tab(cpy_env);
-    }
-	else if (pid == -1)
-	{
-        free(cmd_path);
-        return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE);
-	}
+	
+	if (handle_child_proc(data, args, &pid, cmd_path))
+		return (free(cmd_path), false);
+	
 	free(cmd_path);
     waitpid(pid, &status, 0);
-    if (!WIFEXITED(status) || WEXITSTATUS(status))
-		return (data->error.exec_errors |= ERROR_EXECVE, EXIT_FAILURE); 
-	
-	return (EXIT_SUCCESS);
+    return (WIFEXITED(status) && !WEXITSTATUS(status));	
 }

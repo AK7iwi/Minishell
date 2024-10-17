@@ -282,7 +282,6 @@ bool	add_env_var(t_env **env_var, char *str);
 /* extract_env.c */
 char 	*extract_var_value(char *args);
 char 	*extract_var_name(char *args);
-char 	**copy_env(t_env *env);
 /* sort_env.c */
 bool	print_sorted_env(t_env *env);
 
