@@ -1,5 +1,6 @@
 General: 
 
+
 !!!!!!!ERROR handling
 Leak when malloc = NULL; free before return 
 error in stderr
@@ -12,6 +13,10 @@ protect readline
 utils-->tools
 Use strcmp instead of strncmp
 EXIT_SUCCESS/EXIT_FAILURE logique
+Handle exit code
+Stock env in buffer
+
+STDOUT_FILENO??
 
 1) Lexer: 
 
@@ -42,7 +47,7 @@ b) Working History
 c) Builtins OK~~
 
 handle error, check error for builtins
-test with no env
+test with no env, nned protect 
 handle paramaters (if args[1]) return ;
 
 echo OK
@@ -57,23 +62,24 @@ d) Command OK
 Search and launch the right executable (based on the PATH variable or using a
 relative or an absolute path). 
 
+e) redirections
 
-e) Implement redirections 
+f) here-doc
 
-f)
+g) Operator
 
 I )Implement pipes (| character). The output of each command in the pipeline is
 connected to the input of the next command via a pipe.
 
 II) AND and OR OK
 
-g)Handle environment variables ($ followed by a sequence of characters) which
+h)Handle environment variables ($ followed by a sequence of characters) which
 should expand to their values.
 
 Handle $? Which should expand to the exit status of the most recently executed
 foreground pipeline
 
-h)Signaux OK
+i)Signaux OK
 
 Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 • In interactive mode:
@@ -81,7 +87,6 @@ Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 ◦ ctrl-D exits the shell.
 ◦ ctrl-\ does nothing.
 
-
-i) here-doc
+6) Tester
 
 

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:29:48 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/11 10:03:27 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:03:29 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ bool	ft_exit(t_data *data, char **args)
 	uint8_t exit_status;
 	
 	exit_status = 0;
-	
-	printf("exit\n");
 
 	if (args[1])
 	{
@@ -36,5 +34,6 @@ bool	ft_exit(t_data *data, char **args)
 			exit_status = ft_atoi(args[1]);
 	}
 	
+	free_all(data);
 	exit(exit_status);
 }

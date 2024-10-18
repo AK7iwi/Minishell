@@ -7,4 +7,7 @@ cd ..
 pwd
 cd .. && pwd
 export TEST=123 && echo $TEST
+history
+history -c 
+history -c ls pwd
 
