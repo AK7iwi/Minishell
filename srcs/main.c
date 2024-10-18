@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/18 11:35:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:16:05 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 void handle_sigquit(int sig)
 {
 	(void)sig;
+	rl_on_new_line();
+    rl_replace_line("", 0); 
+    rl_redisplay(); 
 }
 void handle_sigint(int sig)
 {

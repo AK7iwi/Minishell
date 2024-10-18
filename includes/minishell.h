@@ -69,6 +69,14 @@ typedef enum e_tok_type
 //					STRUCTURES					//
 //**********************************************//
 
+typedef struct s_hist
+{
+    char *str;
+
+    struct s_hist *prev;
+    struct s_hist *next;
+}	t_hist;
+
 typedef struct s_env
 {
     char *str;
@@ -123,6 +131,7 @@ typedef struct s_data
     t_token		*token;
 	t_ast 		*ast;
     t_env		*env;
+	t_hist		*hist;
 } 	t_data;
 
 
@@ -145,6 +154,8 @@ bool	cmds(t_data *data, char **args);
 /////// builtins_cmds //////////
 /* exit.c */
 bool	ft_exit(t_data *data, char **args);
+/* history.c */
+bool	history(char **args);
 /* env.c */
 bool	env(t_env *env);
 /* unset.c */
