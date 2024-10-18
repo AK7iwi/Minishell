@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/17 19:19:26 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/18 07:09:32 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,17 @@ static bool operator(t_data *data, t_operator *op)
 		printf("PIPE\n");
 	else if (op->type == OP_AND)
 	{
-		printf("AND\n");
 		if (op->left && !exec(data, op->left))
-			
+			return (op->right && exec(data, op->right));
+		return (EXIT_FAILURE);
 	}
 	else if (op->type == OP_OR)
-		printf("OR\n");
-	
-	// if (op->left)
-    // 	exec(data, op->left);
-    // if (op->right)
-    //     exec(data, op->right);
-	// else
-	// 	return (EXIT_FAILURE);
-	
-	return (EXIT_SUCCESS);
+	{
+		if (op->left && exec(data, op->left))
+			 return (op->right && exec(data, op->right));
+		return (EXIT_SUCCESS);
+	}
+	return (EXIT_FAILURE);
 }
 bool exec(t_data *data, t_ast *ast)
 {
