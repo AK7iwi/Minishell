@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/18 07:39:32 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/18 08:25:04 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int main(int argc, char **argv, char **envp)
 			|| exec(&data, data.ast))
 			errors_displayer(data.error);
 		
-		print_ast(data.ast, 0);
 		free_loop(&data);
     }
 	

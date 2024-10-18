@@ -60,8 +60,12 @@ relative or an absolute path).
 
 e) Implement redirections 
 
-f) Implement pipes (| character). The output of each command in the pipeline is
+f)
+
+I )Implement pipes (| character). The output of each command in the pipeline is
 connected to the input of the next command via a pipe.
+
+II) AND and OR OK
 
 g)Handle environment variables ($ followed by a sequence of characters) which
 should expand to their values.

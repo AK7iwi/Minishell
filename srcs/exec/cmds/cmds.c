@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/17 18:31:03 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/18 08:33:22 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool	cmds(t_data *data, char **args)
 	cmd_path = find_command_in_path(args[0]);
 	if (cmd_path == NULL)
 	{
-		printf("command not found: %s\n", args[0]); //in stderr
+		printf("bash: %s command not found\n", args[0]); //in stderr
 		return (free(cmd_path), false);
 	}
 	
