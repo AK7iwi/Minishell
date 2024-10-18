@@ -162,7 +162,9 @@ void    handle_fork(pid_t pid, char **env, t_cmd *cmd, int fd_in, int *tube);
 
 /*pipe.c*/
 void    exec_command(char **env, t_cmd *cmd);
-void    exec_pipeline(t_ast *ast, char **env);
+char	*find_command_in_path(char *cmd);
+void	exec_ast_pipeline(t_ast *ast, char **env, t_data *data);
+void	exec_cmds(char **args, char **env);
 
 /*process_handling.c*/
 void exec_ast_pipeline(t_ast *ast, char **env, t_data *data);
@@ -176,13 +178,19 @@ void    write_to_file(int output_fd, const char *line);
 int     open_output_file(const char *output_file);
 
 /*heredoc.c*/
-void    read_heredoc(int fd, const char *delimiter);
 void    child_process(int output_fd, char *delimiter);
 void    create_heredoc(char *delimiter);
+void	handle_heredoc(t_data *data);
 
 /*redir.c*/
 void    redir_output(char *filename, int append);
 void    redir_input(const char *filename);
+
+/*redirection.c*/
+int    is_redirection(const char *str);
+int    handle_input_redirection(char **args, int i, t_cmd *cmd);
+int    handle_output_redirection(char **args, int i, t_cmd *cmd, int append);
+int    count_valid_args(char **args, t_cmd *cmd);
 
 //**********************************************//
 //					  ENV  					    //
@@ -211,6 +219,10 @@ bool 	is_closed_paren(t_tok_type type);
 bool 	is_cmd(t_tok_type type);
 bool	is_redir(t_tok_type type);
 bool	is_operator(t_tok_type type);
+
+/*parser.c*/
+char    **fill_parsed_args(char **args, char **parsed_args);
+char    **parse_args(char **args, t_cmd *cmd);
 
 //**********************************************//
 //					AST   						//

@@ -1,3 +1,4 @@
+iuoiu
 NAME			:= minishell$
 $
 SRC_DIR			:= srcs$

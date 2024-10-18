@@ -6,7 +6,7 @@
 /*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/11 16:53:55 by diguler          ###   ########.fr       */
+/*   Updated: 2024/10/18 11:58:17 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,6 @@ void	exec_command(char **env, t_cmd *cmd)
 	}
 }
 
-// void exec_pipeline(t_cmd *cmds, char **env)
-// {
-//     int tube[2];
-//     pid_t pid;
-//     int fd_in = 0;
-//     int i = 0;
-//     printf("arg 1 : %s\n", cmds->args[0]);
-//     while (cmds->args[i] != NULL) 
-//     {
-//         if (cmds->args[i + 1] != NULL)
-//             create_pipe(tube);
-//         pid = fork();
-//         handle_fork(pid, env, cmds, fd_in, tube);
-//         if (pid > 0)
-//         {
-//             wait(NULL);
-//             close(tube[1]);
-//             if(fd_in != 0)
-//                 close(fd_in);
-//             fd_in = tube[0];
-//         }
-//         i++;
-//     }
-// }
-
 char	*find_command_in_path(char *cmd)
 {
 	char	*path_env;
@@ -79,7 +54,7 @@ char	*find_command_in_path(char *cmd)
 	return (NULL);
 }
 
-void	exec_cmd(char **args, char **env)
+void	exec_cmds(char **args, char **env)
 {
 	char	*cmd_path;
 
@@ -100,30 +75,17 @@ void	exec_ast_pipeline(t_ast *ast, char **env, t_data *data)
 {
 	int		tube[2];
 	pid_t	pid;
+	char	**r;
 
 	if (ast == NULL)
-	{
 		return ;
-	}
-	while (data->token)
-	{
-		if (data->token->type == TOKEN_HERE_DOC)
-		{
-			create_heredoc(data->token->next->str);
-			data->token = data->token->next->next;
-			continue;
-		}
-		else
-			data->token = data->token->next;
-	}
+	handle_heredoc(data);
 	if (ast->type == AST_OPERATOR)
-	{
-		handle_pipe_creation(tube);
-		fork_and_exec_left(ast, env, tube, data);
-		handle_pipe_parent(tube, ast, env, data);
-	}
+		(handle_pipe_creation(tube), fork_and_exec_left(ast, env, tube, data),
+			handle_pipe_parent(tube, ast, env, data));
 	else if (ast->type == AST_COMMAND)
 	{
+		r = parse_args(ast->cmd.args, &ast->cmd);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -131,7 +93,7 @@ void	exec_ast_pipeline(t_ast *ast, char **env, t_data *data)
 				redir_output(ast->cmd.output_file, ast->cmd.append);
 			if (ast->cmd.input_file)
 				redir_input(ast->cmd.input_file);
-			exec_cmd(ast->cmd.args, env);
+			exec_cmds(r, env);
 			exit(EXIT_FAILURE);
 		}
 		wait(NULL);

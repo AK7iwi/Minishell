@@ -22,11 +22,13 @@ SRCS			:= main.c \
 					parser/ast/ast_node_creator/subsh_node.c \
 					parser/parser_utils/parser_checker.c \
 					parser/parser_utils/parser_checker2.c \
+					parser/parser_utils/parser.c \
 					error/msg_error.c \
 					exec/exec.c \
 					exec/redirections/heredoc.c \
 					exec/redirections/heredoc_utils.c \
 					exec/redirections/redir.c \
+					exec/redirections/redirection.c \
 					exec/builtins/builtins.c \
 					exec/pipe/error_handling.c \
 					exec/pipe/pipe_handling.c \
@@ -68,6 +70,9 @@ $(NAME): $(OBJS)
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+make run : $(NAME)
+	./minishell
 
 clean:
 	$(RM) $(OBJS)

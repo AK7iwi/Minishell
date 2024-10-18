@@ -6,7 +6,7 @@
 /*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:42:24 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/01 14:16:13 by diguler          ###   ########.fr       */
+/*   Updated: 2024/10/18 09:56:55 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	free_tab(char **tab)
 {
 	size_t	i;
-
+	if(!*tab)
+		return ;
 	i = 0;
 	while (tab[i])
 	{
