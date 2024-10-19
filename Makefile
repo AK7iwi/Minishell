@@ -21,6 +21,7 @@ SRCS			:=	main.c \
 					exec/builtins/builtins_cmds/cd.c  exec/builtins/builtins_cmds/unset.c exec/builtins/builtins_cmds/export.c \
 				 	exec/builtins/builtins_cmds/history.c exec/builtins/builtins_cmds/exit.c \
 					exec/cmds/cmds.c \
+					exec/pipe/pipe.c \
 					tools/lib/lib_checker.c tools/lib/lib_len.c tools/lib/lib_memory.c \
 					tools/lib/lib_str_manip/lib_str_manip.c tools/lib/lib_str_manip/lib_str_manip2.c \
 					tools/free/free.c

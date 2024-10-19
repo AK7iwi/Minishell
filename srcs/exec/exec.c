@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/18 08:32:40 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/19 11:13:27 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool cmd(t_data *data, t_cmd *cmd)
 static bool operator(t_data *data, t_operator *op)
 {
 	if (op->type == OP_PIPE)
-		printf("PIPE\n");
+		return (handle_pipe(data));
 	else if (op->type == OP_AND)
 	{
 		if (op->left && !exec(data, op->left))
@@ -42,7 +42,6 @@ static bool operator(t_data *data, t_operator *op)
 			 return (op->right && exec(data, op->right));
 		return (EXIT_SUCCESS);
 	}
-	
 	return (EXIT_FAILURE);
 }
 bool exec(t_data *data, t_ast *ast)

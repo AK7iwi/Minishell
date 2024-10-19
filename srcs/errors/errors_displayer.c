@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 08:49:38 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/17 17:27:26 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/19 12:27:34 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	display_exec_errors(uint16_t exec_errors)
 		ft_putstr(E_EXIT, 2);
 	if (exec_errors & ERROR_FORK)
 		perror(E_FORK);
+	if (exec_errors & ERROR_PIPE)
+		perror(E_PIPE);
 }
 static void	display_parsing_errors(uint8_t parsing_errors)
 {

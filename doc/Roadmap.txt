@@ -42,7 +42,7 @@ handle error in ast_exec
 
 a) Prompt: OK
 
-b) Working History
+b) Working History ~
 
 c) Builtins OK~~
 
@@ -79,13 +79,13 @@ should expand to their values.
 Handle $? Which should expand to the exit status of the most recently executed
 foreground pipeline
 
-i)Signaux OK
+i) Signaux 
 
 Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 • In interactive mode:
-◦ ctrl-C displays a new prompt on a new line.
-◦ ctrl-D exits the shell.
-◦ ctrl-\ does nothing.
+◦ ctrl-C displays a new prompt on a new line. OK
+◦ ctrl-D exits the shell. OK
+◦ ctrl-\ does nothing. 
 
 6) Tester
 
