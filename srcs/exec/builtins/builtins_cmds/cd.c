@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:08:47 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/11 12:30:56 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/20 13:03:59 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static bool update_dir(t_env *env, char *old_cwd) //two errors to handle
 	free(cwd);
 	free(new_pwd);
 	free(n_old_pwd);
+	
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:02:39 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/18 10:13:15 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/20 12:55:56 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	free_loop(t_data *data)
 
 void	free_all(t_data *data)
 {
-	printf("exit\n");
 	free_loop(data);
 	if (data->env)
 		free_env(&data->env);

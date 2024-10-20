@@ -10,4 +10,5 @@ export TEST=123 && echo $TEST
 history
 history -c 
 history -c ls pwd
-
+cat < input.txt >> output.txt
+ls < input.txt >> output.txt

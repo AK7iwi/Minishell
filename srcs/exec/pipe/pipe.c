@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 11:04:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/19 12:45:27 by mfeldman         ###   ########.fr       */
+/*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
+/*   Updated: 2024/10/20 15:21:30 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,33 @@
 static	bool	fork_and_exec_right(t_data *data, int fd_in)
 {
     pid_t pid;
+	
 	pid = fork();
-    if (pid == -1)
+    if (pid == -1) //to test 
         return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE);
-
-    if (pid == 0)
+    else if (pid == 0)
     {
-        dup2(fd_in, STDIN_FILENO); 
+        if (dup2(fd_in, STDIN_FILENO)) //to test
+			return (EXIT_FAILURE);
         close(fd_in); 
         exec(data, data->ast->operator.right);
 		free_all(data);
         exit(EXIT_SUCCESS);
     }
-	printf("Je pasee la aussi\n");
 	return (EXIT_SUCCESS);
 }
 static	bool handle_pipe_parent(t_data *data, int tube[2])
 {
     int fd_in;
+	
 	fd_in = tube[0];
     close(tube[1]); 
-    wait(NULL); 
-    if (fork_and_exec_right(data, fd_in))
+    wait(NULL);
+    if (fork_and_exec_right(data, fd_in)) //to test
 		return (EXIT_FAILURE);
     close(fd_in);
     wait(NULL);
+	
 	return (EXIT_SUCCESS);
 }
 static bool	fork_and_exec_left(t_data *data, int tube[2])
@@ -49,7 +51,8 @@ static bool	fork_and_exec_left(t_data *data, int tube[2])
 	pid = fork();
     if (pid == 0)  
     {
-        dup2(tube[1], STDOUT_FILENO); 
+        if (dup2(tube[1], STDOUT_FILENO) == -1) //to test
+			return (EXIT_FAILURE);
         close(tube[0]); 
         close(tube[1]); 
         exec(data, data->ast->operator.left);
@@ -59,7 +62,6 @@ static bool	fork_and_exec_left(t_data *data, int tube[2])
 	else if (pid == -1) //test 
 		return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE); //one return 
 
-	printf("Je pasee la\n");
 	return (EXIT_SUCCESS);
 }
 bool handle_pipe(t_data *data)
@@ -68,13 +70,6 @@ bool handle_pipe(t_data *data)
 
 	if (pipe(tube) == -1) //to test 
 		return (data->error.exec_errors |= ERROR_PIPE, EXIT_FAILURE);
-	
-	if (fork_and_exec_left(data, tube))
-		return (EXIT_FAILURE);
-	if (handle_pipe_parent(data, tube))
-		return (EXIT_FAILURE);
 
-	return (EXIT_SUCCESS);
-	
-	// return (fork_and_exec_left(data, tube) || handle_pipe_parent(data, tube));
+	return (fork_and_exec_left(data, tube) || handle_pipe_parent(data, tube));
 }

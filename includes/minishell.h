@@ -52,6 +52,7 @@ typedef enum e_ast_type
 
 typedef enum e_tok_type
 {
+	//T_
 	TOKEN_WORD,
 	TOKEN_PIPE,
 	TOKEN_SIMPLE_REDIRECT_IN,
@@ -87,8 +88,11 @@ typedef struct s_env
 
 typedef struct s_cmd
 {
-	//t_cmd_type
 	char **args;
+	char *input_file;
+    char *output_file;
+	char *delim;
+	bool append;
 }	t_cmd;
 
 typedef struct s_operator

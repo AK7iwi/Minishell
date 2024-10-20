@@ -1,6 +1,5 @@
 General: 
 
-
 !!!!!!!ERROR handling
 Leak when malloc = NULL; free before return 
 error in stderr
@@ -9,84 +8,83 @@ Finish to rename(free and print ) ~~
 modif proto of ast_printer = like ast_exec 
 int --> int32t / norme
 protect ft_strdup
-protect readline
-utils-->tools
+protect readline ~~
 Use strcmp instead of strncmp
 EXIT_SUCCESS/EXIT_FAILURE logique
 Handle exit code
-Stock env in buffer
 
 STDOUT_FILENO??
 
-1) Lexer: 
+I) Lexer: 
 
 Review the main of tokenizer(no need to declare token in but in str_handler and special_char_handler yes)
 check tokenisation file(doc)
 
-2) Synthesis_analysis:
+II) Synthesis_analysis:
 
 check parser_rules file(doc)
 
-3) AST: 
+III) AST: 
 
 Find the right precedence
 Handle error 
 
-4)ENV:
+IV)ENV:
 
 create small env for env -i
 
-5) Exec: 
+V) Exec: 
 
 handle error in ast_exec
+handle when its a builtins but the builtins fail. 
 
-a) Prompt: OK
+	a) Prompt: OK
 
-b) Working History ~
+	b) Working History ~
 
-c) Builtins OK~~
+	c) Builtins OK~~
 
-handle error, check error for builtins
-test with no env, nned protect 
-handle paramaters (if args[1]) return ;
+		handle error, check error for builtins
+		test with no env, nned protect 
+		handle paramaters (if args[1]) return ;
 
-echo OK
-cd OK, but need netter error handling 
-pwd OK
-export: ~, need to handle when no equal 
-env: OK, 
-unset OK,
-exit OK
+		echo OK
+		cd OK, but need better error handling 
+		pwd OK
+		export: ~, need to handle when no equal 
+		env: OK, 
+		unset OK,
+		exit OK
 
-d) Command OK
-Search and launch the right executable (based on the PATH variable or using a
-relative or an absolute path). 
+	d) Command OK
+		Search and launch the right executable (based on the PATH variable or using a
+		relative or an absolute path). 
 
-e) redirections
+	e) redirections
 
-f) here-doc
+	f) here-doc
 
-g) Operator
+	g) Operator
 
-I )Implement pipes (| character). The output of each command in the pipeline is
-connected to the input of the next command via a pipe.
+		1)Implement pipes (| character). OK
 
-II) AND and OR OK
+		2) AND and OR OK
 
-h)Handle environment variables ($ followed by a sequence of characters) which
-should expand to their values.
+	h)Handle environment variables 
 
-Handle $? Which should expand to the exit status of the most recently executed
-foreground pipeline
+	Handle $? Which should expand to the exit status of the most recently executed
+	foreground pipeline
 
-i) Signaux 
+	i) Signals 
 
-Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
-• In interactive mode:
-◦ ctrl-C displays a new prompt on a new line. OK
-◦ ctrl-D exits the shell. OK
-◦ ctrl-\ does nothing. 
+	Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
+	• In interactive mode:
+	◦ ctrl-C displays a new prompt on a new line. OK
+	◦ ctrl-D exits the shell. ~~ not working when line is not working 
+	◦ ctrl-\ does nothing.
 
-6) Tester
+	j) issue with paren when using pipe
+
+VI) Tester
 
 

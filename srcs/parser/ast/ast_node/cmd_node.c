@@ -6,12 +6,31 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:29:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/04 10:35:24 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/20 19:39:00 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void handle_redir(t_ast **new_node, t_token **current)
+{
+	while ((*current) && !is_operator((*current)->type))
+	{
+		if ((*current)->type == TOKEN_SIMPLE_REDIRECT_OUT || (*current)->type == TOKEN_DOUBLE_REDIRECT_OUT)
+		{
+			(*new_node)->cmd.output_file = ft_strdup((*current)->next->str);
+			if ((*current)->type == TOKEN_DOUBLE_REDIRECT_OUT)
+				(*new_node)->cmd.append = true;
+		}
+		else if ((*current)->type == TOKEN_SIMPLE_REDIRECT_IN)
+			(*new_node)->cmd.input_file = ft_strdup((*current)->next->str);
+		else if (((*current)->type) == TOKEN_HERE_DOC)
+			(*new_node)->cmd.delim = ft_strdup((*current)->next->str);
+		
+		(*current) = (*current)->next;
+		(*current) = (*current)->next;
+	}
+}
 static char **copy_args(t_token **current, size_t cmd_len)
 {
 	char **args;
@@ -23,7 +42,7 @@ static char **copy_args(t_token **current, size_t cmd_len)
 	i = 0;
 	while (i < cmd_len)
 	{
-		args[i++] = ft_strdup((*current)->str); //protect
+		args[i++] = ft_strdup((*current)->str);
 		(*current) = (*current)->next;
 	}
 	args[i] = NULL;
@@ -53,7 +72,9 @@ t_ast	*create_cmd_node(t_ast **new_node, t_token **current)
 		return (NULL);
 	
 	(*new_node)->type = AST_COMMAND;
-	(*new_node)->cmd.args = copy_args(current, cmd_len); //protect
+	(*new_node)->cmd.args = copy_args(current, cmd_len);
+	if ((*current) && is_redir((*current)->type))
+		handle_redir(new_node, current);
 	
 	return ((*new_node));
 }

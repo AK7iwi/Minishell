@@ -1,8 +1,15 @@
-Handle expand token before operatorOK
-Handle redir (is_redir), separate redirin/redirout OK
-Handle paren token before operator OK
 
-Parse for paren: echo (ls)
+Parse for paren: 
+a) echo (ls)
+b) ()
+
+Parse for heredoc: 
+Need a delimiter after
+
+Parse for redirection: 
+After a input_redir, you must have a input_file 
+and after the intput_file you can have nothing or a separator or an output_redir
+Same for the reverse case  
 
 Closed and open parens cant togheter 
 
