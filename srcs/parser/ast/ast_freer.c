@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 10:06:07 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:28:46 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void free_subshell(t_subshell *subsh)
 {
-	ast_freer(&subsh->root);
+	free_ast(&subsh->root);
 }
 static void free_cmd(t_cmd *cmd)
 {
@@ -30,23 +30,21 @@ static void free_cmd(t_cmd *cmd)
 	free(cmd->output_file);
 	free(cmd->input_file);
 	free(cmd->delim);
-	cmd->append = 0;
-	cmd->nb_redir = 0;
-	cmd->f_redir = 0;
 	cmd->args = NULL; 
 	cmd->output_file = NULL;
 	cmd->input_file = NULL;
 	cmd->delim = NULL;
+	cmd->append = 0;
 }
 static void free_operator(t_operator *op)
 {
     if (op->left)
-        ast_freer(&op->left);
+        free_ast(&op->left);
     if (op->right)
-        ast_freer(&op->right);
+        free_ast(&op->right);
 }
 
-void ast_freer(t_ast **ast)
+void	free_ast(t_ast **ast)
 {
 	if ((*ast)->type == AST_OPERATOR)
 		free_operator(&(*ast)->operator);

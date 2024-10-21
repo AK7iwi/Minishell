@@ -5,13 +5,13 @@ Leak when malloc = NULL; free before return
 error in stderr
 
 Finish to rename(free and print ) ~~
-modif proto of ast_printer = like ast_exec 
 int --> int32t / norme
 protect ft_strdup
 protect readline ~~
 Use strcmp instead of strncmp
 EXIT_SUCCESS/EXIT_FAILURE logique
 Handle exit code
+track fd
 
 STDOUT_FILENO??
 
@@ -64,7 +64,7 @@ handle when its a builtins but the builtins fail.
 
 	f) here-doc
 
-	g) Operator
+	g) Operator OK
 
 		1)Implement pipes (| character). OK
 

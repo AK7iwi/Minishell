@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:09:55 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 08:08:04 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:48:39 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@ bool check_paren(t_token *current, uint32_t *o_counter, uint32_t *c_counter)
 	else if (is_closed_paren(current->type))
 		(*c_counter)++;
 	
-	if ((*c_counter) > (*o_counter))
-		return (EXIT_FAILURE);
-	
-	return (EXIT_SUCCESS);
+	return ((*c_counter) > (*o_counter));
 }
 bool check_redir(t_token *current)
 {
 	return (is_redir(current->type)
 		&& (!current->next || current->next->type != T_WORD));
-
+	
 }
 bool check_operator(t_token *current)
 {	

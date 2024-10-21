@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/20 19:43:21 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/21 10:47:41 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static bool cmd(t_data *data, t_cmd *cmd)
 		return (EXIT_SUCCESS);
 	else if (cmds(data, cmd->args))
 		return (EXIT_SUCCESS);
-	
 	
 	return (EXIT_FAILURE);
 }

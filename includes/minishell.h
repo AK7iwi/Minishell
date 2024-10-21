@@ -85,15 +85,14 @@ typedef struct s_env
     struct s_env *next;
 }	t_env;
 
+
 typedef struct s_cmd
 {
 	char **args;
 	char *input_file;
-    char *output_file;
+	char *output_file;   
+    bool append;  
 	char *delim;
-	uint8_t nb_redir;
-	uint8_t	f_redir;
-	bool append;
 }	t_cmd;
 
 typedef struct s_operator
@@ -219,7 +218,7 @@ bool	is_operator(t_tok_type type);
 void 	print_ast(t_ast *ast, int depth);
 
 /* ast_free.c */
-void	ast_freer(t_ast **ast);
+void	free_ast(t_ast **ast);
 
 /////// ast_node ////////////
 /* operator_node.c */

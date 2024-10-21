@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:02:39 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/20 12:55:56 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/21 10:49:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_loop(t_data *data)
 	if (data->token)
 		free_token(&data->token);
 	if (data->ast)
-		ast_freer(&data->ast);
+		free_ast(&data->ast);
 }
 
 void	free_all(t_data *data)

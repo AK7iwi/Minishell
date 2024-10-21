@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:29:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 10:12:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:25:46 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,32 @@ static bool handle_redir(t_ast **new_node, t_token **current)
 	{
 		if ((*current)->type == T_S_REDIR_OUT || (*current)->type == T_D_REDIR_OUT)
 		{
+			//fct handle redir_out
+			if ((*new_node)->cmd.output_file)
+				free((*new_node)->cmd.output_file);
+			
 			(*new_node)->cmd.output_file = ft_strdup((*current)->next->str);
 			if (!(*new_node)->cmd.output_file)
 				return (EXIT_FAILURE);
-			
-			if ((*new_node)->cmd.nb_redir == 0)
-				((*new_node)->cmd.f_redir = 1);
-			(*new_node)->cmd.nb_redir++;
-			
 			if ((*current)->type == T_D_REDIR_OUT)
 				(*new_node)->cmd.append = true;
 		}
 		else if ((*current)->type == T_S_REDIR_IN)
 		{
+			//fct handle redir_in
+			if ((*new_node)->cmd.input_file)
+				free((*new_node)->cmd.input_file);
+			
 			(*new_node)->cmd.input_file = ft_strdup((*current)->next->str);
 			if (!(*new_node)->cmd.input_file)
 				return (EXIT_FAILURE);
-			
-			if ((*new_node)->cmd.nb_redir == 0)
-				((*new_node)->cmd.f_redir = 2);
-			(*new_node)->cmd.nb_redir++;
 		}
 		else if (((*current)->type) == T_HERE_DOC)
 		{
+			//fct handle heredoc
 			(*new_node)->cmd.delim = ft_strdup((*current)->next->str);
 			if (!(*new_node)->cmd.delim)
 				return (EXIT_FAILURE);
-			
-			if ((*new_node)->cmd.nb_redir == 0)
-				((*new_node)->cmd.f_redir = 3);
-			(*new_node)->cmd.nb_redir++;
 		}
 		(*current) = (*current)->next;
 	}
@@ -99,9 +95,7 @@ t_ast	*create_cmd_node(t_ast **new_node, t_token **current)
 	(*new_node)->cmd.output_file = NULL;
 	(*new_node)->cmd.input_file = NULL;
 	(*new_node)->cmd.delim = NULL;
-	(*new_node)->cmd.nb_redir = 0;
-	(*new_node)->cmd.f_redir = 0;
-	(*new_node)->cmd.append = 0;
+	(*new_node)->cmd.append = false;
 	if ((*current) && is_redir((*current)->type))
 		if (handle_redir(new_node, current))
 			return (NULL);
