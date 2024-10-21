@@ -12,3 +12,4 @@ history -c
 history -c ls pwd
 cat < input.txt >> output.txt
 ls < input.txt >> output.txt
+ls >> input.txt < output.txt

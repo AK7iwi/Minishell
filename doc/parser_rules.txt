@@ -5,6 +5,7 @@ b) ()
 
 Parse for heredoc: 
 Need a delimiter after
+afer the dilimiter: nothing,operator, redir_out 
 
 Parse for redirection: 
 After a input_redir, you must have a input_file 

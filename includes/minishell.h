@@ -52,18 +52,17 @@ typedef enum e_ast_type
 
 typedef enum e_tok_type
 {
-	//T_
-	TOKEN_WORD,
-	TOKEN_PIPE,
-	TOKEN_SIMPLE_REDIRECT_IN,
-	TOKEN_SIMPLE_REDIRECT_OUT,
-	TOKEN_HERE_DOC,
-	TOKEN_DOUBLE_REDIRECT_OUT,
-	TOKEN_ENV_VAR,
-	TOKEN_AND,
-	TOKEN_OR,
-	TOKEN_OPEN_PAREN,
-	TOKEN_CLOSE_PAREN,
+	T_WORD,
+	T_PIPE,
+	T_S_REDIR_OUT,
+	T_D_REDIR_OUT,
+	T_S_REDIR_IN,
+	T_HERE_DOC,
+	T_ENV_VAR,
+	T_AND,
+	T_OR,
+	T_O_PAREN,
+	T_C_PAREN,
 }	t_tok_type;
 
 //**********************************************//
@@ -92,6 +91,8 @@ typedef struct s_cmd
 	char *input_file;
     char *output_file;
 	char *delim;
+	uint8_t nb_redir;
+	uint8_t	f_redir;
 	bool append;
 }	t_cmd;
 
@@ -123,6 +124,7 @@ typedef struct s_ast
 typedef struct s_token
 {
     t_tok_type type;
+
     char	*str;
     
     struct s_token *prev;

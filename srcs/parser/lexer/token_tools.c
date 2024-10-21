@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:14:17 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/09 08:56:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/21 08:10:50 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,23 @@ bool	add_token(t_token **token_struct, t_tok_type *token, char *str_token)
 t_tok_type wich_token(char *str_token)
 {
     if (str_token[0] == '|' && !str_token[1])
-        return (TOKEN_PIPE);
+        return (T_PIPE);
     else if (str_token[0] == '<' && !str_token[1])
-        return (TOKEN_SIMPLE_REDIRECT_IN);
+        return (T_S_REDIR_IN);
     else if (str_token[0] == '>' && !str_token[1])
-        return (TOKEN_SIMPLE_REDIRECT_OUT);
+        return (T_S_REDIR_OUT);
     else if (str_token[0] == '<' && str_token[1] == '<' && !str_token[2])
-        return (TOKEN_HERE_DOC);
+        return (T_HERE_DOC);
     else if (str_token[0] == '>' && str_token[1] == '>' && !str_token[2])
-        return (TOKEN_DOUBLE_REDIRECT_OUT);
+        return (T_D_REDIR_OUT);
     else if (str_token[0] == '&' && str_token[1] == '&' && !str_token[2])
-        return (TOKEN_AND);
+        return (T_AND);
     else if (str_token[0] == '|' && str_token[1] == '|' && !str_token[2])
-        return (TOKEN_OR);
+        return (T_OR);
     else if (str_token[0] == '(' && !str_token[1])
-        return (TOKEN_OPEN_PAREN);
+        return (T_O_PAREN);
     else if (str_token[0] == ')' && !str_token[1])
-        return (TOKEN_CLOSE_PAREN);
+        return (T_C_PAREN);
 
-    return (TOKEN_WORD);
+    return (T_WORD);
 }
