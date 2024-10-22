@@ -36,6 +36,14 @@
 //					ENUM						//
 //**********************************************//
 
+typedef enum e_redir_type
+{
+    REDIR_IN,
+    REDIR_OUT,   
+    REDIR_APPEND, 
+    REDIR_HEREDOC 
+}	t_redir_type;
+
 typedef enum e_op_type
 {
     OP_PIPE,
@@ -57,7 +65,7 @@ typedef enum e_tok_type
 	T_S_REDIR_OUT,
 	T_D_REDIR_OUT,
 	T_S_REDIR_IN,
-	T_HERE_DOC,
+	T_HERE_DOC, //HEREDOC
 	T_ENV_VAR,
 	T_AND,
 	T_OR,
@@ -85,14 +93,18 @@ typedef struct s_env
     struct s_env *next;
 }	t_env;
 
+typedef struct s_redir
+{
+	t_redir_type  type;
+
+	char	*file;
+}	t_redir;
 
 typedef struct s_cmd
 {
-	char **args;
-	char *input_file;
-	char *output_file;   
-    bool append;  
-	char *delim;
+	char 		**args;
+	t_redir		*redir;
+	uint32_t	nb_redir;
 }	t_cmd;
 
 typedef struct s_operator
@@ -105,7 +117,7 @@ typedef struct s_operator
 
 typedef struct s_subshell
 {
-    struct s_ast *root;
+    struct s_ast *root; //t_ast *root
 } 	t_subshell;
 
 typedef struct s_ast
@@ -218,7 +230,7 @@ bool	is_operator(t_tok_type type);
 void 	print_ast(t_ast *ast, int depth);
 
 /* ast_free.c */
-void	free_ast(t_ast **ast);
+void	free_ast(t_ast **ast); //in exec
 
 /////// ast_node ////////////
 /* operator_node.c */

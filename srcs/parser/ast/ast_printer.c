@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:57:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 10:29:50 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:51:47 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ static void print_cmd(t_ast *ast)
 		i++;
 	}
 	
+	if (ast->cmd.redir->output_file)
+		printf(">> %s ", ast->cmd.redir->output_file);
+	if (ast->cmd.redir->input_file)
+		printf("< %s", ast->cmd.redir->input_file);
+	if (ast->cmd.redir->delim)
+		printf("<< %s ", ast->cmd.redir->delim);
 	printf("\n");
 }
 static void print_operator(t_ast *ast, int *depth)

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 11:28:46 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:50:28 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ static void free_cmd(t_cmd *cmd)
 		i++;
 	}
 	free(cmd->args);
-	free(cmd->output_file);
-	free(cmd->input_file);
-	free(cmd->delim);
+	free(cmd->redir->output_file);
+	free(cmd->redir->input_file);
+	free(cmd->redir->delim);
 	cmd->args = NULL; 
-	cmd->output_file = NULL;
-	cmd->input_file = NULL;
-	cmd->delim = NULL;
-	cmd->append = 0;
+	cmd->redir->nb_redir = 0;
+	cmd->redir->first_redir = 0;
+	cmd->redir->output_file = NULL;
+	cmd->redir->input_file = NULL;
+	cmd->redir->delim = NULL;
+	cmd->redir->append = false; 
 }
 static void free_operator(t_operator *op)
 {
