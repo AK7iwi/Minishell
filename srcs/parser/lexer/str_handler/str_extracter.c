@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:21:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/04 10:09:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:45:34 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char*	str_extracter(t_error *error, char *input, t_tok_type *token, size_t *inde
 	char*	str;
 	
 	str_start = skip_space(input, index);
-	str_len = get_str_len(input, token, index);
+	str_len = get_str_len(input, token, index); //in copy_str
 	if (str_len < 0)
 		return (error->parsing_errors |= ERROR_QUOTE, NULL);
 	

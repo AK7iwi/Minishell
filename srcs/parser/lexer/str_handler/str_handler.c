@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:07:39 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 08:07:10 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:50:03 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 bool str_handler(t_data *data, char *input, t_tok_type *token, size_t *index)
 {
-	char 		*str_token;
+	char	*str_token;
 
-	str_token = str_extracter(&data->error, input, token, index);
+	str_token = str_extracter(&data->error, input, token, index); //extract_str
 	if (!str_token)
 		return (EXIT_FAILURE);
 	if (!(*token))

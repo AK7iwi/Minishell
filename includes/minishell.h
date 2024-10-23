@@ -38,10 +38,10 @@
 
 typedef enum e_redir_type
 {
-    REDIR_IN,
-    REDIR_OUT,   
-    REDIR_APPEND, 
-    REDIR_HEREDOC 
+	REDIR_IN,
+	REDIR_OUT,   
+	APPEND,
+	HERE_DOC      
 }	t_redir_type;
 
 typedef enum e_op_type
@@ -63,7 +63,7 @@ typedef enum e_tok_type
 	T_WORD,
 	T_PIPE,
 	T_S_REDIR_OUT,
-	T_D_REDIR_OUT,
+	T_D_REDIR_OUT, //APPEND
 	T_S_REDIR_IN,
 	T_HERE_DOC, //HEREDOC
 	T_ENV_VAR,
@@ -93,18 +93,19 @@ typedef struct s_env
     struct s_env *next;
 }	t_env;
 
-typedef struct s_redir
+typedef struct s_redirs
 {
-	t_redir_type  type;
-
-	char	*file;
-}	t_redir;
+	char *input_file;
+    char *output_file;
+	char *delim;
+}	t_redirs;
 
 typedef struct s_cmd
 {
-	char 		**args;
-	t_redir		*redir;
-	uint32_t	nb_redir;
+	// char 	**cmd_to_print;
+	char		**args;
+	char		**redirs;	
+	t_redirs	*redirs_files;
 }	t_cmd;
 
 typedef struct s_operator
@@ -233,12 +234,18 @@ void 	print_ast(t_ast *ast, int depth);
 void	free_ast(t_ast **ast); //in exec
 
 /////// ast_node ////////////
+
 /* operator_node.c */
 t_ast	*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type);
-/* cmd_node.c */
-t_ast	*create_cmd_node(t_ast **new_node, t_token **current);
 /*subsh_node.c */
 t_ast	*create_subsh_node(t_ast **new_node, t_token **current);
+/////// cmd_node //////////
+/* handle_redirs.c */
+bool	handle_redirs(t_ast **new_node, t_token **current, size_t *i);
+/* handle_args.c */
+bool	handle_args(t_ast **new_node, t_token **current, size_t *i);
+/* cmd_node.c */
+t_ast	*create_cmd_node(t_ast **new_node, t_token **current);
 
 /* ast.c */
 t_ast	*handle_cmd_and_subsh(t_token **current);
@@ -357,7 +364,6 @@ char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
 
 ///////// lib_str_manip ///////////
-
 /* lib_str_manip2.c */
 char	**ft_split(char const *str, char c);
 /* lib_str_manip.c */

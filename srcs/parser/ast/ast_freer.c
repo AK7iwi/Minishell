@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/22 10:50:28 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:01:24 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,27 @@ static void free_cmd(t_cmd *cmd)
 	size_t i;
 	
 	i = 0;
+	//free args 
 	while (cmd->args[i])
 	{
 		free(cmd->args[i]);
 		i++;
 	}
 	free(cmd->args);
-	free(cmd->redir->output_file);
-	free(cmd->redir->input_file);
-	free(cmd->redir->delim);
-	cmd->args = NULL; 
-	cmd->redir->nb_redir = 0;
-	cmd->redir->first_redir = 0;
-	cmd->redir->output_file = NULL;
-	cmd->redir->input_file = NULL;
-	cmd->redir->delim = NULL;
-	cmd->redir->append = false; 
+	cmd->args = NULL;
+	i = 0;
+	//free redir
+	while (cmd->redirs[i]) //if redir 
+	{
+		free(cmd->redirs[i]);
+		i++;
+	}
+	free(cmd->redirs);
+	cmd->redirs = NULL;
+	//if out free
+	//if in free
+	//if delim free 
+	
 }
 static void free_operator(t_operator *op)
 {

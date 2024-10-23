@@ -1,5 +1,6 @@
 
 add a file parse_checker3 for redir 
+
 Parse for paren: 
 a) echo (ls)
 b) ()
