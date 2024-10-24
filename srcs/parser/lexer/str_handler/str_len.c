@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:20:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 08:07:21 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:40:36 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	get_quotes_len(char *input, ssize_t *str_len, t_tok_type *t, size_t *i)
             (*i)++;
         }
 		(*str_len)--;
-        if (input[*i] != quote_char)
+        if (input[*i] != quote_char) //one return??
 			return (EXIT_FAILURE);
     }
 	

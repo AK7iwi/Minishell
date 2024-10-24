@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 08:09:09 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:47:55 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_ast *ast_algo(t_token **current, uint8_t min_prec)
 	
 	result = handle_cmd_and_subsh(current);
 	if (!result)
-    	return (NULL);
+    	return (NULL); //test
 	if ((*current) && (*current)->type == T_C_PAREN)
 		return (result);
 	handle_operator(&result, current, min_prec); // protect

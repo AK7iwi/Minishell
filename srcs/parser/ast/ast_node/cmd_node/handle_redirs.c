@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/23 12:34:56 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:50:19 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static	char ** copy_redirs(t_token **current, size_t *i)
 	size_t redirs_len;
 	size_t j;
 
-	redirs_len = get_redirs_len((*current), i); //handle if args_len == 0
-	if (redirs_len <= 0)
+	redirs_len = get_redirs_len((*current), i);
+	if (redirs_len < 0)
 		return (NULL); 
 	
 	redirs = malloc((redirs_len + 1) * sizeof(char *));
@@ -44,7 +44,8 @@ static	char ** copy_redirs(t_token **current, size_t *i)
         return (NULL);
 	
 	j = 0;
-	while (j < redirs_len) // && redir_len
+	//test print if no redir
+	while (j < redirs_len)
 	{
 		redirs[j++] = ft_strdup((*current)->str);
 		//cpy_outfile, infile, delim 

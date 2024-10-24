@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:59:36 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/09/25 21:37:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:46:27 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ uint8_t get_special_char_len(char *input, size_t *i)
 	{
 		special_char = input[*i];
 		(*i)++;
-		if (input[*i] == special_char && input[*i] != '(' && input[*i] != ')')
+		if (input[*i] == special_char && input[*i] != '(' && input[*i] != ')') //improve
 		{
 			(*i)++;
 			len = 2;

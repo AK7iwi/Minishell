@@ -36,13 +36,13 @@
 //					ENUM						//
 //**********************************************//
 
-typedef enum e_redir_type
-{
-	REDIR_IN,
-	REDIR_OUT,   
-	APPEND,
-	HERE_DOC      
-}	t_redir_type;
+// typedef enum e_redir_type
+// {
+// 	REDIR_IN,
+// 	REDIR_OUT,   
+// 	APPEND,
+// 	HERE_DOC      
+// }	t_redir_type;
 
 typedef enum e_op_type
 {
@@ -102,7 +102,6 @@ typedef struct s_redirs
 
 typedef struct s_cmd
 {
-	// char 	**cmd_to_print;
 	char		**args;
 	char		**redirs;	
 	t_redirs	*redirs_files;

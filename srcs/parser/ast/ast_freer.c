@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/23 12:01:24 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:36:22 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,24 @@ static void free_subshell(t_subshell *subsh)
 {
 	free_ast(&subsh->root);
 }
-static void free_cmd(t_cmd *cmd)
+static void free_redirs(t_cmd *cmd)
 {
 	size_t i;
 	
 	i = 0;
-	//free args 
+	while (cmd->redirs[i])
+	{
+		free(cmd->redirs[i]);
+		i++;
+	}
+	free(cmd->redirs);
+	cmd->redirs = NULL;
+}
+static void free_args(t_cmd *cmd)
+{
+	size_t i;
+	
+	i = 0;
 	while (cmd->args[i])
 	{
 		free(cmd->args[i]);
@@ -29,19 +41,13 @@ static void free_cmd(t_cmd *cmd)
 	}
 	free(cmd->args);
 	cmd->args = NULL;
-	i = 0;
-	//free redir
-	while (cmd->redirs[i]) //if redir 
-	{
-		free(cmd->redirs[i]);
-		i++;
-	}
-	free(cmd->redirs);
-	cmd->redirs = NULL;
-	//if out free
-	//if in free
-	//if delim free 
-	
+}
+static void free_cmd(t_cmd *cmd)
+{
+	if (cmd->args)
+		free_args(cmd);
+	if (cmd->redirs)
+		free_redirs(cmd);
 }
 static void free_operator(t_operator *op)
 {
