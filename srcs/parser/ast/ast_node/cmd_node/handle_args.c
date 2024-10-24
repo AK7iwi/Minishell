@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 15:03:09 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:22:44 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	char **copy_args(t_token **current, size_t *i)
 	size_t j;
 
 	args_len = get_args_len((*current), i);
-	if (args_len < 0)
+	if (args_len < 0) //no need 
 		return (NULL);  
 	
 	args = malloc((args_len + 1) * sizeof(char *));
@@ -53,8 +53,9 @@ static	char **copy_args(t_token **current, size_t *i)
 }
 bool handle_args(t_ast **new_node, t_token **current, size_t *i)
 {
-	printf("Je seg1\n");
-	(*new_node)->cmd.args = copy_args(current, i);
-	printf("Je seg2\n");
+	if (!(*new_node)->cmd.f_args)
+		(*new_node)->cmd.args = copy_args(current, i);
+	if ((*new_node)->cmd.args)
+		(*new_node)->cmd.f_args = true;
 	return ((*new_node)->cmd.args);
 }

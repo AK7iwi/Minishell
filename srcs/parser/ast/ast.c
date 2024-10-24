@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 14:47:55 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:03:01 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,19 @@ t_ast *handle_cmd_and_subsh(t_token **current)
 		new_node = create_subsh_node(&new_node, current);
 	else
 		new_node = create_cmd_node(&new_node, current);
-
+	
 	return (new_node);
 }
 t_ast *ast_algo(t_token **current, uint8_t min_prec)
 {
 	t_ast 		*result;
-	
+
 	result = handle_cmd_and_subsh(current);
 	if (!result)
     	return (NULL); //test
-	if ((*current) && (*current)->type == T_C_PAREN)
+	else if ((*current) && (*current)->type == T_C_PAREN)
 		return (result);
+	
 	handle_operator(&result, current, min_prec); // protect
 
     return (result);

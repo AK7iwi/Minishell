@@ -103,7 +103,9 @@ typedef struct s_redirs
 typedef struct s_cmd
 {
 	char		**args;
-	char		**redirs;	
+	char		**redirs;
+	bool 		f_redirs;
+	bool		f_args;
 	t_redirs	*redirs_files;
 }	t_cmd;
 

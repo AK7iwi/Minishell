@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:57:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 14:51:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:59:11 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void print_cmd(t_ast *ast)
 		i++;
 	}
 	i = 0;
+	printf("{redir} ");
 	while (ast->cmd.redirs[i])
 	{
 		printf("%s ", ast->cmd.redirs[i]);

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 14:50:19 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:19:00 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,21 @@
 static size_t get_redirs_len(t_token *current, size_t *i)
 {
 	size_t redirs_len;
-	//int 2word_in_a_row;
-
-	redirs_len = 0;
+	bool	word_in_a_row;
 	
-    while (current && is_cmd(current->type)) //cond for cmd 2 words in a row
+	redirs_len = 0;
+	word_in_a_row = false;
+	
+    while (current && is_cmd(current->type))
     {
+		if (is_redir(current->type))
+			word_in_a_row = 0;
+		else
+		{
+			if (word_in_a_row)
+				return (redirs_len);
+			word_in_a_row = true;
+		}
         redirs_len++;
 		(*i)++;
         current = current->next;
@@ -48,7 +57,7 @@ static	char ** copy_redirs(t_token **current, size_t *i)
 	while (j < redirs_len)
 	{
 		redirs[j++] = ft_strdup((*current)->str);
-		//cpy_outfile, infile, delim 
+		//cpy and free outfile, infile, delim 
 		(*current) = (*current)->next;
 	}
 	redirs[j] = NULL;
@@ -58,6 +67,10 @@ static	char ** copy_redirs(t_token **current, size_t *i)
 
 bool handle_redirs(t_ast **new_node, t_token **current, size_t *i)
 {
-	(*new_node)->cmd.redirs = copy_redirs(current, i);
+	if (!(*new_node)->cmd.f_redirs) //check if need
+		(*new_node)->cmd.redirs = copy_redirs(current, i);
+	if ((*new_node)->cmd.redirs)
+		(*new_node)->cmd.f_redirs = true;
+	
 	return ((*new_node)->cmd.redirs);
 }
