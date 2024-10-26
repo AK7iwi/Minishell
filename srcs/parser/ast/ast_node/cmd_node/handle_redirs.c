@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 18:19:00 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/26 12:52:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t get_redirs_len(t_token *current, size_t *i)
 	bool	word_in_a_row;
 	
 	redirs_len = 0;
-	word_in_a_row = false;
+	word_in_a_row = false; //review this logic 
 	
     while (current && is_cmd(current->type))
     {
@@ -27,7 +27,10 @@ static size_t get_redirs_len(t_token *current, size_t *i)
 		else
 		{
 			if (word_in_a_row)
+			{
+				(*i)++;		
 				return (redirs_len);
+			}
 			word_in_a_row = true;
 		}
         redirs_len++;
@@ -38,7 +41,7 @@ static size_t get_redirs_len(t_token *current, size_t *i)
 	return (redirs_len);
 }
 
-static	char ** copy_redirs(t_token **current, size_t *i)
+static	char ** copy_redirs(t_ast **new_node, t_token **current, size_t *i)
 {
 	char **redirs;
 	size_t redirs_len;
@@ -47,7 +50,7 @@ static	char ** copy_redirs(t_token **current, size_t *i)
 	redirs_len = get_redirs_len((*current), i);
 	if (redirs_len < 0)
 		return (NULL); 
-	
+	(*new_node)->cmd.redirs_count = redirs_len;
 	redirs = malloc((redirs_len + 1) * sizeof(char *));
 	if (!redirs)
         return (NULL);
@@ -64,13 +67,19 @@ static	char ** copy_redirs(t_token **current, size_t *i)
 	
 	return (redirs);
 }
-
 bool handle_redirs(t_ast **new_node, t_token **current, size_t *i)
 {
-	if (!(*new_node)->cmd.f_redirs) //check if need
-		(*new_node)->cmd.redirs = copy_redirs(current, i);
-	if ((*new_node)->cmd.redirs)
-		(*new_node)->cmd.f_redirs = true;
+	char **redirs;
+
+	redirs = copy_redirs(new_node, current, i);
+	if (!redirs)
+		return (EXIT_FAILURE);
 	
-	return ((*new_node)->cmd.redirs);
+	
+	if ((*new_node)->cmd.redirs_count) //test if need 
+		(*new_node)->cmd.redirs = redirs;
+	else 
+		free(redirs); //test to see when pass
+	
+	return (EXIT_SUCCESS);
 }

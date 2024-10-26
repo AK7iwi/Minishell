@@ -36,14 +36,6 @@
 //					ENUM						//
 //**********************************************//
 
-// typedef enum e_redir_type
-// {
-// 	REDIR_IN,
-// 	REDIR_OUT,   
-// 	APPEND,
-// 	HERE_DOC      
-// }	t_redir_type;
-
 typedef enum e_op_type
 {
     OP_PIPE,
@@ -104,8 +96,8 @@ typedef struct s_cmd
 {
 	char		**args;
 	char		**redirs;
-	bool 		f_redirs;
-	bool		f_args;
+	size_t 		args_count;
+	size_t 		redirs_count;
 	t_redirs	*redirs_files;
 }	t_cmd;
 

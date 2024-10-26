@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 18:22:44 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/26 12:45:12 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,14 @@ static size_t get_args_len(t_token *current, size_t *i)
 
 	return (args_len);
 }
-static	char **copy_args(t_token **current, size_t *i)
+static	char **copy_args(t_ast **new_node, t_token **current, size_t *i)
 {
 	char **args;
 	size_t args_len;
 	size_t j;
 
 	args_len = get_args_len((*current), i);
-	if (args_len < 0) //no need 
-		return (NULL);  
-	
+	(*new_node)->cmd.args_count = args_len;
 	args = malloc((args_len + 1) * sizeof(char *));
 	if (!args)
         return (NULL);
@@ -53,9 +51,16 @@ static	char **copy_args(t_token **current, size_t *i)
 }
 bool handle_args(t_ast **new_node, t_token **current, size_t *i)
 {
-	if (!(*new_node)->cmd.f_args)
-		(*new_node)->cmd.args = copy_args(current, i);
-	if ((*new_node)->cmd.args)
-		(*new_node)->cmd.f_args = true;
-	return ((*new_node)->cmd.args);
+	char **args;
+
+	args = copy_args(new_node, current, i);
+	if (!args)
+		return (EXIT_FAILURE);
+	
+	if ((*new_node)->cmd.args_count)
+		(*new_node)->cmd.args = args;
+	else
+		free(args);
+	
+	return (EXIT_SUCCESS);
 }
