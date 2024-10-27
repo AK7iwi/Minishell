@@ -1,7 +1,5 @@
 TOKENISATIONS
 
-
-
 !!hqndle &, |
 handle tab
 Special char (#,?, $)

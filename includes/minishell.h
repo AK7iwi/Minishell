@@ -85,20 +85,20 @@ typedef struct s_env
     struct s_env *next;
 }	t_env;
 
-typedef struct s_redirs
+typedef struct s_redir
 {
-	char *input_file;
-    char *output_file;
-	char *delim;
-}	t_redirs;
+	char 	*i_file;
+    char 	*o_file;
+	char 	*delim;
+}	t_redir;
 
 typedef struct s_cmd
 {
-	char		**args;
-	char		**redirs;
-	size_t 		args_count;
-	size_t 		redirs_count;
-	t_redirs	*redirs_files;
+	size_t 	args_count;
+	size_t 	redirs_count;
+	char 	**args;
+	char 	**redirs;
+	t_redir *redir;
 }	t_cmd;
 
 typedef struct s_operator
@@ -144,7 +144,6 @@ typedef struct s_data
     t_env		*env;
 	t_hist		*hist;
 } 	t_data;
-
 
 //**********************************************//
 //												//

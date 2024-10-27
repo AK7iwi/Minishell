@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/26 12:42:22 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/27 11:24:48 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void free_args(t_cmd *cmd)
 }
 static void free_cmd(t_cmd *cmd)
 {
-	if (cmd->args)
-		free_args(cmd);
+	if (cmd->args) //free_tab
+		free_args(cmd); //cmd->args
 	if (cmd->redirs)
 		free_redirs(cmd);
 	

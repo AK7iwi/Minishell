@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/26 12:45:12 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/27 12:35:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,15 @@ static size_t get_args_len(t_token *current, size_t *i)
 static	char **copy_args(t_ast **new_node, t_token **current, size_t *i)
 {
 	char **args;
-	size_t args_len;
 	size_t j;
 
-	args_len = get_args_len((*current), i);
-	(*new_node)->cmd.args_count = args_len;
-	args = malloc((args_len + 1) * sizeof(char *));
+	(*new_node)->cmd.args_count = get_args_len((*current), i);
+	args = malloc(((*new_node)->cmd.args_count + 1) * sizeof(char *));
 	if (!args)
         return (NULL);
 	
 	j = 0;
-	while (j < args_len)
+	while (j < (*new_node)->cmd.args_count)
 	{
 		args[j++] = ft_strdup((*current)->str);
 		(*current) = (*current)->next;

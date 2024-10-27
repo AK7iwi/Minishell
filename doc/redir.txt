@@ -1,9 +1,0 @@
-Check all cases.
-
-echo a > t1.txt > t2.txt
-only t2 keep the redir
-
-echo < t1.txt < t2.txt
-only t2 is redir
-
-Check case for heredoc 
