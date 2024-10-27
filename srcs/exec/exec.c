@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 15:47:49 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/27 19:39:35 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static bool cmd(t_data *data, t_cmd *cmd)
 			return (EXIT_SUCCESS);
 	}
 	
-	// if (cmd->redirs && cmd->redirs[0])
-	// 	return (EXIT_SUCCESS);
+	if (cmd->redirs && cmd->redirs[0])
+		return (EXIT_SUCCESS);
 	
 	return (EXIT_FAILURE); //handle this 
 }

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:57:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 17:16:00 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/27 19:35:00 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void print_cmd(t_ast *ast)
 			i++;
 		}	
 	}
+	
 	i = 0;
 	printf("{redir} ");
 	if (ast->cmd.redirs && ast->cmd.redirs[0])
@@ -43,17 +44,16 @@ static void print_cmd(t_ast *ast)
 			printf("%s ", ast->cmd.redirs[i]);
 			i++;
 		}
+		printf(" {i_file} ");
+		if (ast->cmd.redir->i_file)
+			printf("%s", ast->cmd.redir->i_file);
+		printf(" {o_file} ");
+		if (ast->cmd.redir->o_file)
+			printf("%s", ast->cmd.redir->o_file);
+		printf(" {delim} ");
+		if (ast->cmd.redir->delim)
+			printf("%s", ast->cmd.redir->delim);
 	}
-
-	printf("{i_file} ");
-	if (ast->cmd.redir->i_file)
-		printf("%s", ast->cmd.redir->i_file);
-	printf("{o_file} ");
-	if (ast->cmd.redir->o_file)
-		printf("%s", ast->cmd.redir->o_file);
-	printf("{delim} ");
-	if (ast->cmd.redir->delim)
-		printf("%s", ast->cmd.redir->delim);
 
 	printf("\n");
 }

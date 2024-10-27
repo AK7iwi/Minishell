@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:29:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 16:00:00 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:58:59 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ t_ast	*create_cmd_node(t_ast **new_node, t_token **current)
 	(*new_node)->cmd.args = NULL;
 	(*new_node)->cmd.redirs = NULL;
 	(*new_node)->cmd.redir = NULL;
-	// (*new_node)->cmd.redirs_files->input_file = NULL;
-	// (*new_node)->cmd.redirs_files->output_file = NULL;
-	// (*new_node)->cmd.redirs_files->delim = NULL;
 	i = 0;
 	while (i < cmd_len)
 	{

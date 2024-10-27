@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 11:24:48 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/27 19:46:38 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ static void free_redirs(t_cmd *cmd)
 	}
 	free(cmd->redirs);
 	cmd->redirs = NULL;
+	if (cmd->redir) 
+	{
+		if (cmd->redir->i_file)
+			free(cmd->redir->i_file);
+		if (cmd->redir->o_file)
+			free(cmd->redir->o_file);
+		if (cmd->redir->delim)
+			free(cmd->redir->delim);
+		free(cmd->redir);
+	}
 }
 static void free_args(t_cmd *cmd)
 {
@@ -48,7 +58,6 @@ static void free_cmd(t_cmd *cmd)
 		free_args(cmd); //cmd->args
 	if (cmd->redirs)
 		free_redirs(cmd);
-	
 	cmd->args_count = 0;
 	cmd->redirs_count = 0;
 }
