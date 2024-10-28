@@ -1,4 +1,14 @@
 
+// to test where it fail 
+		// if (!tokenizer(&data, input))
+		// 	printf("Ici1\n");
+		// if (!syn_analyzer(&data))
+		// 	printf("Ici2\n");
+		// if (!ast_creator(&data))
+		// 	printf("Ici3\n");
+		// if (!exec(&data, data.ast))
+		// 	printf("Ici4\n");
+
 Valgrind without readline leaks:
 
 valgrind --suppressions="srcs/utils/readline_by_pass.txt" --leak-check=full --show-leak-kinds=all ./minishell

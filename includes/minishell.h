@@ -188,6 +188,8 @@ bool	echo(char **args);
 
 //////// builtins ///////// 
 /* builtins.c */
+bool	is_fork_builtins(char **args);
+bool 	is_non_fork_builtins(char **args);
 bool	builtins(t_data *data, char **args);
 
 /* exec.c */

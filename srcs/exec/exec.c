@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 19:39:35 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:10:08 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,47 @@ static bool subshell(t_data *data, t_subshell *subsh)
 	//change the subshell level
 	return (exec(data, subsh->root));
 }
-
-static bool cmd(t_data *data, t_cmd *cmd)
+static bool fork_exec(t_data *data, t_cmd *cmd)
 {
-	//setup redir 
-	if (cmd->args && cmd->args[0])
+	pid_t	pid;
+	int 	status;
+		
+	pid = fork();
+	if (pid == 0)
+	{
+		if (cmd->redirs)
+		{
+			printf("redir\n");
+			//handle redir (setup + exec)
+		}
+		if (cmd->args) 
+		{
+			if ((is_fork_builtins(cmd->args) && builtins(data, cmd->args))
+				|| cmds(data, cmd->args))
+			{
+				free_all(data);
+				exit (EXIT_SUCCESS);
+			}
+		} 
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == -1)
+		return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE); //test
+		
+	waitpid(pid, &status, 0);
+	return (WIFEXITED(status) && !WEXITSTATUS(status)); 
+}
+static bool cmd(t_data *data, t_cmd *cmd)
+{	
+	if (cmd->args && is_non_fork_builtins(cmd->args)) //&&
 	{
 		if (builtins(data, cmd->args))
 			return (EXIT_SUCCESS);
-		else if (cmds(data, cmd->args))
-			return (EXIT_SUCCESS);
 	}
-	
-	if (cmd->redirs && cmd->redirs[0])
+	else if (fork_exec(data, cmd)) //test 
 		return (EXIT_SUCCESS);
 	
-	return (EXIT_FAILURE); //handle this 
+	return (EXIT_FAILURE);
 }
 static bool operator(t_data *data, t_operator *op)
 {

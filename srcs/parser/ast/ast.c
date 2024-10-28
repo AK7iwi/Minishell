@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/26 12:34:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/27 20:50:23 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ t_ast *ast_algo(t_token **current, uint8_t min_prec)
     	return (NULL); //test
 	else if ((*current) && (*current)->type == T_C_PAREN)
 		return (result);
-	
 	handle_operator(&result, current, min_prec); // protect
 
     return (result);
@@ -88,6 +87,5 @@ bool	ast_creator(t_data *data)
 	t_token *current;
 	current = data->token;
 	data->ast = ast_algo(&current, 0);
-
 	return (!data->ast);
 }

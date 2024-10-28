@@ -8,11 +8,10 @@ Finish to rename(free and print ) ~~
 int --> int32t / norme
 protect ft_strdup
 protect readline ~~
-Use strcmp instead of strncmp
+Use strcmp instead of strncmp, check this fct when used 
 EXIT_SUCCESS/EXIT_FAILURE logique
 Handle exit code
 track fd
-
 STDOUT_FILENO??
 
 I) Lexer: 
@@ -27,7 +26,6 @@ check parser_rules file(doc)
 III) AST: 
 
 Find the right precedence
-Handle error 
 
 IV)ENV:
 
@@ -62,20 +60,18 @@ handle when its a builtins but the builtins fail.
 
 	e) redirections
 
-	f) here-doc
+	f) Operator OK
 
-	g) Operator OK
-
-		1)Implement pipes (| character). OK
+		1)Implement pipes (| character). OK, Review the general logic, for the file(close), the order of exec, use waitpid  
 
 		2) AND and OR OK
 
-	h)Handle environment variables 
+	g)Handle environment variables 
 
 	Handle $? Which should expand to the exit status of the most recently executed
 	foreground pipeline
 
-	i) Signals 
+	h) Signals 
 
 	Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 	• In interactive mode:
@@ -83,7 +79,8 @@ handle when its a builtins but the builtins fail.
 	◦ ctrl-D exits the shell. ~~ not working when line is not working 
 	◦ ctrl-\ does nothing.
 
-	j) issue with paren when using pipe
+	i) issue with paren when using pipe
+		loop in ast_creator, in subsh_node, here: (*new_node)->subshell.root = ast_algo(current, 0);
 
 VI) Tester
 

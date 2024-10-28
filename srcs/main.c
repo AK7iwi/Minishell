@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 19:40:22 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:02:53 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int main(int argc, char **argv, char **envp)
         if (tokenizer(&data, input)|| syn_analyzer(&data)
 				|| ast_creator(&data) || exec(&data, data.ast))
 			errors_displayer(data.error);
-		else
-			print_ast(data.ast, 0);
+		// else
+		// 	print_ast(data.ast, 0);
 
 		free_loop(&data);
     }
