@@ -6,13 +6,13 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 10:14:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 18:50:41 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:12:49 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void handle_o_files(char *o_file, char *redir, char *file)
+static void handle_o_files(t_data *data, char *o_file, char *redir, char *file)
 {
 	int fd;
 	int flags;
@@ -27,6 +27,7 @@ static void handle_o_files(char *o_file, char *redir, char *file)
 	if (fd == -1) 
     {
         perror("Error opening output file");
+		free_all(data);
         exit(EXIT_FAILURE);
     }
 	if (ft_strncmp(o_file, file, ft_strlen(o_file) + 1) == 0)
@@ -35,12 +36,13 @@ static void handle_o_files(char *o_file, char *redir, char *file)
         {
             perror("Error redirecting output");
             close(fd);
-            exit(EXIT_FAILURE);;
+			free_all(data);
+            exit(EXIT_FAILURE);
         }
 	}
 	close(fd);
 }
-static void	handle_i_files(char *i_file, char *file)
+static void	handle_i_files(t_data *data, char *i_file, char *file)
 {
 	int fd;
 	
@@ -49,6 +51,7 @@ static void	handle_i_files(char *i_file, char *file)
 	{
 		// close(fd); need to close if error??
 		perror("Error opening input file"); //handle error 
+		free_all(data);
 		exit(EXIT_FAILURE);
 	}
 	else if (ft_strncmp(i_file, file, ft_strlen(i_file) + 1) == 0)
@@ -57,6 +60,7 @@ static void	handle_i_files(char *i_file, char *file)
         {
             perror("Error redirecting input"); //handle error
             close(fd);
+			free_all(data);
             exit(EXIT_FAILURE);
         }
 	}
@@ -64,18 +68,16 @@ static void	handle_i_files(char *i_file, char *file)
 } 
 void	handle_redirs(t_data *data, t_cmd *cmd)
 {
-	(void)data;
-
 	size_t i;
 
 	i = 0;
 	while (cmd->redirs[i])
 	{
 		if (ft_strncmp(cmd->redirs[i], "<", 2) == 0)
-			handle_i_files(cmd->redir->i_file, cmd->redirs[i + 1]);
+			handle_i_files(data, cmd->redir->i_file, cmd->redirs[i + 1]);
 		else if (ft_strncmp(cmd->redirs[i], ">", 2) == 0 
 				|| ft_strncmp(cmd->redirs[i], ">>", 3) == 0)
-			handle_o_files(cmd->redir->o_file, cmd->redirs[i], cmd->redirs[i + 1]);
+			handle_o_files(data, cmd->redir->o_file, cmd->redirs[i], cmd->redirs[i + 1]);
 		// else if (ft_strncmp(cmd->redirs[i], "<<", 3) == 0)
 		// 	handle_heredoc(cmd->redirs[i + 1]);
 		i++;

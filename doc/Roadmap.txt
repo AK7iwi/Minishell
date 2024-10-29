@@ -28,7 +28,7 @@ check parser_rules file(doc)
 
 III) AST: 
 
-Find the right precedence
+Find the right precedence, compare with bash result
 
 IV)ENV:
 
@@ -36,7 +36,7 @@ create small env for env -i
 
 V) Exec: 
 
-handle error in ast_exec
+handle error in ast_exec ~~ to recheck 
 handle when its a builtins but the builtins fail. 
 
 	a) Prompt: OK
@@ -61,7 +61,7 @@ handle when its a builtins but the builtins fail.
 		Search and launch the right executable (based on the PATH variable or using a
 		relative or an absolute path). 
 
-	e) redirections
+	e) redirections OK, except for heredoc 
 
 	f) Operator OK
 

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 18:43:34 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:11:02 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ static bool exec_fork(t_data *data, t_cmd *cmd)
 			exec_redirs(data, cmd);
 		if (cmd->args)
 			exec_args(data, cmd->args);
+		printf("Je passe la\n");
 		free_all(data); 
-		exit(EXIT_FAILURE); //test
+		exit(EXIT_FAILURE);
 	}
 	else if (pid == -1)
 		return (data->error.exec_errors |= ERROR_FORK, false); //test
