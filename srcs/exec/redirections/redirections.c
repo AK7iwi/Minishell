@@ -6,23 +6,28 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 10:14:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 15:23:27 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:50:41 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool handle_o_files(char *o_file, char *redir, char *file)
+static void handle_o_files(char *o_file, char *redir, char *file)
 {
 	int fd;
 	int flags;
-	(void)redir;
+	
 	flags = O_WRONLY | O_CREAT;
+	if (ft_strncmp(redir, ">", 2) == 0)
+		flags |= O_TRUNC;
+	else
+		flags |= O_APPEND;
+	
 	fd = open(o_file, flags, 0644);
 	if (fd == -1) 
     {
         perror("Error opening output file");
-        return (EXIT_FAILURE);
+        exit(EXIT_FAILURE);
     }
 	if (ft_strncmp(o_file, file, ft_strlen(o_file) + 1) == 0)
 	{
@@ -30,13 +35,12 @@ static bool handle_o_files(char *o_file, char *redir, char *file)
         {
             perror("Error redirecting output");
             close(fd);
-            return (EXIT_FAILURE);
+            exit(EXIT_FAILURE);;
         }
-        close(fd);
 	}
-	return (EXIT_SUCCESS);
+	close(fd);
 }
-static bool	handle_i_files(char *i_file, char *file)
+static void	handle_i_files(char *i_file, char *file)
 {
 	int fd;
 	
@@ -45,7 +49,7 @@ static bool	handle_i_files(char *i_file, char *file)
 	{
 		// close(fd); need to close if error??
 		perror("Error opening input file"); //handle error 
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	else if (ft_strncmp(i_file, file, ft_strlen(i_file) + 1) == 0)
 	{
@@ -53,13 +57,12 @@ static bool	handle_i_files(char *i_file, char *file)
         {
             perror("Error redirecting input"); //handle error
             close(fd);
-            return (EXIT_FAILURE);
+            exit(EXIT_FAILURE);
         }
 	}
 	close(fd);
-	return (EXIT_SUCCESS);
 } 
-bool	handle_redirs(t_data *data, t_cmd *cmd)
+void	handle_redirs(t_data *data, t_cmd *cmd)
 {
 	(void)data;
 
@@ -78,6 +81,4 @@ bool	handle_redirs(t_data *data, t_cmd *cmd)
 		i++;
 		i++;
 	}
-	
-	return (EXIT_SUCCESS);
 }

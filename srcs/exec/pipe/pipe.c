@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/28 11:00:09 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:45:45 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static	bool	fork_and_exec_right(t_data *data, int fd_in)
         return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE);
     else if (pid == 0)
     {
-        if (dup2(fd_in, STDIN_FILENO)) //to test
+        if (dup2(fd_in, STDIN_FILENO) == -1) //to test
 			return (EXIT_FAILURE);
         close(fd_in); 
         exec(data, data->ast->operator.right);

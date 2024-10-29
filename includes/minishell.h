@@ -202,7 +202,7 @@ bool 	exec(t_data *data, t_ast *ast);
 //**********************************************//
 
 /* redirections.c */
-bool	handle_redirs(t_data *data, t_cmd *cmd);
+void	handle_redirs(t_data *data, t_cmd *cmd);
 
 //**********************************************//
 //												//

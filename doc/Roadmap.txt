@@ -13,6 +13,9 @@ EXIT_SUCCESS/EXIT_FAILURE logique
 Handle exit code
 track fd
 STDOUT_FILENO??
+check exit value 
+
+error fct for dup2 and open 
 
 I) Lexer: 
 
@@ -62,7 +65,7 @@ handle when its a builtins but the builtins fail.
 
 	f) Operator OK
 
-		1)Implement pipes (| character). OK, Review the general logic, for the file(close), the order of exec, use waitpid  
+		1)Implement pipes (| character). OK, refacto, Review the general logic, for the file(close), the order of exec, use waitpid, dup2
 
 		2) AND and OR OK
 
