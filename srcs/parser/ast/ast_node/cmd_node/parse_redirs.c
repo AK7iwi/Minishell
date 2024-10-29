@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_redirs.c                                    :+:      :+:    :+:   */
+/*   parse_redirs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 19:59:13 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:11:47 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static bool	fill_file(t_redir **redir, char *red, char *file)
 	}
 	else if (ft_strncmp(red, "<<", 3) == 0)
 	{
+		//add delim
 		if ((*redir)->delim)
 			free((*redir)->delim);
 		(*redir)->delim = cpy_file;
@@ -109,7 +110,7 @@ static char	**copy_redirs(t_ast **new_node, t_token **current, size_t *i)
 	
 	return (redirs);
 }
-bool handle_redirs(t_ast **new_node, t_token **current, size_t *i)
+bool	parse_redirs(t_ast **new_node, t_token **current, size_t *i)
 {
 	char 	**redirs;
 

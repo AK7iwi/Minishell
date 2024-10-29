@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_args.c                                      :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 12:35:58 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:21:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static	char **copy_args(t_ast **new_node, t_token **current, size_t *i)
 	
 	return (args);
 }
-bool handle_args(t_ast **new_node, t_token **current, size_t *i)
+bool	parse_args(t_ast **new_node, t_token **current, size_t *i)
 {
 	char **args;
 

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/28 13:10:08 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:35:35 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,32 @@ static bool fork_exec(t_data *data, t_cmd *cmd)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (cmd->redirs)
+		if (cmd->redirs && handle_redirs(data, cmd))
 		{
-			printf("redir\n");
-			//handle redir (setup + exec)
+			free_all(data);
+			exit(EXIT_SUCCESS);
 		}
 		if (cmd->args) 
 		{
-			if ((is_fork_builtins(cmd->args) && builtins(data, cmd->args))
+			if ((is_fork_builtins(cmd->args) && builtins(data, cmd->args)) //test if builtins fail(pwd)
 				|| cmds(data, cmd->args))
 			{
 				free_all(data);
 				exit (EXIT_SUCCESS);
 			}
-		} 
-		exit(EXIT_FAILURE);
+		}
+		//free_all?? 
+		exit(EXIT_FAILURE); //test (with execve fail)
 	}
 	else if (pid == -1)
-		return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE); //test
-		
+		return (data->error.exec_errors |= ERROR_FORK, false); //test
+	
 	waitpid(pid, &status, 0);
-	return (WIFEXITED(status) && !WEXITSTATUS(status)); 
+	return (WIFEXITED(status) && !WEXITSTATUS(status));
 }
 static bool cmd(t_data *data, t_cmd *cmd)
 {	
-	if (cmd->args && is_non_fork_builtins(cmd->args)) //&&
+	if (cmd->args && is_non_fork_builtins(cmd->args)) //&&?
 	{
 		if (builtins(data, cmd->args))
 			return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:29:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 17:58:59 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:11:55 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_ast	*create_cmd_node(t_ast **new_node, t_token **current)
 	i = 0;
 	while (i < cmd_len)
 	{
-		if (handle_args(new_node, current, &i))
+		if (parse_args(new_node, current, &i))
 			return (NULL);
-		if (handle_redirs(new_node, current, &i))
+		if (parse_redirs(new_node, current, &i))
 			return (NULL);
 	}
 	

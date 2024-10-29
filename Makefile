@@ -13,11 +13,12 @@ SRCS			:=	main.c \
 					parser/lexer/token_tools.c \
 					parser/syn_analyzer/syn_analyzer.c parser/syn_analyzer/syn_checker.c \
 					parser/ast/ast.c parser/ast/ast_printer.c parser/ast/ast_freer.c \
-					parser/ast/ast_node/cmd_node/cmd_node.c parser/ast/ast_node/cmd_node/handle_args.c parser/ast/ast_node/cmd_node/handle_redirs.c \
+					parser/ast/ast_node/cmd_node/cmd_node.c parser/ast/ast_node/cmd_node/parse_args.c parser/ast/ast_node/cmd_node/parse_redirs.c \
 					parser/ast/ast_node/operator_node.c parser/ast/ast_node/subsh_node.c \
 					parser/parser_tools/parser_checker.c parser/parser_tools/parser_checker2.c \
 					exec/exec.c \
 					exec/builtins/builtins.c \
+					exec/redirections/redirections.c \
 					exec/builtins/builtins_cmds/echo.c exec/builtins/builtins_cmds/pwd.c exec/builtins/builtins_cmds/env.c \
 					exec/builtins/builtins_cmds/cd.c  exec/builtins/builtins_cmds/unset.c exec/builtins/builtins_cmds/export.c \
 				 	exec/builtins/builtins_cmds/history.c exec/builtins/builtins_cmds/exit.c \

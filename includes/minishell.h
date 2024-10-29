@@ -16,6 +16,7 @@
 #include <stdbool.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <stddef.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -155,6 +156,7 @@ typedef struct s_data
 //					PIPE		   				//
 //**********************************************//
 
+/* pipe.c */
 bool	handle_pipe(t_data *data);
 
 //**********************************************//
@@ -196,6 +198,13 @@ bool	builtins(t_data *data, char **args);
 bool 	exec(t_data *data, t_ast *ast);
 
 //**********************************************//
+//					REDIRECTIONS		   		//
+//**********************************************//
+
+/* redirections.c */
+bool	handle_redirs(t_data *data, t_cmd *cmd);
+
+//**********************************************//
 //												//
 //					  PARSER		  			//
 //												//
@@ -235,9 +244,9 @@ t_ast	*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type);
 t_ast	*create_subsh_node(t_ast **new_node, t_token **current);
 /////// cmd_node //////////
 /* handle_redirs.c */
-bool	handle_redirs(t_ast **new_node, t_token **current, size_t *i);
+bool	parse_redirs(t_ast **new_node, t_token **current, size_t *i);
 /* handle_args.c */
-bool	handle_args(t_ast **new_node, t_token **current, size_t *i);
+bool	parse_args(t_ast **new_node, t_token **current, size_t *i);
 /* cmd_node.c */
 t_ast	*create_cmd_node(t_ast **new_node, t_token **current);
 
