@@ -11,7 +11,7 @@
 
 Valgrind without readline leaks:
 
-valgrind --suppressions="srcs/utils/readline_by_pass.txt" --leak-check=full --show-leak-kinds=all ./minishell
+valgrind --suppressions="srcs/tools/readline_by_pass.txt" --leak-check=full --track-fds=yes --show-leak-kinds=all ./minishell
 
 Test: 
 

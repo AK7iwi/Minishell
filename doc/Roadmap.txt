@@ -10,12 +10,8 @@ protect ft_strdup
 protect readline ~~
 Use strcmp instead of strncmp, check this fct when used 
 EXIT_SUCCESS/EXIT_FAILURE logique
-Handle exit code
-track fd
-STDOUT_FILENO??
-check exit value 
-
-error fct for dup2 and open 
+Handle exit code ,check exit value
+error fct for dup2, open(fd), pipe 
 
 I) Lexer: 
 

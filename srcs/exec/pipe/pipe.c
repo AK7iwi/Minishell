@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/29 18:45:45 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:37:55 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static bool	fork_and_exec_left(t_data *data, int tube[2])
 		free_all(data);
         exit(EXIT_SUCCESS);
     }
-	else if (pid == -1) //test 
+	else if (pid == -1) //test //close tube[1]
 		return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE); //one return 
 
 	return (EXIT_SUCCESS);

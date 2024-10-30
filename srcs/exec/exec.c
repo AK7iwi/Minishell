@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 19:11:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:21:22 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	exec_args(t_data *data, char **args)
 		exit (EXIT_SUCCESS);
 	}
 }
-static void exec_redirs(t_data *data, t_cmd *cmd)
+static void exec_redirs(t_data *data, t_cmd *cmd, int tube[2])
 {
-	handle_redirs(data, cmd);
+	handle_redirs(data, cmd, tube);
 	if (!cmd->args)
 	{
 		free_all(data);
@@ -38,22 +38,31 @@ static void exec_redirs(t_data *data, t_cmd *cmd)
 }
 static bool exec_fork(t_data *data, t_cmd *cmd)
 {
+	int 	tube[2];
 	pid_t	pid;
 	int 	status;
-		
+	
+	if (cmd->redirs && cmd->redir->delim)
+	{
+		if (pipe(tube) == -1)
+		{
+			perror("pipe");
+			exit(EXIT_FAILURE);
+		}
+	}
 	pid = fork();
 	if (pid == 0)
 	{
 		if (cmd->redirs)
-			exec_redirs(data, cmd);
+			exec_redirs(data, cmd, tube);
 		if (cmd->args)
 			exec_args(data, cmd->args);
-		printf("Je passe la\n");
 		free_all(data); 
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == -1)
 		return (data->error.exec_errors |= ERROR_FORK, false); //test
+	
 	waitpid(pid, &status, 0);
 	return (WIFEXITED(status) && !WEXITSTATUS(status));
 }

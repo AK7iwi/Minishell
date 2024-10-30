@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 15:11:47 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/30 11:36:47 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ static t_redir	*fill_redir_struct(char **redirs)
 	{
 		if (fill_file(&redir, redirs[i], redirs[i + 1]))
 			return (NULL);
-		i++;
-		i++;
+		i += 2;
 	}
 	
 	return (redir);
