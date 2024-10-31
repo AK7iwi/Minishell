@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/30 13:21:22 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:55:14 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,16 @@ static void exec_redirs(t_data *data, t_cmd *cmd, int tube[2])
 		exit(EXIT_SUCCESS);	
 	}
 }
-static bool exec_fork(t_data *data, t_cmd *cmd)
+static bool exec_fork(t_data *data, t_cmd *cmd) //exec_cmd_node
 {
-	int 	tube[2];
 	pid_t	pid;
 	int 	status;
 	
-	if (cmd->redirs && cmd->redir->delim)
-	{
-		if (pipe(tube) == -1)
-		{
-			perror("pipe");
-			exit(EXIT_FAILURE);
-		}
-	}
 	pid = fork();
 	if (pid == 0)
 	{
 		if (cmd->redirs)
-			exec_redirs(data, cmd, tube);
+			exec_redirs(data, cmd);
 		if (cmd->args)
 			exec_args(data, cmd->args);
 		free_all(data); 
@@ -93,6 +84,7 @@ static bool	operator(t_data *data, t_operator *op)
 			 return (op->right && exec(data, op->right));
 		return (EXIT_SUCCESS);
 	}
+
 	return (EXIT_FAILURE);
 }
 bool	exec(t_data *data, t_ast *ast)

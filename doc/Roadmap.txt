@@ -11,7 +11,8 @@ protect readline ~~
 Use strcmp instead of strncmp, check this fct when used 
 EXIT_SUCCESS/EXIT_FAILURE logique
 Handle exit code ,check exit value
-error fct for dup2, open(fd), pipe 
+error fct for dup2, open(fd), pipe
+Rename tube when pipe
 
 I) Lexer: 
 

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/30 12:37:55 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/10/31 10:15:35 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@ static	bool	fork_and_exec_right(t_data *data, int fd_in)
     pid_t pid;
 	
 	pid = fork();
-    if (pid == -1) //to test 
-        return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE);
-    else if (pid == 0)
+    if (pid == 0)
     {
         if (dup2(fd_in, STDIN_FILENO) == -1) //to test
 			return (EXIT_FAILURE);
-        close(fd_in); 
+        close(fd_in);
         exec(data, data->ast->operator.right);
 		free_all(data);
         exit(EXIT_SUCCESS);
     }
+	if (pid == -1) //to test 
+        return (data->error.exec_errors |= ERROR_FORK, EXIT_FAILURE);
+		
 	return (EXIT_SUCCESS);
 }
 static	bool handle_pipe_parent(t_data *data, int tube[2])
@@ -48,7 +49,7 @@ static bool	fork_and_exec_left(t_data *data, int tube[2])
 {
     pid_t pid;
 	
-	pid = fork();
+	pid = fork(); // I already fork in cmds 
     if (pid == 0)  
     {
         if (dup2(tube[1], STDOUT_FILENO) == -1)
