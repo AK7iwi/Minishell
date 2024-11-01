@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 13:30:46 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/01 12:40:32 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@
 
 # define ERROR_FORK				0x40
 # define ERROR_PIPE				0x80
+# define ERROR_DUP2				0x100
 
 # define E_FORK 	"Error\nfork"
 # define E_PIPE		"Error\npipe"
+# define E_DUP2		"Error\ndup2"
 
 /* Redirs errors */
 
@@ -88,6 +90,11 @@ typedef struct s_error
 //					  ERRORS		  			//
 //												//
 //**********************************************//
+
+/* error_and_exit.c */
+void pipe_error(t_data *data);
+void open_error(t_data *data);
+void dup2_error(t_data *data);
 
 /* errors_tools.c */
 void 	free_errors(t_error *error);

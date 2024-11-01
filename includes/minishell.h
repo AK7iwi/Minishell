@@ -194,6 +194,11 @@ bool	is_fork_builtins(char **args);
 bool 	is_non_fork_builtins(char **args);
 bool	builtins(t_data *data, char **args);
 
+////////////////////////
+
+/* exec_cmd_node.c */
+bool	exec_cmd_node(t_data *data, t_cmd *cmd);
+
 /* exec.c */
 bool 	exec(t_data *data, t_ast *ast);
 

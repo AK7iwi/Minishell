@@ -1,10 +1,7 @@
 General: 
 
-!!!!!!!ERROR handling
 Leak when malloc = NULL; free before return 
 error in stderr
-
-Finish to rename(free and print ) ~~
 int --> int32t / norme
 protect ft_strdup
 protect readline ~~
@@ -34,7 +31,6 @@ create small env for env -i
 V) Exec: 
 
 handle error in ast_exec ~~ to recheck 
-handle when its a builtins but the builtins fail. 
 
 	a) Prompt: OK
 
@@ -43,7 +39,7 @@ handle when its a builtins but the builtins fail.
 	c) Builtins OK~~
 
 		handle error, check error for builtins
-		test with no env, nned protect 
+		test with no env, need protect ~
 		handle paramaters (if args[1]) return ;
 
 		echo OK
@@ -54,15 +50,13 @@ handle when its a builtins but the builtins fail.
 		unset OK,
 		exit OK
 
-	d) Command OK
-		Search and launch the right executable (based on the PATH variable or using a
-		relative or an absolute path). 
+	d) Command OK 
 
-	e) redirections OK, except for heredoc 
+	e) Redirections OK
 
 	f) Operator OK
 
-		1)Implement pipes (| character). OK, refacto, Review the general logic, for the file(close), the order of exec, use waitpid, dup2
+		1) PIPE OK, refacto, Review the general logic, for the file(close), the order of exec, use waitpid, dup2
 
 		2) AND and OR OK
 
@@ -76,10 +70,10 @@ handle when its a builtins but the builtins fail.
 	Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 	• In interactive mode:
 	◦ ctrl-C displays a new prompt on a new line. OK
-	◦ ctrl-D exits the shell. ~~ not working when line is not working 
+	◦ ctrl-D exits the shell. ~~ not working when line is not empty
 	◦ ctrl-\ does nothing.
 
-	i) issue with paren when using pipe
+	i) issue with paren
 		loop in ast_creator, in subsh_node, here: (*new_node)->subshell.root = ast_algo(current, 0);
 
 VI) Tester

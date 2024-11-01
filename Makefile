@@ -4,7 +4,7 @@ SRC_DIR			:= srcs
 OBJ_DIR			:= obj
 
 SRCS			:=	main.c \
-					errors/errors_displayer.c errors/errors_tools.c \
+					errors/errors_displayer.c errors/errors_tools.c errors/error_and_exit.c \
 					initializer/init.c \
 					env/init_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
 					parser/lexer/tokenizer.c \
@@ -16,7 +16,7 @@ SRCS			:=	main.c \
 					parser/ast/ast_node/cmd_node/cmd_node.c parser/ast/ast_node/cmd_node/parse_args.c parser/ast/ast_node/cmd_node/parse_redirs.c \
 					parser/ast/ast_node/operator_node.c parser/ast/ast_node/subsh_node.c \
 					parser/parser_tools/parser_checker.c parser/parser_tools/parser_checker2.c \
-					exec/exec.c \
+					exec/exec.c exec/exec_cmd_node.c \
 					exec/builtins/builtins.c \
 					exec/redirections/redirections.c \
 					exec/builtins/builtins_cmds/echo.c exec/builtins/builtins_cmds/pwd.c exec/builtins/builtins_cmds/env.c \
