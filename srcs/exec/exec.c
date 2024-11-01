@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/31 11:55:14 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:54:54 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	exec_args(t_data *data, char **args)
 		exit (EXIT_SUCCESS);
 	}
 }
-static void exec_redirs(t_data *data, t_cmd *cmd, int tube[2])
+static void exec_redirs(t_data *data, t_cmd *cmd)
 {
-	handle_redirs(data, cmd, tube);
+	handle_redirs(data, cmd);
 	if (!cmd->args)
 	{
 		free_all(data);
@@ -57,6 +57,7 @@ static bool exec_fork(t_data *data, t_cmd *cmd) //exec_cmd_node
 	waitpid(pid, &status, 0);
 	return (WIFEXITED(status) && !WEXITSTATUS(status));
 }
+
 static bool cmd(t_data *data, t_cmd *cmd)
 {	
 	if (cmd->args && is_non_fork_builtins(cmd->args))

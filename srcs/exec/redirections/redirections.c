@@ -6,15 +6,17 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 10:14:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/31 11:55:53 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/01 11:34:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void exec_heredoc()
+static void exec_heredoc(int tube[2], char *delim)
 {
 	char	*line;
+	
+	close(tube[0]);
 	while (1)
 	{
 		line = readline("> ");
@@ -32,36 +34,38 @@ static void exec_heredoc()
 	close(tube[1]);
 	exit(EXIT_SUCCESS);
 }
-static void handle_heredoc(t_data *data, char *r_delim, char *delim, int tube[2])
+static void handle_heredoc(t_data *data, char *r_delim, char *delim)
 {
 	int 	tube[2];
 	pid_t 	pid;
-	(void)r_delim;
-	(void)data;
+	int 	status;
 	
 	if (pipe(tube) == -1)
 	{
 		perror("pipe");
+		free_all(data);
 		exit(EXIT_FAILURE);
 	}
-	
 	pid = fork();
 	if (pid == 0)
-	{
-		exec_heredoc();
-		
-	}
+		exec_heredoc(tube, delim);
 	else if (pid == -1)
 	{
-		
+		perror("fork");
+		free_all(data);
+		exit(EXIT_FAILURE);
 	}
 	close(tube[1]);
-	if (dup2(tube[0], STDIN_FILENO) == -1)
+	waitpid(pid, &status, 0);
+	if (ft_strncmp(r_delim, delim, ft_strlen(r_delim) + 1) == 0)
 	{
-		perror("Error redirecting input");
-        close(tube[0]);
-		free_all(data);
-        exit(EXIT_FAILURE);
+		if (dup2(tube[0], STDIN_FILENO) == -1)
+		{
+			perror("Error redirecting input");
+        	close(tube[0]);
+			free_all(data);
+        	exit(EXIT_FAILURE);
+		}
 	}
     close(tube[0]);
 }
@@ -119,7 +123,7 @@ static void	handle_i_files(t_data *data, char *i_file, char *file)
 	}
 	close(fd);
 } 
-void	handle_redirs(t_data *data, t_cmd *cmd, int tube[2])
+void	handle_redirs(t_data *data, t_cmd *cmd)
 {
 	size_t i;
 
@@ -128,7 +132,7 @@ void	handle_redirs(t_data *data, t_cmd *cmd, int tube[2])
 	while (cmd->redirs[i])
 	{
 		if (ft_strncmp(cmd->redirs[i], "<<", 3) == 0)
-			handle_heredoc(data, cmd->redir->delim, cmd->redirs[i + 1], tube);
+			handle_heredoc(data, cmd->redir->delim, cmd->redirs[i + 1]);
 		else if (ft_strncmp(cmd->redirs[i], "<", 2) == 0)
 			handle_i_files(data, cmd->redir->i_file, cmd->redirs[i + 1]);
 		else if (ft_strncmp(cmd->redirs[i], ">", 2) == 0 
