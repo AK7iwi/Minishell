@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/01 12:40:32 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:40:54 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,6 @@ typedef struct s_error
 //					  ERRORS		  			//
 //												//
 //**********************************************//
-
-/* error_and_exit.c */
-void pipe_error(t_data *data);
-void open_error(t_data *data);
-void dup2_error(t_data *data);
 
 /* errors_tools.c */
 void 	free_errors(t_error *error);

@@ -379,4 +379,10 @@ int		ft_atoi(const char *nptr);
 void	ft_swap(char **a, char **b);
 char	*ft_strjoin(const char *s1, const char *s2);
 
+/* error_and_exit.c */
+void 	fork_error(t_data *data);
+void	pipe_error(t_data *data);
+void	open_error(t_data *data);
+void	dup2_error(t_data *data, int fd);
+
 #endif /* MINISHELL_H */

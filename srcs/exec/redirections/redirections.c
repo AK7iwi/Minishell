@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 10:14:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/01 12:41:20 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:00:59 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,7 @@ static void handle_heredoc(t_data *data, char *r_delim, char *delim)
 	int 	status;
 	
 	if (pipe(tube) == -1)
-	{
-		perror("pipe");
-		free_all(data);
-		exit(EXIT_FAILURE);
-	}
+		pipe_error(data);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -53,23 +49,12 @@ static void handle_heredoc(t_data *data, char *r_delim, char *delim)
 		exit(EXIT_SUCCESS);
 	}
 	else if (pid == -1)
-	{
-		perror("fork");
-		free_all(data);
-		exit(EXIT_FAILURE);
-	}
-	waitpid(pid, &status, 0);
+		fork_error(data);
+	waitpid(pid, &status, 0); //check status 
 	close(tube[1]);
 	if (ft_strncmp(r_delim, delim, ft_strlen(r_delim) + 1) == 0)
-	{
 		if (dup2(tube[0], STDIN_FILENO) == -1)
-		{
-			perror("Error redirecting input");
-        	close(tube[0]);
-			free_all(data);
-        	exit(EXIT_FAILURE);
-		}
-	}
+			dup2_error(data, tube[0]);
     close(tube[0]);
 }
 static void handle_o_files(t_data *data, char *o_file, char *redir, char *file)
@@ -85,20 +70,11 @@ static void handle_o_files(t_data *data, char *o_file, char *redir, char *file)
 	
 	fd = open(o_file, flags, 0644);
 	if (fd == -1)
-    {
-        perror("Error opening output file");
-		free_all(data);
-        exit(EXIT_FAILURE);
-    }
+    	open_error(data);
 	else if (ft_strncmp(o_file, file, ft_strlen(o_file) + 1) == 0)
 	{
         if (dup2(fd, STDOUT_FILENO) == -1) 
-        {
-            perror("Error redirecting output");
-            close(fd);
-			free_all(data);
-            exit(EXIT_FAILURE);
-        }
+        	dup2_error(data, fd);
 	}
 	close(fd);
 }
@@ -107,18 +83,12 @@ static void	handle_i_files(t_data *data, char *i_file, char *file)
 	int fd;
 	
 	fd = open(i_file, O_RDONLY);
-	// fd = -1; test 
 	if (fd == -1)
 		open_error(data);
 	else if (ft_strncmp(i_file, file, ft_strlen(i_file) + 1) == 0)
 	{
-		if (dup2(fd, STDIN_FILENO) == -1) 
-        {
-            perror("Error redirecting input");
-            close(fd);
-			free_all(data);
-            exit(EXIT_FAILURE);
-        }
+		if (dup2(fd, STDIN_FILENO) == -1)
+			dup2_error(data, fd);
 	}
 	close(fd);
 } 
@@ -127,7 +97,6 @@ void	handle_redirs(t_data *data, t_cmd *cmd)
 	size_t i;
 
 	i = 0;
-	
 	while (cmd->redirs[i])
 	{
 		if (ft_strncmp(cmd->redirs[i], "<<", 3) == 0)

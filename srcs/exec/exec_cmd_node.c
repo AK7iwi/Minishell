@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:54:48 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/01 11:43:01 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:55:33 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool exec_cmd_node(t_data *data, t_cmd *cmd)
 			exec_redirs(data, cmd);
 		if (cmd->args)
 			exec_args(data, cmd->args);
-		free_all(data); 
+		free_all(data);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == -1)

@@ -8,7 +8,6 @@ protect readline ~~
 Use strcmp instead of strncmp, check this fct when used 
 EXIT_SUCCESS/EXIT_FAILURE logique
 Handle exit code ,check exit value
-error fct for dup2, open(fd), pipe
 Rename tube when pipe
 
 I) Lexer: 
@@ -56,7 +55,7 @@ handle error in ast_exec ~~ to recheck
 
 	f) Operator OK
 
-		1) PIPE OK, refacto, Review the general logic, for the file(close), the order of exec, use waitpid, dup2
+		1) PIPE OK, to test refacto, Review the general logic, for the file(close), the order of exec, use waitpid, dup2
 
 		2) AND and OR OK
 
