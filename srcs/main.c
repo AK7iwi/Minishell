@@ -6,27 +6,12 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/05 09:29:26 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/05 09:53:15 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void handle_sigquit(int sig)
-{
-	(void)sig;
-	// rl_on_new_line();
-    // rl_replace_line("", 0); 
-    // rl_redisplay(); 
-}
-void handle_sigint(int sig)
-{
-    (void)sig;
-    write(STDOUT_FILENO, "\n", 1);
-    rl_on_new_line();
-    rl_replace_line("", 0); 
-    rl_redisplay(); 
-}
 static bool is_arg(t_error *error, int argc)
 {
 	if (argc != 1)

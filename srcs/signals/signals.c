@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:00:55 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/05 09:29:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/05 09:54:54 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,15 @@ void	signal_handler_server(int signal, siginfo_t *info, void *context)
     	rl_replace_line("", 0);
     	rl_redisplay(); 
 	}
-	else if (signal == SIGQUIT)
-	{
-		rl_replace_line("", 0);
-	}
 }
-
 
 void signals(void)
 {
 	struct sigaction	act;
+	
 	act.sa_sigaction = signal_handler_server;
 	act.sa_flags = SA_RESTART;
 	sigemptyset(&act.sa_mask);
 	sigaction(SIGINT, &act, NULL);
-	sigaction(SIGQUIT, &act, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
