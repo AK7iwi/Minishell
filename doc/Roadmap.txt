@@ -2,11 +2,11 @@ General:
 
 Leak when malloc = NULL; free before return 
 error in stderr
+test open,dup2,pipe,fork errors 
 int --> int32t / norme
 protect ft_strdup
 protect readline ~~
-Use strcmp instead of strncmp, check this fct when used 
-EXIT_SUCCESS/EXIT_FAILURE logique
+Use strcmp instead of strncmp, check this fct when used
 Handle exit code ,check exit value
 Rename tube when pipe
 
@@ -55,7 +55,7 @@ handle error in ast_exec ~~ to recheck
 
 	f) Operator OK
 
-		1) PIPE OK, to test refacto, Review the general logic, for the file(close), the order of exec, use waitpid, dup2
+		1) PIPE OK,
 
 		2) AND and OR OK
 
@@ -69,7 +69,7 @@ handle error in ast_exec ~~ to recheck
 	Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 	• In interactive mode:
 	◦ ctrl-C displays a new prompt on a new line. OK
-	◦ ctrl-D exits the shell. ~~ not working when line is not empty
+	◦ ctrl-D exits the shell. OK
 	◦ ctrl-\ does nothing.
 
 	i) issue with paren

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/28 12:02:53 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/05 09:29:26 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void handle_sigquit(int sig)
 {
 	(void)sig;
-	rl_on_new_line();
-    // // rl_replace_line("", 0); 
-    rl_redisplay(); 
+	// rl_on_new_line();
+    // rl_replace_line("", 0); 
+    // rl_redisplay(); 
 }
 void handle_sigint(int sig)
 {
@@ -42,14 +42,13 @@ int main(int argc, char **argv, char **envp)
 	if (init(&data, argv, envp) || is_arg(&data.error, argc))
 		return (errors_displayer(data.error), EXIT_FAILURE);
 	
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, handle_sigquit);
+	signals();
 	
     while (true)
     {
         input = readline("Minishell> ");
 		if (!input)
-			return (printf("exit\n"), free_all(&data), EXIT_FAILURE);
+			return (printf("exit\n"), free_all(&data), EXIT_FAILURE); //ft_exit
 		add_history(input);
 		
         if (tokenizer(&data, input)|| syn_analyzer(&data)
