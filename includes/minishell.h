@@ -148,6 +148,44 @@ typedef struct s_data
 
 //**********************************************//
 //												//
+//					  TOOLS		  				//
+//												//
+//**********************************************// 
+
+/* free.c */
+void 	free_tab(char **tab);
+void	free_loop(t_data *data);
+void	free_all(t_data *data);
+
+//////////////// Lib ////////////////
+
+/* lib_checker.c */
+bool 	is_number(char *c);
+bool	ft_isdigit(int c);
+bool	ft_isalnum(int c);
+bool	ft_isalpha(int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+/* lib_memory.c */
+char	*ft_strdup(const char *s);
+/* lib_len.c */
+size_t	ft_strlen(const char *s);
+
+///////// lib_str_manip ///////////
+/* lib_str_manip2.c */
+char	**ft_split(char const *str, char c);
+/* lib_str_manip.c */
+int		ft_atoi(const char *nptr);
+void	ft_swap(char **a, char **b);
+char	*ft_strjoin(const char *s1, const char *s2);
+
+/* error_and_exit.c */
+void 	fork_error(t_data *data);
+void	pipe_error(t_data *data);
+void	open_error(t_data *data);
+void	dup2_error(t_data *data, int fd);
+
+//**********************************************//
+//												//
 //					  EXEC			  			//
 //												//
 //**********************************************//
@@ -340,14 +378,6 @@ bool	init_env(t_data *data, char **envp);
 
 //**********************************************//
 //												//
-//					SIGNALS		  				//
-//												//
-//**********************************************// 
-
-void	signals(void);
-
-//**********************************************//
-//												//
 //					INITIALIZER  				//
 //												//
 //**********************************************// 
@@ -357,40 +387,11 @@ bool	init(t_data *data, char **argv, char **envp);
 
 //**********************************************//
 //												//
-//					  TOOLS		  				//
+//					SIGNALS		  				//
 //												//
 //**********************************************// 
 
-/* free.c */
-void 	free_tab(char **tab);
-void	free_loop(t_data *data);
-void	free_all(t_data *data);
-
-//////////////// Lib ////////////////
-
-/* lib_checker.c */
-bool 	is_number(char *c);
-bool	ft_isdigit(int c);
-bool	ft_isalnum(int c);
-bool	ft_isalpha(int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-/* lib_memory.c */
-char	*ft_strdup(const char *s);
-/* lib_len.c */
-size_t	ft_strlen(const char *s);
-
-///////// lib_str_manip ///////////
-/* lib_str_manip2.c */
-char	**ft_split(char const *str, char c);
-/* lib_str_manip.c */
-int		ft_atoi(const char *nptr);
-void	ft_swap(char **a, char **b);
-char	*ft_strjoin(const char *s1, const char *s2);
-
-/* error_and_exit.c */
-void 	fork_error(t_data *data);
-void	pipe_error(t_data *data);
-void	open_error(t_data *data);
-void	dup2_error(t_data *data, int fd);
+/* signals.c*/
+void	signals(void);
 
 #endif /* MINISHELL_H */

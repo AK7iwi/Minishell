@@ -1,5 +1,6 @@
 TOKENISATIONS
 
+- handle special char 
 !!hqndle &, |
 handle tab
 Special char (#,?, $)
@@ -10,3 +11,5 @@ ex:
 echo pp$USER
 echo pp $USER
 echo '$USER'
+
+- Rename of fct 

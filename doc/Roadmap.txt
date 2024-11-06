@@ -11,7 +11,6 @@ Rename tube when pipe
 
 I) Lexer: 
 
-Review the main of tokenizer(no need to declare token in but in str_handler and special_char_handler yes)
 check tokenisation file(doc)
 
 II) Synthesis_analysis:
