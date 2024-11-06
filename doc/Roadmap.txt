@@ -8,6 +8,8 @@ protect readline ~~ recheck
 Use strcmp instead of strncmp, check this fct when used
 Handle exit code ,check exit value
 Rename tube when pipe
+use strncpy 
+increment shell lvl
 
 I) Lexer: 
 
@@ -23,7 +25,6 @@ Find the right precedence, compare with bash result
 
 IV)ENV:
 
-create small env for env -i
 
 V) Exec: 
 

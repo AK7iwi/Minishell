@@ -7,7 +7,7 @@ SRCS			:=	main.c \
 					errors/errors_displayer.c errors/errors_tools.c errors/error_and_exit.c \
 					initializer/init.c \
 					signals/signals.c \
-					env/init_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
+					env/init_env.c env/create_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
 					parser/lexer/tokenizer.c \
 					parser/lexer/str_handler/str_handler.c parser/lexer/str_handler/str_extracter.c parser/lexer/str_handler/str_len.c \
 					parser/lexer/special_char_handler/special_char_handler.c parser/lexer/special_char_handler/special_char_extracter.c parser/lexer/special_char_handler/special_char_len.c \

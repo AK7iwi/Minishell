@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   create_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 11:28:19 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/06 14:44:10 by mfeldman         ###   ########.fr       */
+/*   Created: 2024/11/06 13:05:41 by mfeldman          #+#    #+#             */
+/*   Updated: 2024/11/06 14:58:45 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	pwd(t_error *error)
+bool	create_env(t_data *data)
 {
 	char *cwd;
+	char *pwd;
+	char *shlvl;
 	
 	cwd = getcwd(NULL, 0);
-	// cwd = NULL;
 	if (!cwd)
-		return (error->exec_errors |= ERR_PWD, EXIT_FAILURE);
-	else
-		printf("%s\n", cwd);
-
+		return (data->error.exec_errors |= ERR_PWD, EXIT_FAILURE);
+	pwd = ft_strjoin("PWD=", cwd);
 	free(cwd);
+	if (!pwd)
+		return (data->error.gen_errors |= ERR_MALLOC, EXIT_FAILURE);
+	if (add_env_var(&data->env, pwd))
+		return (free(pwd), data->error.gen_errors |= ERR_MALLOC, EXIT_FAILURE);
+	free(pwd);
+	
+	shlvl = "SHLVL=1";
+	if (add_env_var(&data->env, shlvl))
+		return (data->error.gen_errors |= ERR_MALLOC, EXIT_FAILURE);
+	
 	return (EXIT_SUCCESS);
 }

@@ -78,14 +78,6 @@ typedef struct s_hist
     struct s_hist *next;
 }	t_hist;
 
-typedef struct s_env
-{
-    char *str;
-
-    struct s_env *prev;
-    struct s_env *next;
-}	t_env;
-
 typedef struct s_redir
 {
 	char 	*i_file;
@@ -137,12 +129,20 @@ typedef struct s_token
     struct s_token *next;
 }   t_token;
 
+typedef struct s_env
+{
+    char	*env_var;
+
+    struct s_env *prev;
+    struct s_env *next;
+}	t_env;
+
 typedef struct s_data
 {
 	t_error 	error;
+    t_env		*env;
     t_token		*token;
 	t_ast 		*ast;
-    t_env		*env;
 	t_hist		*hist;
 } 	t_data;
 
@@ -157,19 +157,6 @@ void 	free_tab(char **tab);
 void	free_loop(t_data *data);
 void	free_all(t_data *data);
 
-//////////////// Lib ////////////////
-
-/* lib_checker.c */
-bool 	is_number(char *c);
-bool	ft_isdigit(int c);
-bool	ft_isalnum(int c);
-bool	ft_isalpha(int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-/* lib_memory.c */
-char	*ft_strdup(const char *s);
-/* lib_len.c */
-size_t	ft_strlen(const char *s);
-
 ///////// lib_str_manip ///////////
 /* lib_str_manip2.c */
 char	**ft_split(char const *str, char c);
@@ -183,6 +170,18 @@ void 	fork_error(t_data *data);
 void	pipe_error(t_data *data);
 void	open_error(t_data *data);
 void	dup2_error(t_data *data, int fd);
+
+//////////////// lib ////////////////
+/* lib_checker.c */
+bool 	is_number(char *c);
+bool	ft_isdigit(int c);
+bool	ft_isalnum(int c);
+bool	ft_isalpha(int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+/* lib_len.c */
+size_t	ft_strlen(const char *s);
+/* lib_memory.c */
+char	*ft_strdup(const char *s);
 
 //**********************************************//
 //												//
@@ -365,13 +364,17 @@ bool	is_valid_var(char *var);
 void	free_env(t_env **env_var);
 void	unset_env_var(t_env **env, char *var_name);
 bool 	set_env_var(t_env **env, char *var_name, char *new_env_var);
-bool	add_env_var(t_env **env_var, char *str);
+bool	add_env_var(t_env **env, char *envp);
+
 
 /* extract_env.c */
 char 	*extract_var_value(char *args);
 char 	*extract_var_name(char *args);
 /* sort_env.c */
 bool	print_sorted_env(t_env *env);
+
+/* create_env.c */
+bool	create_env(t_data *data);
 
 /* init_env.c */
 bool	init_env(t_data *data, char **envp);

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:16:12 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/09 10:20:01 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:57:47 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 bool	init_env(t_data *data, char **envp)
 {
-    size_t i;
+	size_t	i;
+
+	if (!*envp)
+		return (create_env(data));
 
 	i = 0;
-	//protect env here 
-	//create small env
-    while (envp[i]) 
-    {
+	while (envp[i])
+	{
 		if (add_env_var(&data->env, envp[i]))
-			return (data->error.gen_errors |= ERROR_MALLOC, EXIT_FAILURE);
-        i++;
-    }
-
+			return (data->error.gen_errors |= ERR_MALLOC, EXIT_FAILURE);
+		i++;
+	}
 	return (EXIT_SUCCESS);
 }

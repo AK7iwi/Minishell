@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/04 10:40:54 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:39:27 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,51 +28,49 @@
 # define COLOR_RED     "\x1b[31m"
 
 /* General errors */
-# define ERROR_MALLOC			0x1
-# define ERROR_ARG				0x2
+# define ERR_MALLOC		0x1
+# define ERR_ARG		0x2
 
-# define E_MALLOC	"Error\nMalloc fail error.\n"
-# define E_ARGS		"Error\nNo need argument bro.\n"
+# define E_MALLOC		"mimishell: insufficient system resources. Terminating program.\n"
+# define E_ARGS			"mimishell: No need argument bro.\n"
 
 /* Parsing errors */
-# define ERROR_QUOTE			0x1
-# define ERROR_OPERATOR			0x2
-# define ERROR_REDIR			0x4
-# define ERROR_PARAN			0x8
+# define ERR_QUOTE		0x1
+# define ERR_OPERATOR	0x2
+# define ERR_REDIR		0x4
+# define ERR_PARAN		0x8
 
-# define E_QUOTE	"Error\nClose you quotes.\n"
-# define E_OPERATOR "Error\nInvalid use of operator.\n"
-# define E_REDIR 	"Error\nInvalid use of redirection.\n"
-# define E_PARAN 	"Error\nClose the paranthese bro.\n"
+# define E_QUOTE		"Close you quotes.\n"
+# define E_OPERATOR 	"Invalid use of operator.\n"
+# define E_REDIR 		"Invalid use of redirection.\n"
+# define E_PARAN 		"Close the paranthese bro.\n"
 
 /* Exec errors */
 
 /* Builtins errors */
-# define ERROR_PWD				0x1
-# define ERROR_CD1 				0x2
-# define ERROR_CD2 				0x4
-# define ERROR_EXPORT			0x8
-# define ERROR_UNSET			0x10
-# define ERROR_EXIT				0x20
+# define ERR_PWD		0x1
+# define ERR_CD1 		0x2
+# define ERR_CD2 		0x4
+# define ERR_EXPORT		0x8
+# define ERR_UNSET		0x10
+# define ERR_EXIT		0x20
 
-# define E_PWD 		"Error\npwd"
-# define E_CD1		"Error\ncd: too many arguments\n"
-# define E_CD2		"Error\ncd"
-# define E_EXPORT	"Error\nunset: not enough arguments\n"
-# define E_UNSET	"Error\nunset: not enough arguments\n"
-# define E_EXIT 	"bash: exit: too many arguments\n"
+# define E_PWD 			"pwd"
+# define E_CD1			"cd: too many arguments\n"
+# define E_CD2			"cd"
+# define E_EXPORT		"unset: not enough arguments\n"
+# define E_UNSET		"unset: not enough arguments\n"
+# define E_EXIT 		"bash: exit: too many arguments\n"
 
 /* CMDS errors */
 
-# define ERROR_FORK				0x40
-# define ERROR_PIPE				0x80
-# define ERROR_DUP2				0x100
+# define ERR_FORK		0x40
+# define ERR_PIPE		0x80
+# define ERR_DUP2		0x100
 
-# define E_FORK 	"Error\nfork"
-# define E_PIPE		"Error\npipe"
-# define E_DUP2		"Error\ndup2"
-
-/* Redirs errors */
+# define E_FORK 		"fork"
+# define E_PIPE			"pipe"
+# define E_DUP2			"dup2"
 
 //**********************************************//
 //					STRUCTURES					//

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:49:49 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/09 10:19:54 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:49:52 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	env(t_env *env)
 	current = env;
 	while (current)
 	{
-		printf("%s\n", current->str);
+		printf("%s\n", current->env_var);
 		current = current->next;
 	}
 

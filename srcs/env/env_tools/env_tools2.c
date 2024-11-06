@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:49:12 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/11 11:10:25 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:49:32 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	remove_env_node(t_env **env, t_env *to_remove)
     if (to_remove == *env)
         *env = to_remove->next;
 
-    free(to_remove->str);
+    free(to_remove->env_var);
     free(to_remove);
 }
 bool	is_var(t_env *current, char *var_name)
 {
-	return (ft_strncmp(current->str, var_name, ft_strlen(var_name)) == 0
-			&& (current->str[ft_strlen(var_name)] == '='
-			|| current->str[ft_strlen(var_name)] == '\0'));
+	return (ft_strncmp(current->env_var, var_name, ft_strlen(var_name)) == 0
+			&& (current->env_var[ft_strlen(var_name)] == '='
+			|| current->env_var[ft_strlen(var_name)] == '\0'));
 }
 bool 	is_in_env(t_env *env, char *var_name)
 {

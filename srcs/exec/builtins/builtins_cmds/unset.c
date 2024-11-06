@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:45:10 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/11 10:54:33 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:44:13 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool unset(t_data *data, char **args)
     size_t i;
 	
 	if (!args[1])
-        return (data->error.exec_errors |= ERROR_UNSET, EXIT_FAILURE);
+        return (data->error.exec_errors |= ERR_UNSET, EXIT_FAILURE);
 	
 	i = 1;
 	while (args[i])
