@@ -6,19 +6,20 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:40:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:17:10 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool is_arg(t_error *error, int argc) // in tools
+static bool is_arg(t_error *error, int argc) 
 {
 	if (argc != 1)
 		return (error->gen_errors |= ERR_ARG, true);
 
 	return (false);
 }
+
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -30,7 +31,7 @@ int main(int argc, char **argv, char **envp)
 	
     while (true)
     {
-        input = readline("mimishell. ");
+        input = readline("mimishell<> ");
 		if (!input)
 			return (printf("exit\n"), free_all(&data), EXIT_FAILURE); //ft_exit
 		add_history(input);

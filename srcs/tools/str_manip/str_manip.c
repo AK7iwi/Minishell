@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_str_manip.c                                    :+:      :+:    :+:   */
+/*   str_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 16:42:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:03:09 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:33:32 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,6 @@ int	ft_atoi(const char *nptr)
 	}
 	return (j * count);
 }
-
-void	ft_swap(char **a, char **b)
-{
-    char *temp;
-	temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*dest;
@@ -59,17 +50,17 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		return (NULL);
 	
 	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	i = 0;
-	j = 0;
 	if (!dest)
 		return (NULL);
+	i = 0;
 	while (s1[i])
 	{
 		dest[i] = s1[i];
 		i++;
 	}
+	j = 0;
 	while (s2[j])
 		dest[i++] = s2[j++];
-	dest[i] = 0;
+	dest[i] = '\0';
 	return (dest);
 }

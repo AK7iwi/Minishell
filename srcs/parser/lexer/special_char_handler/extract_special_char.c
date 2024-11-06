@@ -6,13 +6,13 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:03:10 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:42:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:48:09 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char* copy_special_char(char *input, size_t start, size_t *end, size_t len)
+static char	*copy_special_char(char *input, size_t start, size_t *end, size_t len)
 {
 	char *str;
 	size_t i;
@@ -29,7 +29,7 @@ static char* copy_special_char(char *input, size_t start, size_t *end, size_t le
 
 	return (str);
 }
-char *special_char_extracter(t_error *error, char *input, size_t *index)
+char	*extract_special_char(t_error *error, char *input, size_t *index)
 {
 	char	*str;
 	size_t 	start;

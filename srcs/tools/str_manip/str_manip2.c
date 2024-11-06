@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lb_str_manip2.c                                    :+:      :+:    :+:   */
+/*   str_manip2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:09:52 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/15 10:10:36 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:28:49 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**ft_split(char const *str, char c)
 	word = ft_is_word(str, c);
 	dest = malloc(sizeof(char *) * (word + 1));
 	if (!dest)
-		return (0);
+		return (NULL);
 	dest = ft_malloc_word(str, c, dest, word);
 	if (!dest)
 		return (NULL);

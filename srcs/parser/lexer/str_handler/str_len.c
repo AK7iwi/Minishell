@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:20:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 13:40:36 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:14:05 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ ssize_t	get_str_len(char *input, t_tok_type *token, size_t *i)
     ssize_t	str_len;
 
 	str_len = 0;
-	
     while (!is_special_char(input, i) && input[*i] != SPACE && input[*i] != NULL_CHAR)
     {
 		if (get_quotes_len(input, &str_len, token, i))

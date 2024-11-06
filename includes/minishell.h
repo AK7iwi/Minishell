@@ -152,36 +152,38 @@ typedef struct s_data
 //												//
 //**********************************************// 
 
-/* free.c */
-void 	free_tab(char **tab);
-void	free_loop(t_data *data);
-void	free_all(t_data *data);
-
-///////// lib_str_manip ///////////
-/* lib_str_manip2.c */
-char	**ft_split(char const *str, char c);
-/* lib_str_manip.c */
-int		ft_atoi(const char *nptr);
-void	ft_swap(char **a, char **b);
-char	*ft_strjoin(const char *s1, const char *s2);
-
 /* error_and_exit.c */
 void 	fork_error(t_data *data);
 void	pipe_error(t_data *data);
 void	open_error(t_data *data);
 void	dup2_error(t_data *data, int fd);
 
-//////////////// lib ////////////////
-/* lib_checker.c */
+/* checker.c */
 bool 	is_number(char *c);
 bool	ft_isdigit(int c);
 bool	ft_isalnum(int c);
 bool	ft_isalpha(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-/* lib_len.c */
+
+/* len.c */
 size_t	ft_strlen(const char *s);
-/* lib_memory.c */
+
+/* memory.c */
+char	*ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_strdup(const char *s);
+
+/////////// str_manip //////////////////
+/* str_manip2.c */
+char	**ft_split(char const *str, char c);
+/* str_manip.c */
+int		ft_atoi(const char *nptr);
+char	*ft_strjoin(const char *s1, const char *s2);
+
+///////////// free /////////////////////////
+/* free.c */
+void 	free_tab(char **tab);
+void	free_loop(t_data *data);
+void	free_all(t_data *data);
 
 //**********************************************//
 //												//
@@ -321,24 +323,22 @@ bool		add_token(t_token **token_struct, t_tok_type *token, char *str_token);
 t_tok_type	wich_token(char *str);
 
 //////////// special_char_handler ///////////////////
-
 /* special_char_len.c */
 uint8_t		get_special_char_len(char *input, size_t *i);
 /* special_char_extracter.c*/
-char*		special_char_extracter(t_error *error, char *input, size_t *i);
+char		*extract_special_char(t_error *error, char *input, size_t *index);
 /* special_char_handler.c */
 bool		is_special_char(char *input, size_t *i);
-bool		special_char_handler(t_data *data, char *input, size_t *index);
+bool		handle_special_char(t_data *data, char *input, size_t *index);
 
 //////////// str_handler ////////////////////////////
-
 /* str_len.c */
 bool		get_quotes_len(char *input, ssize_t *str_len, t_tok_type *t, size_t *i);
 ssize_t		get_str_len(char *input, t_tok_type *token, size_t *i);
 /* str_extracter.c */
-char*		str_extracter(t_error *error, char *input, t_tok_type *token, size_t *index);
+char		*extract_str(t_error *error, char *input, t_tok_type *token, size_t *index);
 /* str_handler.c */
-bool		str_handler(t_data *data, char *input, size_t *index);
+bool		handle_str(t_data *data, char *input, size_t *index);
 
 /////////////////////////////////////////////////
 

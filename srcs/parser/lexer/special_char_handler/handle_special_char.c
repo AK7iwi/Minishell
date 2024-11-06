@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:07:29 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:42:27 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:47:53 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ bool	is_special_char(char *input, size_t *i)
 			|| input[*i] == '(' 
 			|| input[*i] == ')');
 }
-bool	special_char_handler(t_data *data, char *input, size_t *index)
+bool	handle_special_char(t_data *data, char *input, size_t *index)
 {
 	char 		*str_token;
 	t_tok_type	token;
 	
-	str_token = special_char_extracter(&data->error, input, index);
+	str_token = extract_special_char(&data->error, input, index);
 	if (!str_token)
 		return (EXIT_FAILURE);
 	

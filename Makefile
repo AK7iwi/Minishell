@@ -9,8 +9,8 @@ SRCS			:=	main.c \
 					signals/signals.c \
 					env/init_env.c env/create_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
 					parser/lexer/tokenizer.c \
-					parser/lexer/str_handler/str_handler.c parser/lexer/str_handler/str_extracter.c parser/lexer/str_handler/str_len.c \
-					parser/lexer/special_char_handler/special_char_handler.c parser/lexer/special_char_handler/special_char_extracter.c parser/lexer/special_char_handler/special_char_len.c \
+					parser/lexer/str_handler/handle_str.c parser/lexer/str_handler/extract_str.c parser/lexer/str_handler/str_len.c \
+					parser/lexer/special_char_handler/handle_special_char.c parser/lexer/special_char_handler/extract_special_char.c parser/lexer/special_char_handler/special_char_len.c \
 					parser/lexer/token_tools.c \
 					parser/syn_analyzer/syn_analyzer.c parser/syn_analyzer/syn_checker.c \
 					parser/ast/ast.c parser/ast/ast_printer.c parser/ast/ast_freer.c \
@@ -25,8 +25,8 @@ SRCS			:=	main.c \
 				 	exec/builtins/builtins_cmds/history.c exec/builtins/builtins_cmds/exit.c \
 					exec/cmds/cmds.c \
 					exec/pipe/pipe.c \
-					tools/lib/lib_checker.c tools/lib/lib_len.c tools/lib/lib_memory.c \
-					tools/lib/lib_str_manip/lib_str_manip.c tools/lib/lib_str_manip/lib_str_manip2.c \
+					tools/checker.c tools/len.c tools/memory.c \
+					tools/str_manip/str_manip.c tools/str_manip/str_manip2.c \
 					tools/free/free.c
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

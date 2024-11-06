@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:21:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:42:20 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:29:57 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static size_t skip_space(char *input, size_t *i)
 	return (*i);
 }
 
-char*	str_extracter(t_error *error, char *input, t_tok_type *token, size_t *index)
+char	*extract_str(t_error *error, char *input, t_tok_type *token, size_t *index)
 {
 	size_t 	str_start;
 	ssize_t	str_len;

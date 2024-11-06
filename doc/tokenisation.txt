@@ -11,5 +11,3 @@ ex:
 echo pp$USER
 echo pp $USER
 echo '$USER'
-
-- Rename of fct 
