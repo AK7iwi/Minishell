@@ -291,9 +291,9 @@ uint8_t		get_special_char_len(char *input, size_t *i);
 char*		special_char_extracter(t_error *error, char *input, size_t *i);
 /* special_char_handler.c */
 bool		is_special_char(char *input, size_t *i);
-bool 		special_char_handler(t_data *data, char *input, t_tok_type *token, size_t *index);
+bool		special_char_handler(t_data *data, char *input, size_t *index);
 
-//////////// str_handler ///////////////////
+//////////// str_handler ////////////////////////////
 
 /* str_len.c */
 bool		get_quotes_len(char *input, ssize_t *str_len, t_tok_type *t, size_t *i);
@@ -301,9 +301,9 @@ ssize_t		get_str_len(char *input, t_tok_type *token, size_t *i);
 /* str_extracter.c */
 char*		str_extracter(t_error *error, char *input, t_tok_type *token, size_t *index);
 /* str_handler.c */
-bool 		str_handler(t_data *data, char *input, t_tok_type *token, size_t *index);
+bool		str_handler(t_data *data, char *input, size_t *index);
 
-//////////////////
+/////////////////////////////////////////////////
 
 /* tokenizer.c */
 bool		tokenizer(t_data *data, char *input);
@@ -344,7 +344,7 @@ bool	init_env(t_data *data, char **envp);
 //												//
 //**********************************************// 
 
-void signals(void);
+void	signals(void);
 
 //**********************************************//
 //												//
