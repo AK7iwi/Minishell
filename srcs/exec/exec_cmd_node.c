@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:54:48 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:43:35 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:11:19 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool exec_cmd_node(t_data *data, t_cmd *cmd)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == -1)
-		return (data->error.exec_errors |= ERR_FORK, false); //test
+		return (data->err.exec_errors |= ERR_FORK, false); //test
 	
 	waitpid(pid, &status, 0);
 	return (WIFEXITED(status) && !WEXITSTATUS(status));

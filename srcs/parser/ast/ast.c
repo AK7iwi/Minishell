@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 20:50:23 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:11:31 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ uint8_t get_prec(t_tok_type type)
 	return (3);
 }
 
-t_op_type get_operator_type(t_tok_type type)
+t_op_type get_op_type(t_tok_type type)
 {
 	t_op_type operator_type;
 
@@ -39,7 +39,7 @@ t_op_type get_operator_type(t_tok_type type)
 
 	return (operator_type);
 }
-void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec)
+void	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 {
 	uint8_t 	next_min_prec;
 	t_op_type	op_type;
@@ -48,13 +48,13 @@ void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec)
 	while ((*current) && is_operator((*current)->type) && get_prec((*current)->type) >= min_prec)
 	{
 		next_min_prec = get_prec((*current)->type);
-		op_type = get_operator_type((*current)->type);
+		op_type = get_op_type((*current)->type);
 		(*current) = (*current)->next;
 		right_side = ast_algo(current, next_min_prec);
 		(*result) = create_operator_node((*result), right_side, op_type); // protect
 	}
 }
-t_ast *handle_cmd_and_subsh(t_token **current)
+t_ast *handle_cmd_and_subsh(t_tok **current)
 {
 	t_ast *new_node;
 	
@@ -69,7 +69,7 @@ t_ast *handle_cmd_and_subsh(t_token **current)
 	
 	return (new_node);
 }
-t_ast *ast_algo(t_token **current, uint8_t min_prec)
+t_ast *ast_algo(t_tok **current, uint8_t min_prec)
 {
 	t_ast 		*result;
 
@@ -84,8 +84,8 @@ t_ast *ast_algo(t_token **current, uint8_t min_prec)
 }
 bool	ast_creator(t_data *data)
 {
-	t_token *current;
-	current = data->token;
+	t_tok *current;
+	current = data->tok;
 	data->ast = ast_algo(&current, 0);
 	return (!data->ast);
 }

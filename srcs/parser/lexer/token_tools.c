@@ -6,29 +6,26 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:14:17 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 08:10:50 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:08:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void print_token(t_token *token)
+bool	is_special_char(char *input, size_t *i)
 {
-    t_token *current;
-	
-	current = token;
-	
-	printf("PRINT_TEST:\n");
-    while (current)
-    {
-        printf("Token: %s, Type: %d %s", current->str, current->type, "\n");
-        current = current->next;
-    }
+	return (input[*i] == '|' 
+			|| input[*i] == '<' 
+			|| input[*i] == '>' 
+			|| input[*i] == '&' 
+			|| input[*i] == '(' 
+			|| input[*i] == ')');
 }
-void	free_token(t_token **tokens)
+
+void	free_token(t_tok **tokens)
 {
-	t_token	*tmp;
-	t_token	*current;
+	t_tok	*tmp;
+	t_tok	*current;
 
 	if (!(*tokens))
 		return ;
@@ -43,12 +40,12 @@ void	free_token(t_token **tokens)
 	*tokens = NULL;
 }
 
-static	bool add_to_token_list(t_token **token, t_tok_type *str_type, char *str) 
+static	bool add_to_token_list(t_tok **token, t_tok_type *str_type, char *str) 
 {
-    t_token *new_node;
-    t_token *last;
+    t_tok *new_node;
+    t_tok *last;
 
-    new_node = malloc(sizeof(t_token));
+    new_node = malloc(sizeof(t_tok));
     if (!new_node)
         return (EXIT_FAILURE);
 
@@ -73,7 +70,7 @@ static	bool add_to_token_list(t_token **token, t_tok_type *str_type, char *str)
 	return (EXIT_SUCCESS);
 }
 
-bool	add_token(t_token **token_struct, t_tok_type *token, char *str_token)
+bool	add_token(t_tok **token_struct, t_tok_type *token, char *str_token)
 {
 	if (ft_strlen(str_token))
 		if (add_to_token_list(token_struct, token, str_token))

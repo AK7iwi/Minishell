@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/30 11:36:47 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:08:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_redir	*fill_redir_struct(char **redirs)
 	
 	return (redir);
 }
-static size_t get_redirs_len(t_token *current, size_t *i)
+static size_t get_redirs_len(t_tok *current, size_t *i)
 {
 	size_t	redirs_len;
 	bool	word_in_a_row;
@@ -89,7 +89,7 @@ static size_t get_redirs_len(t_token *current, size_t *i)
 	
 	return (redirs_len);
 }
-static char	**copy_redirs(t_ast **new_node, t_token **current, size_t *i)
+static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 {
 	char	**redirs;
 	size_t	j;
@@ -109,7 +109,7 @@ static char	**copy_redirs(t_ast **new_node, t_token **current, size_t *i)
 	
 	return (redirs);
 }
-bool	parse_redirs(t_ast **new_node, t_token **current, size_t *i)
+bool	parse_redirs(t_ast **new_node, t_tok **current, size_t *i)
 {
 	char 	**redirs;
 

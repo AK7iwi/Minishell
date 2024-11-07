@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_extracter.c                                    :+:      :+:    :+:   */
+/*   extract_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:21:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 16:29:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 08:35:45 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ static size_t skip_space(char *input, size_t *i)
 	return (*i);
 }
 
-char	*extract_str(t_error *error, char *input, t_tok_type *token, size_t *index)
+char	*extract_str(t_err *error, char *input, t_tok_type *tok, size_t *index)
 {
 	size_t 	str_start;
 	ssize_t	str_len;
 	char*	str;
 	
 	str_start = skip_space(input, index);
-	str_len = get_str_len(input, token, index); //in copy_str
+	str_len = get_str_len(input, tok, index); //in copy_str
 	if (str_len < 0)
 		return (error->parsing_errors |= ERR_QUOTE, NULL);
 	

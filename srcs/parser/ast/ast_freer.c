@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 15:12:03 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:15:55 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void free_cmd(t_cmd *cmd)
 	cmd->args_count = 0;
 	cmd->redirs_count = 0;
 }
-static void free_operator(t_operator *op)
+static void free_operator(t_op *op)
 {
     if (op->left)
         free_ast(&op->left);
@@ -72,7 +72,7 @@ static void free_operator(t_operator *op)
 void	free_ast(t_ast **ast)
 {
 	if ((*ast)->type == AST_OPERATOR)
-		free_operator(&(*ast)->operator);
+		free_operator(&(*ast)->op);
 	else if ((*ast)->type == AST_COMMAND)
 		free_cmd(&(*ast)->cmd);
 	else if ((*ast)->type == AST_SUBSH)

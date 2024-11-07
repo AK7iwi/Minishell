@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 08:49:38 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:41:12 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:07:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	display_gen_errors(uint8_t gen_errors)
 	if (gen_errors & ERR_ARG)
 		ft_putstr(E_ARGS);
 }
-void	errors_displayer(t_error error)
+void	errors_displayer(t_err error)
 {
 	if (error.gen_errors)
 		display_gen_errors(error.gen_errors);

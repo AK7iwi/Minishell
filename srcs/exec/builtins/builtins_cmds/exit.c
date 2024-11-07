@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:29:48 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/06 14:44:01 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:11:19 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	ft_exit(t_data *data, char **args)
 		else if (args[2])
 		{
 			exit_status = 1;
-			return (data->error.exec_errors |= ERR_EXIT, exit_status);
+			return (data->err.exec_errors |= ERR_EXIT, exit_status);
 		}
 		else
 			exit_status = ft_atoi(args[1]);

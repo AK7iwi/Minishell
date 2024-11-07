@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   print_tok.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 14:45:10 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/07 09:11:19 by mfeldman         ###   ########.fr       */
+/*   Created: 2024/11/07 08:27:10 by mfeldman          #+#    #+#             */
+/*   Updated: 2024/11/07 08:39:47 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool unset(t_data *data, char **args)
+void	print_token(t_tok *token)
 {
-    size_t i;
+    t_tok *current;
 	
-	if (!args[1])
-        return (data->err.exec_errors |= ERR_UNSET, EXIT_FAILURE);
+	current = token;
 	
-	i = 1;
-	while (args[i])
+	printf("PRINT_TEST:\n");
+    while (current)
     {
-        unset_env_var(&data->env, args[i]);
-        i++;
+        printf("Token: %s, Type: %d %s", current->str, current->type, "\n");
+        current = current->next;
     }
-
-	return (EXIT_SUCCESS);
 }
-

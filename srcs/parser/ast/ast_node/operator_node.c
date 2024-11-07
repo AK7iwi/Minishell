@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:29:19 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/04 10:33:34 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:17:04 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_ast	*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type)
 		return (NULL);
 	
 	new_node->type = AST_OPERATOR;
-	new_node->operator.type = op_type;
-	new_node->operator.left = left;
-	new_node->operator.right = right;
+	new_node->op.type = op_type;
+	new_node->op.left = left;
+	new_node->op.right = right;
 	
 	return (new_node);
 }

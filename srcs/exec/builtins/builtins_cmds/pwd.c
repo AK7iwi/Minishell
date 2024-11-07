@@ -6,13 +6,13 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:28:19 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/06 14:44:10 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:07:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	pwd(t_error *error)
+bool	pwd(t_err *error)
 {
 	char *cwd;
 	

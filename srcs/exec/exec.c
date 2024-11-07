@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/01 12:11:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:18:32 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool cmd(t_data *data, t_cmd *cmd)
 	
 	return (EXIT_FAILURE);
 }
-static bool	operator(t_data *data, t_operator *op)
+static bool	operator(t_data *data, t_op *op)
 {
 	if (op->type == OP_PIPE)
 		return (handle_pipe(data));
@@ -50,7 +50,7 @@ static bool	operator(t_data *data, t_operator *op)
 bool	exec(t_data *data, t_ast *ast)
 {
 	if (ast->type == AST_OPERATOR)
-		return (operator(data, &ast->operator));
+		return (operator(data, &ast->op));
 	else if (ast->type == AST_COMMAND)
 		return (cmd(data, &ast->cmd));
 	else if (ast->type == AST_SUBSH)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_printer.c                                      :+:      :+:    :+:   */
+/*   print_ast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 17:57:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 19:35:00 by mfeldman         ###   ########.fr       */
+/*   Created: 2024/11/07 08:27:23 by mfeldman          #+#    #+#             */
+/*   Updated: 2024/11/07 09:21:09 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,36 +57,36 @@ static void print_cmd(t_ast *ast)
 
 	printf("\n");
 }
-static void print_operator(t_ast *ast, int *depth)
+static void print_op(t_ast *ast, int *depth)
 {	
 	printf("[Operator] ");
-    if (ast->operator.type == OP_PIPE)
+    if (ast->op.type == OP_PIPE)
 		printf("'|'");
-	else if (ast->operator.type == OP_AND)
+	else if (ast->op.type == OP_AND)
 		printf("'&&'");
-	else if (ast->operator.type == OP_OR)
+	else if (ast->op.type == OP_OR)
 		printf("'||'");
 	
 	printf("\n");
-    if (ast->operator.left)
+    if (ast->op.left)
 	{
 		for (int i = 0; i < (*depth) + 1; i++)
 			printf("\t");
         printf("    [left] ");
-        print_ast(ast->operator.left, (*depth) + 1);
+        print_ast(ast->op.left, (*depth) + 1);
     }
-    if (ast->operator.right)
+    if (ast->op.right)
 	{
 		for (int i = 0; i < (*depth) + 1; i++)
 			printf("\t");
         printf("    [right] ");
-        print_ast(ast->operator.right, (*depth) + 1);
+        print_ast(ast->op.right, (*depth) + 1);
     }
 }
 void print_ast(t_ast *ast, int depth)
 {
 	if (ast->type == AST_OPERATOR)
-		print_operator(ast, &depth);
+		print_op(ast, &depth);
 	else if (ast->type == AST_COMMAND)
 		print_cmd(ast);
 	else if (ast->type == AST_SUBSH)

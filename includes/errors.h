@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:39:27 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:07:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@
 //					STRUCTURES					//
 //**********************************************//
 
-typedef struct s_error
+typedef struct s_err
 {
 	uint8_t		gen_errors;
 	uint8_t		parsing_errors; //pars_error for norme
 	uint16_t	exec_errors;
-}	t_error;
+}	t_err;
 
 //**********************************************//
 //												//
@@ -90,9 +90,9 @@ typedef struct s_error
 //**********************************************//
 
 /* errors_tools.c */
-void 	free_errors(t_error *error);
+void 	free_errors(t_err *error);
 
 /* errors_displayer.c*/
-void	errors_displayer(t_error error);
+void	errors_displayer(t_err error);
 
 #endif /* ERRORS_H */

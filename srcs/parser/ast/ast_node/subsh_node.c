@@ -6,13 +6,13 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:24:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 20:52:45 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:08:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_ast	*create_subsh_node(t_ast **new_node, t_token **current)
+t_ast	*create_subsh_node(t_ast **new_node, t_tok **current)
 {
 	(*new_node)->type = AST_SUBSH;
 	(*current) = (*current)->next;
