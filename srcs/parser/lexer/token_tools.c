@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:14:17 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:08:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:36:09 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	is_special_char(char *input, size_t *i)
 			|| input[*i] == ')');
 }
 
-void	free_token(t_tok **tokens)
+void	free_token(t_tok **tokens) //free folder
 {
 	t_tok	*tmp;
 	t_tok	*current;
@@ -40,46 +40,40 @@ void	free_token(t_tok **tokens)
 	*tokens = NULL;
 }
 
-static	bool add_to_token_list(t_tok **token, t_tok_type *str_type, char *str) 
+static	bool add_to_tok_list(t_tok **tok, t_tok_type *type, char *str) 
 {
-    t_tok *new_node;
+    t_tok *new_token;
     t_tok *last;
 
-    new_node = malloc(sizeof(t_tok));
-    if (!new_node)
+    new_token = malloc(sizeof(t_tok));
+    if (!new_token)
         return (EXIT_FAILURE);
 
-    new_node->type = (*str_type);
-    new_node->str = ft_strdup(str);
-	if (!(new_node->str))
-		return (EXIT_FAILURE);
-    new_node->next = NULL;
+    new_token->type = (*type);
+    new_token->str = ft_strdup(str);
+	if (!new_token->str)
+		return (free(new_token), EXIT_FAILURE);
+    new_token->next = NULL;
 
-    if (*token == NULL) 
+    if (*tok == NULL) 
     {
-        new_node->prev = NULL;
-        *token = new_node;  
+        new_token->prev = NULL;
+        *tok = new_token;  
         return (EXIT_SUCCESS);
     }
-    last = *token;
+    last = *tok;
     while (last->next)
         last = last->next;
-    last->next = new_node;
-    new_node->prev = last;
-
+    last->next = new_token;
+    new_token->prev = last;
 	return (EXIT_SUCCESS);
 }
 
-bool	add_token(t_tok **token_struct, t_tok_type *token, char *str_token)
+bool	add_token(t_tok **tok, t_tok_type *type, char *str)
 {
-	if (ft_strlen(str_token))
-		if (add_to_token_list(token_struct, token, str_token))
-			return (EXIT_FAILURE);
-	free(str_token);
-
-	return (EXIT_SUCCESS);
+	return (ft_strlen(str) && add_to_tok_list(tok, type, str));
 }
-t_tok_type wich_token(char *str_token)
+t_tok_type	wich_token(char *str_token)
 {
     if (str_token[0] == '|' && !str_token[1])
         return (T_PIPE);

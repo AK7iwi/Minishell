@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:53:11 by diguler           #+#    #+#             */
-/*   Updated: 2024/10/18 11:11:32 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:51:03 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	check_n_flag(char **args, size_t *i)
         while (args[*i][j] && args[*i][j] == 'n')
             j++;
 		
-		if (args[*i][j] == NULL_CHAR)
+		if (args[*i][j] == '\0')
         	n_flag = true;
 		else
 			break;

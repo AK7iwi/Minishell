@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:07:58 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:33:02 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define ERR_REDIR		0x4
 # define ERR_PARAN		0x8
 
-# define E_QUOTE		"Close you quotes.\n"
+# define E_QUOTE		"Syntax Error: Missing closing quotation mark.\n"
 # define E_OPERATOR 	"Invalid use of operator.\n"
 # define E_REDIR 		"Invalid use of redirection.\n"
 # define E_PARAN 		"Close the paranthese bro.\n"

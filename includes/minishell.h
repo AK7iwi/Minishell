@@ -25,13 +25,6 @@
 //					DEFINES						//
 //**********************************************//
 
-/* Special characters */
-
-#define SPACE 						' '
-#define NULL_CHAR					'\0'
-#define S_QUOTE						'\''
-#define D_QUOTE						'\"'
-#define ENV_VAR						'$'
 
 //**********************************************//
 //					ENUM						//
@@ -335,12 +328,11 @@ bool		handle_special_char(t_data *data, char *input, size_t *index);
 
 //////////// str_handler ////////////////////////////
 /* str_len.c */
-bool		get_quotes_len(char *input, ssize_t *str_len, t_tok_type *t, size_t *i);
-ssize_t		get_str_len(char *input, t_tok_type *token, size_t *i);
+ssize_t		get_str_len(char *input, t_tok_type *type, size_t *i);
 /* str_extracter.c */
-char		*extract_str(t_err *error, char *input, t_tok_type *token, size_t *index);
+char		*extract_str(t_err *err, char *input, t_tok_type *type, size_t *i);
 /* str_handler.c */
-bool		handle_str(t_data *data, char *input, size_t *index);
+bool		handle_str(t_data *data, char *input, size_t *i);
 
 /////////////////////////////////////////////////
 
@@ -367,7 +359,6 @@ void	free_env(t_env **env_var);
 void	unset_env_var(t_env **env, char *var_name);
 bool 	set_env_var(t_env **env, char *var_name, char *new_env_var);
 bool	add_env_var(t_env **env, char *envp);
-
 
 /* extract_env.c */
 char 	*extract_var_value(char *args);

@@ -1,13 +1,9 @@
 TOKENISATIONS
 
-- handle special char 
-!!hqndle &, |
-handle tab
-Special char (#,?, $)
+Improve: 
 
-Verif space before special char:
-ex:
+1) In get_quotes_len
 
-echo pp$USER
-echo pp $USER
-echo '$USER'
+if (input[*i] != quote_char)
+
+Not return error but heredoc as bash --posix

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:07:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/18 12:58:30 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:51:21 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool check_c_flag(char **args)
         while (args[i][j] && args[i][j] == 'c')
             j++;
 		
-		if (args[i][j] == NULL_CHAR)
+		if (args[i][j] == '\0')
         	c_flag = true;
 		else
 			break;
