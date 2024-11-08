@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 10:14:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/04 12:00:59 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:59:24 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void exec_heredoc(int tube[2], char *delim)
 	}
 	close(tube[1]);
 }
+
 static void handle_heredoc(t_data *data, char *r_delim, char *delim)
 {
 	int 	tube[2];
@@ -57,55 +58,72 @@ static void handle_heredoc(t_data *data, char *r_delim, char *delim)
 			dup2_error(data, tube[0]);
     close(tube[0]);
 }
-static void handle_o_files(t_data *data, char *o_file, char *redir, char *file)
-{
-	int fd;
-	int flags;
-	
-	flags = O_WRONLY | O_CREAT;
-	if (ft_strncmp(redir, ">", 2) == 0)
-		flags |= O_TRUNC;
-	else
-		flags |= O_APPEND;
-	
-	fd = open(o_file, flags, 0644);
-	if (fd == -1)
-    	open_error(data);
-	else if (ft_strncmp(o_file, file, ft_strlen(o_file) + 1) == 0)
-	{
-        if (dup2(fd, STDOUT_FILENO) == -1) 
-        	dup2_error(data, fd);
-	}
-	close(fd);
-}
-static void	handle_i_files(t_data *data, char *i_file, char *file)
-{
-	int fd;
-	
-	fd = open(i_file, O_RDONLY);
-	if (fd == -1)
-		open_error(data);
-	else if (ft_strncmp(i_file, file, ft_strlen(i_file) + 1) == 0)
-	{
-		if (dup2(fd, STDIN_FILENO) == -1)
-			dup2_error(data, fd);
-	}
-	close(fd);
-} 
-void	handle_redirs(t_data *data, t_cmd *cmd)
-{
-	size_t i;
 
-	i = 0;
-	while (cmd->redirs[i])
-	{
-		if (ft_strncmp(cmd->redirs[i], "<<", 3) == 0)
-			handle_heredoc(data, cmd->redir->delim, cmd->redirs[i + 1]);
-		else if (ft_strncmp(cmd->redirs[i], "<", 2) == 0)
-			handle_i_files(data, cmd->redir->i_file, cmd->redirs[i + 1]);
-		else if (ft_strncmp(cmd->redirs[i], ">", 2) == 0 
-				|| ft_strncmp(cmd->redirs[i], ">>", 3) == 0)
-			handle_o_files(data, cmd->redir->o_file, cmd->redirs[i], cmd->redirs[i + 1]);
-		i += 2;
-	}
+static void handle_o_files(t_data *data, char *o_file, char *redir, int is_last)
+{
+    int fd;
+    int flags;
+    flags = O_WRONLY | O_CREAT;
+    if (ft_strncmp(redir, ">", 2) == 0)
+        flags |= O_TRUNC;
+    else
+        flags |= O_APPEND;
+
+    fd = open(o_file, flags, 0644);
+    if (fd == -1)
+        open_error(data);
+
+    // Appliquer dup2 uniquement si c'est la dernière redirection
+    if (is_last) 
+    {
+        if (dup2(fd, STDOUT_FILENO) == -1)
+            dup2_error(data, fd);
+    }
+    close(fd);
 }
+
+static void handle_i_files(t_data *data, char *i_file)
+{
+    int fd;
+
+    fd = open(i_file, O_RDONLY);
+    if (fd == -1)
+        open_error(data);
+    else
+    {
+        if (dup2(fd, STDIN_FILENO) == -1)
+            dup2_error(data, fd);
+    }
+    close(fd);
+}
+
+void handle_redirs(t_data *data, t_cmd *cmd)
+{
+    size_t i;
+    int is_last;
+
+    i = 0;
+    while (cmd->redirs[i])
+    {
+        is_last = (cmd->redirs[i + 2] == NULL);  // Détecte la dernière redirection
+
+        // Traite les redirections de type Heredoc
+        if (ft_strncmp(cmd->redirs[i], "<<", 3) == 0)
+        {
+            handle_heredoc(data, cmd->redirs[i + 1], cmd->redirs[i + 1]);
+        }
+        // Traite les redirections d'entrée
+        else if (ft_strncmp(cmd->redirs[i], "<", 2) == 0)
+        {
+            handle_i_files(data, cmd->redirs[i + 1]);
+        }
+        // Traite les redirections de sortie
+        else if (ft_strncmp(cmd->redirs[i], ">", 2) == 0 || ft_strncmp(cmd->redirs[i], ">>", 3) == 0)
+        {
+            handle_o_files(data, cmd->redirs[i + 1], cmd->redirs[i], is_last);
+        }
+        i += 2;
+    }
+}
+
+

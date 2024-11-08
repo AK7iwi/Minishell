@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 12:21:58 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:28:38 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static	char **copy_args(t_ast **new_node, t_token **current, size_t *i)
 }
 bool	parse_args(t_ast **new_node, t_token **current, size_t *i)
 {
-	char **args;
+	char	**args;
 
 	args = copy_args(new_node, current, i);
 	if (!args)

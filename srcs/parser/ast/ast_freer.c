@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_freer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:15:11 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/29 15:12:03 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:38:16 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	free_ast(t_ast **ast)
 		free_cmd(&(*ast)->cmd);
 	else if ((*ast)->type == AST_SUBSH)
 		free_subshell(&(*ast)->subshell);
-
 	free(*ast);
 	*ast = NULL; 
 }

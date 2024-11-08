@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:57:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/27 19:35:00 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:37:57 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void print_operator(t_ast *ast, int *depth)
         print_ast(ast->operator.right, (*depth) + 1);
     }
 }
-void print_ast(t_ast *ast, int depth)
+void	print_ast(t_ast *ast, int depth)
 {
 	if (ast->type == AST_OPERATOR)
 		print_operator(ast, &depth);

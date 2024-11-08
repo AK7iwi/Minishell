@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/01 12:11:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:55:43 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ static bool	operator(t_data *data, t_operator *op)
 }
 bool	exec(t_data *data, t_ast *ast)
 {
+	// print_ast(ast, 0);
 	if (ast->type == AST_OPERATOR)
 		return (operator(data, &ast->operator));
 	else if (ast->type == AST_COMMAND)
 		return (cmd(data, &ast->cmd));
 	else if (ast->type == AST_SUBSH)
 		return (subshell(data, &ast->subshell));
-	
 	return (EXIT_SUCCESS);
 }

@@ -1,0 +1,1 @@
+[Cmd] echo Testing {redir} > file8  {i_file}  {o_file} file8 {delim} $

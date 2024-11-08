@@ -52,9 +52,6 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-make run : $(NAME)
-	@./minishell
-
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(OBJ_DIR)

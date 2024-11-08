@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/30 11:36:47 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:00:40 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ static char	**copy_redirs(t_ast **new_node, t_token **current, size_t *i)
 	redirs = malloc(((*new_node)->cmd.redirs_count + 1) * sizeof(char *));
 	if (!redirs)
         return (NULL);
-	
 	j = 0;
 	while (j < (*new_node)->cmd.redirs_count)
 	{
@@ -106,7 +105,8 @@ static char	**copy_redirs(t_ast **new_node, t_token **current, size_t *i)
 		(*current) = (*current)->next;
 	}
 	redirs[j] = NULL;
-	
+	// for (size_t i = 0; i <= j; i++)
+	// 	printf("%s\n", redirs[i]);
 	return (redirs);
 }
 bool	parse_redirs(t_ast **new_node, t_token **current, size_t *i)
