@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 10:33:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:12:36 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define ERR_MALLOC		0x1
 # define ERR_ARG		0x2
 
-# define E_MALLOC		"mimishell: insufficient system resources. Terminating program.\n"
-# define E_ARGS			"mimishell: No need argument bro.\n"
+# define E_MALLOC		"mimishell: Insufficient system resources. Terminating program.\n"
+# define E_ARGS			"mimishell: This program does not accept arguments. Usage: ./minishell\n"
 
 /* Parsing errors */
 # define ERR_QUOTE		0x1

@@ -18,10 +18,14 @@ history -c
 history -c ls pwd
 
 
-
 cat < input.txt >> output.txt
 echo < input.txt >> output.txt
 echo a >> input.txt < output.txt
 echo < input.txt < output.txt
 >> output.txt
 >> output.txt echo a
+
+""
+''
+'
+"

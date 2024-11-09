@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:07:39 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 12:26:07 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:24:06 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ bool	handle_str(t_data *data, char *input, size_t *i)
 	str = extract_str(&data->err, input, &type, i);
 	if (!str)
 		return (EXIT_FAILURE);
+	
 	if (add_token(&data->tok, &type, str))
 	{
 		free(str);

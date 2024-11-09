@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:02:48 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 11:32:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:24:34 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ bool	tokenizer(t_data *data, char *input)
 	while (i < input_len)
 	{	
 		if (handle_str(data, input, &i))
-		{
-			printf("Je passe str\n");
 			return (EXIT_FAILURE);
-		}
 		if (handle_special_char(data, input, &i))
 		{
 			printf("Je passe special char\n");

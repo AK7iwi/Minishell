@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:21:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 12:29:03 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:18:00 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	*extract_str(t_err *err, char *input, t_tok_type *type, size_t *i)
 	str = copy_str(input, str_start, i, str_len);
 	if (!str)
 		return (err->gen_errors |= ERR_MALLOC, NULL);
+	
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:14:17 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 12:36:09 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:30:20 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	add_token(t_tok **tok, t_tok_type *type, char *str)
 {
 	return (ft_strlen(str) && add_to_tok_list(tok, type, str));
 }
-t_tok_type	wich_token(char *str_token)
+t_tok_type	wich_token(char *str_token) //wich type
 {
     if (str_token[0] == '|' && !str_token[1])
         return (T_PIPE);
