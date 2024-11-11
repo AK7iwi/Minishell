@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   special_char_len.c                                 :+:      :+:    :+:   */
+/*   lexer_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 11:59:36 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/24 13:46:27 by mfeldman         ###   ########.fr       */
+/*   Created: 2024/11/11 18:44:26 by mfeldman          #+#    #+#             */
+/*   Updated: 2024/11/11 18:44:53 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-uint8_t get_special_char_len(char *input, size_t *i)
+bool	is_special_char(char *input, size_t *i)
 {
-	size_t len;
-	char special_char;
-	
-	len = 0;
-	special_char = '\0';
-
-	if (is_special_char(input, i))
-	{
-		special_char = input[*i];
+	return (input[*i] == '|' 
+			|| input[*i] == '<' 
+			|| input[*i] == '>' 
+			|| input[*i] == '&' 
+			|| input[*i] == '(' 
+			|| input[*i] == ')');
+}
+void	skip_space(char *input, size_t *i)
+{
+	while (input[*i] == ' ')
 		(*i)++;
-		if (input[*i] == special_char && input[*i] != '(' && input[*i] != ')') //improve
-		{
-			(*i)++;
-			len = 2;
-		}
-		else 
-			len = 1;
-	}
-
-	return (len);
 }

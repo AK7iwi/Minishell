@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   special_char_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 14:02:48 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/11 18:52:35 by mfeldman         ###   ########.fr       */
+/*   Created: 2024/09/18 11:59:36 by mfeldman          #+#    #+#             */
+/*   Updated: 2024/11/11 18:11:23 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	tokenizer(t_data *data, char *input)
+uint8_t	get_spe_char_len(char *input, size_t *i)
 {
-	size_t 		input_len;
-	size_t		i;
+	size_t	len;
+	char	special_char;
 	
-	input_len = ft_strlen(input);
-	if (input_len <= 0)
-		return (EXIT_FAILURE);
-	
-	i = 0;
-	while (i < input_len)
+	len = 0;
+	special_char = '\0';
+
+	if (is_special_char(input, i))
 	{
-		skip_space(input, &i); //test
-		if (handle_str(data, input, &i))
-			return (EXIT_FAILURE);
-		if (handle_spe_char(data, input, &i))
-			return (EXIT_FAILURE);
+		special_char = input[*i];
+		(*i)++;
+		if (input[*i] == special_char && input[*i] != '(' && input[*i] != ')') //improve
+		{
+			(*i)++;
+			len = 2;
+		}
+		else 
+			len = 1;
 	}
-	
-	return (EXIT_SUCCESS);
+	return (len);
 }

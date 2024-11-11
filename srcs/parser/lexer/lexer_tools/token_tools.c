@@ -6,21 +6,11 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:14:17 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/09 12:30:20 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:48:46 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	is_special_char(char *input, size_t *i)
-{
-	return (input[*i] == '|' 
-			|| input[*i] == '<' 
-			|| input[*i] == '>' 
-			|| input[*i] == '&' 
-			|| input[*i] == '(' 
-			|| input[*i] == ')');
-}
 
 void	free_token(t_tok **tokens) //free folder
 {
@@ -72,27 +62,4 @@ static	bool add_to_tok_list(t_tok **tok, t_tok_type *type, char *str)
 bool	add_token(t_tok **tok, t_tok_type *type, char *str)
 {
 	return (ft_strlen(str) && add_to_tok_list(tok, type, str));
-}
-t_tok_type	wich_token(char *str_token) //wich type
-{
-    if (str_token[0] == '|' && !str_token[1])
-        return (T_PIPE);
-    else if (str_token[0] == '<' && !str_token[1])
-        return (T_S_REDIR_IN);
-    else if (str_token[0] == '>' && !str_token[1])
-        return (T_S_REDIR_OUT);
-    else if (str_token[0] == '<' && str_token[1] == '<' && !str_token[2])
-        return (T_HERE_DOC);
-    else if (str_token[0] == '>' && str_token[1] == '>' && !str_token[2])
-        return (T_D_REDIR_OUT);
-    else if (str_token[0] == '&' && str_token[1] == '&' && !str_token[2])
-        return (T_AND);
-    else if (str_token[0] == '|' && str_token[1] == '|' && !str_token[2])
-        return (T_OR);
-    else if (str_token[0] == '(' && !str_token[1])
-        return (T_O_PAREN);
-    else if (str_token[0] == ')' && !str_token[1])
-        return (T_C_PAREN);
-
-    return (T_WORD);
 }

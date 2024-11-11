@@ -312,19 +312,21 @@ bool	syn_analyzer(t_data *data);
 //					LEXER   					//
 //**********************************************//
 
-/* token_tools.c */
+//////////////// lexer_tools //////////////////////
+/* lexer_tools.c */
 bool		is_special_char(char *input, size_t *i);
+void		skip_space(char *input, size_t *i);
+/* token_tools.c */
 void		free_token(t_tok **tokens);
-bool		add_token(t_tok **token_struct, t_tok_type *token, char *str_token);
-t_tok_type	wich_token(char *str);
+bool		add_token(t_tok **tok, t_tok_type *type, char *str);
 
 //////////// special_char_handler ///////////////////
 /* special_char_len.c */
-uint8_t		get_special_char_len(char *input, size_t *i);
+uint8_t		get_spe_char_len(char *input, size_t *i);
 /* special_char_extracter.c*/
-char		*extract_special_char(t_err *error, char *input, size_t *index);
+char		*extract_spe_char(char *input, size_t *i);
 /* special_char_handler.c */
-bool		handle_special_char(t_data *data, char *input, size_t *index);
+bool		handle_spe_char(t_data *data, char *input, size_t *i);
 
 //////////// str_handler ////////////////////////////
 /* str_len.c */

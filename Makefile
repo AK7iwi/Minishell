@@ -10,8 +10,8 @@ SRCS			:=	main.c \
 					env/init_env.c env/create_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
 					parser/lexer/tokenizer.c \
 					parser/lexer/str_handler/handle_str.c parser/lexer/str_handler/extract_str.c parser/lexer/str_handler/str_len.c \
-					parser/lexer/special_char_handler/handle_special_char.c parser/lexer/special_char_handler/extract_special_char.c parser/lexer/special_char_handler/special_char_len.c \
-					parser/lexer/token_tools.c \
+					parser/lexer/spe_char_handler/handle_spe_char.c parser/lexer/spe_char_handler/extract_spe_char.c parser/lexer/spe_char_handler/spe_char_len.c \
+					parser/lexer/lexer_tools/token_tools.c parser/lexer/lexer_tools/lexer_tools.c\
 					parser/syn_analyzer/syn_analyzer.c parser/syn_analyzer/syn_checker.c \
 					parser/ast/ast.c parser/ast/ast_freer.c \
 					parser/ast/ast_node/cmd_node/cmd_node.c parser/ast/ast_node/cmd_node/parse_args.c parser/ast/ast_node/cmd_node/parse_redirs.c \
