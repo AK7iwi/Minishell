@@ -211,6 +211,13 @@ bool 	exec(t_data *data, t_ast *ast);
 void	handle_redirs(t_data *data, t_cmd *cmd);
 
 //**********************************************//
+//					EXPAND		   				//
+//**********************************************//
+char *get_env_value(const char *var_name, t_env *env_list);
+int handle_env_variable(const char *input, int *i, char *output, int *j, t_env *env_list) ;
+char *expand_variable(const char *input, t_env *env_list);
+
+//**********************************************//
 //												//
 //					  PARSER		  			//
 //												//
@@ -247,20 +254,20 @@ void	free_ast(t_ast **ast); //in exec
 /* operator_node.c */
 t_ast	*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type);
 /*subsh_node.c */
-t_ast	*create_subsh_node(t_ast **new_node, t_token **current);
+t_ast	*create_subsh_node(t_ast **new_node, t_token **current, t_env *env_list);
 /////// cmd_node //////////
 /* handle_redirs.c */
 bool	parse_redirs(t_ast **new_node, t_token **current, size_t *i);
 /* handle_args.c */
-bool	parse_args(t_ast **new_node, t_token **current, size_t *i);
+bool parse_args(t_ast **new_node, t_token **current, size_t *i, t_env *env_list);
 /* cmd_node.c */
-t_ast	*create_cmd_node(t_ast **new_node, t_token **current);
+t_ast	*create_cmd_node(t_ast **new_node, t_token **current, t_env *env_list);
 
 /* ast.c */
-t_ast	*handle_cmd_and_subsh(t_token **current);
-void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec);
-t_ast	*ast_algo(t_token **current, uint8_t min_prec);
-bool	ast_creator(t_data *data);
+t_ast *handle_cmd_and_subsh(t_token **current, t_env *env_list);
+void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec, t_env *env_list);
+t_ast *ast_algo(t_token **current, uint8_t min_prec, t_env *env_list);
+bool	ast_creator(t_data *data, t_env *env_list);
 
 //**********************************************//
 //					SYN_ANALYZER   				//
@@ -375,10 +382,12 @@ bool	ft_isdigit(int c);
 bool	ft_isalnum(int c);
 bool	ft_isalpha(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int	ft_strcmp(char *s1, char *s2);
 /* lib_memory.c */
 char	*ft_strdup(const char *s);
 /* lib_len.c */
 size_t	ft_strlen(const char *s);
+char *ft_strcpy(char *dest, char *src);
 
 ///////// lib_str_manip ///////////
 /* lib_str_manip2.c */

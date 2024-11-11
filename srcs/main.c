@@ -19,6 +19,7 @@ static bool is_arg(t_error *error, int argc)
 
 	return (false);
 }
+
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -36,10 +37,11 @@ int main(int argc, char **argv, char **envp)
 		add_history(input);
 		
         if (tokenizer(&data, input)|| syn_analyzer(&data)
-				|| ast_creator(&data) || exec(&data, data.ast))
+				|| ast_creator(&data, data.env) || exec(&data, data.ast))
 			errors_displayer(data.error);
-		// else
-		// 	print_ast(data.ast, 0);
+		//print_token(data.ast, 0);
+		//else
+		 	//print_ast(data.ast, 0);
 
 		free_loop(&data);
     }

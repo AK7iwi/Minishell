@@ -12,11 +12,11 @@
 
 #include "minishell.h"
 
-t_ast	*create_subsh_node(t_ast **new_node, t_token **current)
+t_ast	*create_subsh_node(t_ast **new_node, t_token **current, t_env *env_list)
 {
 	(*new_node)->type = AST_SUBSH;
 	(*current) = (*current)->next;
-    (*new_node)->subshell.root = ast_algo(current, 0);
+    (*new_node)->subshell.root = ast_algo(current, 0, env_list);
 	while ((*current)->type != T_C_PAREN)
 		(*current) = (*current)->next;
 	(*current) = (*current)->next;

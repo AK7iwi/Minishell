@@ -27,7 +27,7 @@ static size_t get_cmd_len(t_token *current)
 	return (cmd_len);
 }
 
-t_ast	*create_cmd_node(t_ast **new_node, t_token **current)
+t_ast	*create_cmd_node(t_ast **new_node, t_token **current, t_env *env_list)
 {	
 	size_t cmd_len;
 	size_t i;
@@ -40,7 +40,7 @@ t_ast	*create_cmd_node(t_ast **new_node, t_token **current)
 	i = 0;
 	while (i < cmd_len)
 	{
-		if (parse_args(new_node, current, &i))
+		if (parse_args(new_node, current, &i, env_list))
 			return (NULL);
 		if (parse_redirs(new_node, current, &i))
 			return (NULL);

@@ -26,7 +26,7 @@ static void	sort_env(t_env **env)
 
         while (current->next)
         {
-            if (strcmp(current->str, current->next->str) > 0) //ft_strcmp
+            if (ft_strcmp(current->str, current->next->str) > 0) //ft_strcmp
             {
 				temp = current->str;
     			current->str = current->next->str;

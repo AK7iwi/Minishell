@@ -12,13 +12,13 @@
 
 #include "minishell.h"
 
-char *get_env_value(const char *var_name, t_env *env_list) 
+char *get_env_value(const char *var_name, t_env *env_list)
 {
-    int var_len = strlen(var_name);
+    int var_len = ft_strlen(var_name);
 
     while (env_list) 
     {
-        if (strncmp(env_list->str, var_name, var_len) == 0 && env_list->str[var_len] == '=') 
+        if (ft_strncmp(env_list->str, var_name, var_len) == 0 && env_list->str[var_len] == '=') 
             return env_list->str + var_len + 1;
         env_list = env_list->next;
     }
@@ -40,8 +40,8 @@ int handle_env_variable(const char *input, int *i, char *output, int *j, t_env *
     char *env_value = get_env_value(var_name, env_list);
     if (env_value)
     {
-        strcpy(output + (*j), env_value);
-        (*j) += strlen(env_value);
+        ft_strcpy(output + (*j), env_value);
+        (*j) += ft_strlen(env_value);
     }
     return 1;
 }

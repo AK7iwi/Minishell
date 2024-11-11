@@ -27,31 +27,34 @@ static size_t get_args_len(t_token *current, size_t *i)
 
 	return (args_len);
 }
-static	char **copy_args(t_ast **new_node, t_token **current, size_t *i)
-{
-	char **args;
-	size_t j;
 
-	(*new_node)->cmd.args_count = get_args_len((*current), i);
-	args = malloc(((*new_node)->cmd.args_count + 1) * sizeof(char *));
-	if (!args)
+char **copy_args(t_ast **new_node, t_token **current, size_t *i, t_env *env_list)
+{
+    char **args;
+    size_t j;
+
+    (*new_node)->cmd.args_count = get_args_len((*current), i);
+    args = malloc(((*new_node)->cmd.args_count + 1) * sizeof(char *));
+    if (!args)
         return (NULL);
-	
-	j = 0;
-	while (j < (*new_node)->cmd.args_count)
-	{
-		args[j++] = ft_strdup((*current)->str);
-		(*current) = (*current)->next;
-	}
-	args[j] = NULL;
-	
-	return (args);
+
+    j = 0;
+    while (j < (*new_node)->cmd.args_count)
+    {
+        // Appeler expand_variable pour chaque argument
+        args[j++] = ft_strdup(expand_variable((*current)->str, env_list));
+        (*current) = (*current)->next;
+    }
+    args[j] = NULL;
+
+    return (args);
 }
-bool	parse_args(t_ast **new_node, t_token **current, size_t *i)
+
+bool parse_args(t_ast **new_node, t_token **current, size_t *i, t_env *env_list)
 {
 	char	**args;
 
-	args = copy_args(new_node, current, i);
+	args = copy_args(new_node, current, i, env_list);
 	if (!args)
 		return (EXIT_FAILURE);
 	

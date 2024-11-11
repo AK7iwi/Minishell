@@ -39,7 +39,7 @@ t_op_type get_operator_type(t_tok_type type)
 
 	return (operator_type);
 }
-void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec)
+void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec, t_env *env_list)
 {
 	uint8_t 	next_min_prec;
 	t_op_type	op_type;
@@ -50,11 +50,11 @@ void	handle_operator(t_ast **result, t_token **current, uint8_t min_prec)
 		next_min_prec = get_prec((*current)->type);
 		op_type = get_operator_type((*current)->type);
 		(*current) = (*current)->next;
-		right_side = ast_algo(current, next_min_prec);
+		right_side = ast_algo(current, next_min_prec, env_list);
 		(*result) = create_operator_node((*result), right_side, op_type); // protect
 	}
 }
-t_ast *handle_cmd_and_subsh(t_token **current)
+t_ast *handle_cmd_and_subsh(t_token **current, t_env *env_list)
 {
 	t_ast *new_node;
 	
@@ -63,29 +63,29 @@ t_ast *handle_cmd_and_subsh(t_token **current)
 		return (NULL);
 	
 	if ((*current) && (*current)->type == T_O_PAREN)
-		new_node = create_subsh_node(&new_node, current);
+		new_node = create_subsh_node(&new_node, current, env_list);
 	else
-		new_node = create_cmd_node(&new_node, current);
+		new_node = create_cmd_node(&new_node, current, env_list);
 	
 	return (new_node);
 }
-t_ast *ast_algo(t_token **current, uint8_t min_prec)
+t_ast *ast_algo(t_token **current, uint8_t min_prec, t_env *env_list)
 {
 	t_ast 		*result;
 
-	result = handle_cmd_and_subsh(current);
+	result = handle_cmd_and_subsh(current, env_list);
 	if (!result)
     	return (NULL); //test
 	else if ((*current) && (*current)->type == T_C_PAREN)
 		return (result);
-	handle_operator(&result, current, min_prec); // protect
+	handle_operator(&result, current, min_prec, env_list); // protect
 
     return (result);
 }
-bool	ast_creator(t_data *data)
+bool	ast_creator(t_data *data, t_env *env_list)
 {
 	t_token *current;
 	current = data->token;
-	data->ast = ast_algo(&current, 0);
+	data->ast = ast_algo(&current, 0, env_list);
 	return (!data->ast);
 }
