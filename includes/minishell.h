@@ -133,7 +133,8 @@ typedef struct s_token
     t_tok_type type;
 
     char	*str;
-    
+    bool    need_expand;
+
     struct s_token *prev;
     struct s_token *next;
 }   t_token;
@@ -215,7 +216,7 @@ void	handle_redirs(t_data *data, t_cmd *cmd);
 //**********************************************//
 char *get_env_value(const char *var_name, t_env *env_list);
 int handle_env_variable(const char *input, int *i, char *output, int *j, t_env *env_list) ;
-char *expand_variable(const char *input, t_env *env_list);
+char *expand_variable(const char *input, t_env *env_list, bool expand);
 
 //**********************************************//
 //												//
@@ -288,7 +289,7 @@ bool	syn_analyzer(t_data *data);
 /* token_tools.c */
 void 		print_token(t_token *token);
 void		free_token(t_token **tokens);
-bool		add_token(t_token **token_struct, t_tok_type *token, char *str_token);
+bool		add_token(t_token **token_struct, t_tok_type *token, char *str_token, bool need_expand);
 t_tok_type	wich_token(char *str);
 
 //////////// special_char_handler ///////////////////
@@ -299,7 +300,7 @@ uint8_t		get_special_char_len(char *input, size_t *i);
 char*		special_char_extracter(t_error *error, char *input, size_t *i);
 /* special_char_handler.c */
 bool		is_special_char(char *input, size_t *i);
-bool 		special_char_handler(t_data *data, char *input, t_tok_type *token, size_t *index);
+bool 		special_char_handler(t_data *data, char *input, t_tok_type *token, size_t *index, bool    need_expand);
 
 //////////// str_handler ///////////////////
 
@@ -307,14 +308,14 @@ bool 		special_char_handler(t_data *data, char *input, t_tok_type *token, size_t
 bool		get_quotes_len(char *input, ssize_t *str_len, t_tok_type *t, size_t *i);
 ssize_t		get_str_len(char *input, t_tok_type *token, size_t *i);
 /* str_extracter.c */
-char*		str_extracter(t_error *error, char *input, t_tok_type *token, size_t *index);
+char*		str_extracter(t_error *error, char *input, t_tok_type *token, size_t *index, bool *need_expand);
 /* str_handler.c */
 bool 		str_handler(t_data *data, char *input, t_tok_type *token, size_t *index);
 
 //////////////////
 
 /* tokenizer.c */
-bool		tokenizer(t_data *data, char *input);
+bool		tokenizer(t_data *data, char *input, bool    need_expand);
 
 //**********************************************//
 //												//

@@ -6,7 +6,7 @@
 /*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 14:28:38 by diguler          ###   ########.fr       */
+/*   Updated: 2024/11/12 14:38:25 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char **copy_args(t_ast **new_node, t_token **current, size_t *i, t_env *env_list
     while (j < (*new_node)->cmd.args_count)
     {
         // Appeler expand_variable pour chaque argument
-        args[j++] = ft_strdup(expand_variable((*current)->str, env_list));
+        //printf("%d\n", (*current)->need_expand);
+        args[j++] = ft_strdup(expand_variable((*current)->str, env_list, (*current)->need_expand));
         (*current) = (*current)->next;
     }
     args[j] = NULL;

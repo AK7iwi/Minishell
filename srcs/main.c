@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/05 09:55:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:58:27 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **envp)
 			return (printf("exit\n"), free_all(&data), EXIT_FAILURE); //ft_exit
 		add_history(input);
 		
-        if (tokenizer(&data, input)|| syn_analyzer(&data)
+        if (tokenizer(&data, input, 0)|| syn_analyzer(&data)
 				|| ast_creator(&data, data.env) || exec(&data, data.ast))
 			errors_displayer(data.error);
 		//print_token(data.ast, 0);

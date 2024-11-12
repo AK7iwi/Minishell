@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:02:48 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/28 12:02:11 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:58:05 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	tokenizer(t_data *data, char *input)
+bool	tokenizer(t_data *data, char *input, bool    need_expand)
 {
 	t_tok_type	token; //delcare in str_handler and special_char_handler
 	size_t 		input_len;
@@ -28,7 +28,7 @@ bool	tokenizer(t_data *data, char *input)
 		token = 0;
 		if (str_handler(data, input, &token, &i)) //handle_str
 			return (EXIT_FAILURE);
-		if (special_char_handler(data, input, &token, &i)) // handle_special_char
+		if (special_char_handler(data, input, &token, &i, need_expand)) // handle_special_char
 			return (EXIT_FAILURE);
 	}
 	

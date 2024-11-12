@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:14:17 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/10/21 08:10:50 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:34:18 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void print_token(t_token *token)
         current = current->next;
     }
 }
+
 void	free_token(t_token **tokens)
 {
 	t_token	*tmp;
@@ -43,7 +44,7 @@ void	free_token(t_token **tokens)
 	*tokens = NULL;
 }
 
-static	bool add_to_token_list(t_token **token, t_tok_type *str_type, char *str) 
+static	bool add_to_token_list(t_token **token, t_tok_type *str_type, char *str, bool need_expand) 
 {
     t_token *new_node;
     t_token *last;
@@ -54,7 +55,9 @@ static	bool add_to_token_list(t_token **token, t_tok_type *str_type, char *str)
 
     new_node->type = (*str_type);
     new_node->str = ft_strdup(str);
-	if (!(new_node->str))
+    new_node->need_expand = need_expand; // Transfert correct de need_expand
+    
+    if (!(new_node->str))
 		return (EXIT_FAILURE);
     new_node->next = NULL;
 
@@ -73,15 +76,15 @@ static	bool add_to_token_list(t_token **token, t_tok_type *str_type, char *str)
 	return (EXIT_SUCCESS);
 }
 
-bool	add_token(t_token **token_struct, t_tok_type *token, char *str_token)
+bool	add_token(t_token **token_struct, t_tok_type *token, char *str_token, bool need_expand)
 {
 	if (ft_strlen(str_token))
-		if (add_to_token_list(token_struct, token, str_token))
+		if (add_to_token_list(token_struct, token, str_token, need_expand))
 			return (EXIT_FAILURE);
 	free(str_token);
-
 	return (EXIT_SUCCESS);
 }
+
 t_tok_type wich_token(char *str_token)
 {
     if (str_token[0] == '|' && !str_token[1])

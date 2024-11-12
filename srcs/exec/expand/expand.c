@@ -6,7 +6,7 @@
 /*   By: diguler <diguler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:51:40 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/05 13:54:26 by diguler          ###   ########.fr       */
+/*   Updated: 2024/11/12 14:28:36 by diguler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ int handle_env_variable(const char *input, int *i, char *output, int *j, t_env *
     return 1;
 }
 
-char *expand_variable(const char *input, t_env *env_list)
+char *expand_variable(const char *input, t_env *env_list, bool expand)
  {
     char *output = malloc(1024);  
     int i = 0, j = 0;
-
     while (input[i]) 
     {
-        if (input[i] == '$') 
+        if (input[i] == '$' && !expand) 
         {
             i++; 
 
