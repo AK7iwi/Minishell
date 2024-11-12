@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   special_char_len.c                                 :+:      :+:    :+:   */
+/*   spe_char_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:59:36 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/11 18:11:23 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:48:52 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 uint8_t	get_spe_char_len(char *input, size_t *i)
 {
-	size_t	len;
+	uint8_t	len;
 	char	special_char;
 	
 	len = 0;
@@ -24,7 +24,7 @@ uint8_t	get_spe_char_len(char *input, size_t *i)
 	{
 		special_char = input[*i];
 		(*i)++;
-		if (input[*i] == special_char && input[*i] != '(' && input[*i] != ')') //improve
+		if (input[*i] == special_char && input[*i] != '(' && input[*i] != ')')
 		{
 			(*i)++;
 			len = 2;

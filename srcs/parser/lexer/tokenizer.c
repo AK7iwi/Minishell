@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:02:48 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/11 18:52:35 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:24:13 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	tokenizer(t_data *data, char *input)
 	i = 0;
 	while (i < input_len)
 	{
-		skip_space(input, &i); //test
+		skip_space(input, &i);
 		if (handle_str(data, input, &i))
 			return (EXIT_FAILURE);
 		if (handle_spe_char(data, input, &i))

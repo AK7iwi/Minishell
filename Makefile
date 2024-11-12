@@ -4,7 +4,7 @@ SRC_DIR			:= srcs
 OBJ_DIR			:= obj
 
 SRCS			:=	main.c \
-					errors/errors_displayer.c errors/errors_tools.c errors/error_and_exit.c \
+					errors/errors_displayer.c errors/error_and_exit.c \
 					initializer/init.c \
 					signals/signals.c \
 					env/init_env.c env/create_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \

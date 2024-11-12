@@ -181,6 +181,8 @@ char	*ft_strjoin(const char *s1, const char *s2);
 ///////////// free /////////////////////////
 /* free.c */
 void 	free_tab(char **tab);
+void	free_tokens(t_tok **tok);
+void 	free_errors(t_err *err);
 void	free_loop(t_data *data);
 void	free_all(t_data *data);
 
@@ -317,7 +319,6 @@ bool	syn_analyzer(t_data *data);
 bool		is_special_char(char *input, size_t *i);
 void		skip_space(char *input, size_t *i);
 /* token_tools.c */
-void		free_token(t_tok **tokens);
 bool		add_token(t_tok **tok, t_tok_type *type, char *str);
 
 //////////// special_char_handler ///////////////////

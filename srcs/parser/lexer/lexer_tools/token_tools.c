@@ -6,29 +6,11 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:14:17 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/11 18:48:46 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:54:16 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	free_token(t_tok **tokens) //free folder
-{
-	t_tok	*tmp;
-	t_tok	*current;
-
-	if (!(*tokens))
-		return ;
-	current = *tokens;
-	while (current)
-	{
-		tmp = current;
-		current = current->next;
-		free(tmp->str);
-		free(tmp);
-	}
-	*tokens = NULL;
-}
 
 static	bool add_to_tok_list(t_tok **tok, t_tok_type *type, char *str) 
 {

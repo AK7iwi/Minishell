@@ -7,3 +7,7 @@ Improve the shell:
 if (input[*i] != quote_char)
 
 Not return error but heredoc as bash --posix
+
+2) If nothing after operator
+
+Heredoc 

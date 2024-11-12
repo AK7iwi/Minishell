@@ -5,6 +5,8 @@ echo -n -n -n -n World
 echo -nnnnnnnnnn -no oui
 
 
+echo $$$
+
 cd ..
 pwd
 cd .. && pwd
@@ -17,7 +19,6 @@ history
 history -c 
 history -c ls pwd
 
-
 cat < input.txt >> output.txt
 echo < input.txt >> output.txt
 echo a >> input.txt < output.txt
@@ -29,3 +30,20 @@ echo < input.txt < output.txt
 ''
 '
 "
+
+echo a &&& pwd
+echo a ||| pwd
+echo a >>> output.txt
+
+echo a || >> output.txt
+echo a || > output.txt
+echo a || < output.txt
+echo a || << EOF
+echo a | >> output.txt
+echo a | > output.txt
+echo a | < output.txt
+echo a | << EOF
+echo a && >> output.txt
+echo a && > output.txt
+echo a && < output.txt
+echo a && << EOF

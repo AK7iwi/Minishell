@@ -1,38 +1,36 @@
 
-add a file parse_checker3 for redir 
+WORD
+REDIR (<,<<,>,>>)
+OPERATOR (&&, ||, |)
+O_PAREN 
+C_PAREN
 
-Parse for paren: 
-a) echo (ls)
-b) ()
+I) Operator 
 
-Parse for heredoc: 
+- Before: WORD, C_PAREN
+
+- After: WORD, O_PAREN, REDIR
+
+II) Parse for paren
+
+a) O_paren:
+
+- Before: \ , OPERATOR
+
+- After: WORD, REDIR
+
+b) C_paren:
+
+- Before: WORD 
+
+- After: \ , OPERATOR, REDIR
+
+III) Parse for heredoc:
+
 Need a delimiter after
 afer the dilimiter: nothing,operator, redir_out 
 
-Parse for redirection: 
+IV) Parse for redirection: 
 After a input_redir, you must have a input_file 
 and after the intput_file you can have nothing or a separator or an output_redir
 Same for the reverse case  
-
-Closed and open parens cant togheter 
-
-Open paren:
-
-After:
-
-WORD, 
-
-Before:
-operator
-
-Close paren:
-
-After: 
-
-operator, redir, paren
-
-Before:
-
-WORD, paren_close
-
-

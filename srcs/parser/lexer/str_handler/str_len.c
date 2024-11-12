@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:20:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/09 12:14:51 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:41:44 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ ssize_t	get_str_len(char *input, t_tok_type *type, size_t *i)
 	str_len = 0;
     while (!is_special_char(input, i) && input[*i] != ' ' && input[*i] != '\0')
     {
+		if (input[*i] == '$')
+			(*type) = T_ENV_VAR;
 		if (get_quotes_len(input, &str_len, type, i))
 			return (-1);
 		else
         	str_len++;
 		
-		if (input[*i] == '$')
-			(*type) = T_ENV_VAR;
 		(*i)++;
 	}
     return (str_len);

@@ -10,7 +10,9 @@ increment shell lvl
 
 I) Lexer: 
 
-check tokenisation file(doc)
+OK
+
+check tokenisation file(doc) to improve the shell
 
 II) Synthesis_analysis:
 
