@@ -26,6 +26,7 @@ SRCS			:=	main.c \
 					exec/cmds/cmds.c \
 					exec/pipe/pipe.c \
 					exec/expand/expand.c \
+					exec/wildcards/wildcards.c \
 					tools/lib/lib_checker.c tools/lib/lib_len.c tools/lib/lib_memory.c \
 					tools/lib/lib_str_manip/lib_str_manip.c tools/lib/lib_str_manip/lib_str_manip2.c \
 					tools/free/free.c

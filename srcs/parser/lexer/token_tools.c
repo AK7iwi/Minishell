@@ -55,7 +55,7 @@ static	bool add_to_token_list(t_token **token, t_tok_type *str_type, char *str, 
 
     new_node->type = (*str_type);
     new_node->str = ft_strdup(str);
-    new_node->need_expand = need_expand; // Transfert correct de need_expand
+    new_node->need_expand = need_expand; 
     
     if (!(new_node->str))
 		return (EXIT_FAILURE);

@@ -47,3 +47,16 @@ char *ft_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
+char	*ft_strchr(const char *s, int c)
+{
+	while ((*s != '\0') && (*s != c))
+	{
+		s++;
+	}
+	if (*s == c)
+	{
+		return ((char *)s);
+	}
+	return ((char*)NULL);
+}

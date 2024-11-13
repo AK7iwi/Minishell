@@ -12,25 +12,45 @@
 
 #include "minishell.h"
 
-bool	tokenizer(t_data *data, char *input, bool    need_expand)
+static bool expand_tokens(t_token *tokens) 
 {
-	t_tok_type	token; //delcare in str_handler and special_char_handler
-	size_t 		input_len;
-	size_t		i;
-	
-	input_len = ft_strlen(input);
-	if (input_len <= 0)
-		return (EXIT_FAILURE);
-	
-	i = 0;
-	while (i < input_len)
-	{	
-		token = 0;
-		if (str_handler(data, input, &token, &i)) //handle_str
-			return (EXIT_FAILURE);
-		if (special_char_handler(data, input, &token, &i, need_expand)) // handle_special_char
-			return (EXIT_FAILURE);
-	}
-	
-	return (EXIT_SUCCESS);
+    t_token *current = tokens;
+
+    while (current) 
+	{
+        t_token *next_token = current->next;
+
+        // Si le token contient un wildcard, on applique l'expansion
+        if (ft_strchr(current->str, '*'))
+            expand_from_wc(&current);
+
+        current = next_token;
+    }
+    return true;
+}
+
+bool tokenizer(t_data *data, char *input, bool need_expand) 
+{
+    t_tok_type token;
+    size_t input_len = ft_strlen(input);
+    size_t i = 0;
+
+    if (input_len <= 0)
+        return EXIT_FAILURE;
+
+    // Boucle de tokenisation
+    while (i < input_len) 
+	{    
+        token = 0;
+        if (str_handler(data, input, &token, &i))
+            return EXIT_FAILURE;
+        if (special_char_handler(data, input, &token, &i, need_expand))
+            return EXIT_FAILURE;
+    }
+
+    // Expansion des wildcards
+    if (!expand_tokens(data->token))
+        return EXIT_FAILURE;
+
+    return EXIT_SUCCESS;
 }

@@ -219,6 +219,12 @@ int handle_env_variable(const char *input, int *i, char *output, int *j, t_env *
 char *expand_variable(const char *input, t_env *env_list, bool expand);
 
 //**********************************************//
+//					WILDCRADS		   			//
+//**********************************************//
+
+void	expand_from_wc(t_token **token);
+
+//**********************************************//
 //												//
 //					  PARSER		  			//
 //												//
@@ -389,6 +395,7 @@ char	*ft_strdup(const char *s);
 /* lib_len.c */
 size_t	ft_strlen(const char *s);
 char *ft_strcpy(char *dest, char *src);
+char	*ft_strchr(const char *s, int c);
 
 ///////// lib_str_manip ///////////
 /* lib_str_manip2.c */
