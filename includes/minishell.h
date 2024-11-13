@@ -44,7 +44,7 @@ typedef enum e_tok_type
 	T_WORD,
 	T_PIPE,
 	T_S_REDIR_OUT,
-	T_D_REDIR_OUT, //APPEND
+	T_D_REDIR_OUT,
 	T_S_REDIR_IN,
 	T_HERE_DOC, //HEREDOC
 	T_ENV_VAR,
@@ -254,6 +254,12 @@ void	handle_redirs(t_data *data, t_cmd *cmd);
 //					PARSER_TOOLS   				//
 //**********************************************//
 
+/* parse_checker3.c */
+bool	is_s_redir_out(t_tok_type type);
+bool	is_d_redir_out(t_tok_type type);
+bool 	is_redin_in(t_tok_type type);
+bool 	is_heredoc(t_tok_type type);
+
 /* parse_checker2.c */
 bool	is_or(t_tok_type type);
 bool	is_and(t_tok_type type);
@@ -262,6 +268,7 @@ bool 	is_open_paren(t_tok_type type);
 bool 	is_closed_paren(t_tok_type type);
 
 /* parse_checker.c */
+bool 	is_word(t_tok_type type);
 bool 	is_cmd(t_tok_type type);
 bool	is_redir(t_tok_type type);
 bool	is_operator(t_tok_type type);
@@ -299,7 +306,7 @@ bool	ast_creator(t_data *data);
 
 /* syn_checker.c */
 bool 		check_redir(t_tok *current);
-bool 		check_paren(t_tok *current, uint32_t *o_counter, uint32_t *c_counter);
+bool 		check_paren(t_tok *current, uint32_t *o_count, uint32_t *c_count);
 bool 		check_operator(t_tok *current);
 
 /* syn_analyzer.c */

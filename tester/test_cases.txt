@@ -47,3 +47,25 @@ echo a && >> output.txt
 echo a && > output.txt
 echo a && < output.txt
 echo a && << EOF
+
+
+| ls
+ls |
+|
+&& ls
+ls &&
+&&
+|| ls
+ls ||
+||
+
+
+
+
+
+echo a | >> output.txt << EOF
+
+
+
+
+
