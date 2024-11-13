@@ -1,9 +1,13 @@
 
-WORD
-REDIR (<,<<,>,>>)
+First check the operator
+After the paren
+After the redir
+
 OPERATOR (&&, ||, |)
+REDIR (<,<<,>,>>)
 O_PAREN 
 C_PAREN
+WORD(+ENV_VAR)
 
 I) Operator 
 
@@ -15,7 +19,7 @@ II) Parse for paren
 
 a) O_paren:
 
-- Before: \ , OPERATOR
+- Before: \, OPERATOR
 
 - After: WORD, REDIR
 
@@ -25,12 +29,8 @@ b) C_paren:
 
 - After: \ , OPERATOR, REDIR
 
-III) Parse for heredoc:
+III) Parse for redirection:
 
-Need a delimiter after
-afer the dilimiter: nothing,operator, redir_out 
+- Before: \, OPERATOR, O_PAREN, C_PAREN, WORD
 
-IV) Parse for redirection: 
-After a input_redir, you must have a input_file 
-and after the intput_file you can have nothing or a separator or an output_redir
-Same for the reverse case  
+- After: WORD, 

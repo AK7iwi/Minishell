@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:11:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:28:24 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_ast *ast_algo(t_tok **current, uint8_t min_prec)
 }
 bool	ast_creator(t_data *data)
 {
+	printf("AST_CREATOR\n");
 	t_tok *current;
 	current = data->tok;
 	data->ast = ast_algo(&current, 0);

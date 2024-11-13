@@ -1,5 +1,8 @@
 General: 
 
+Switch ERR an E for errors 
+Rename of file and folder + same var name for the whole project
+Check copy of list (current)
 int --> int32t / norme
 protect ft_strdup
 protect readline ~~ recheck
@@ -16,11 +19,15 @@ check tokenisation file(doc) to improve the shell
 
 II) Synthesis_analysis:
 
+Rename files
+
 check parser_rules file(doc)
 
 III) AST: 
 
 Find the right precedence, compare with bash result
+issue with paren
+loop in ast_creator, in subsh_node, here: (*new_node)->subshell.root = ast_algo(current, 0);
 
 IV)ENV:
 
@@ -36,7 +43,6 @@ handle error in ast_exec ~~ to recheck
 
 	c) Builtins OK~~
 
-		handle error, check error for builtins
 		test with no env, need protect ~
 		handle paramaters (if args[1]) return ;
 
@@ -60,13 +66,7 @@ handle error in ast_exec ~~ to recheck
 
 	g)Handle environment variables 
 
-	Handle $? Which should expand to the exit status of the most recently executed
-	foreground pipeline
-
 	h) Signals OK
-
-	i) issue with paren
-		loop in ast_creator, in subsh_node, here: (*new_node)->subshell.root = ast_algo(current, 0);
 
 VI) Tester
 

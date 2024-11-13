@@ -35,7 +35,7 @@ OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 CC				:= cc
 CFLAGS			:= -Wall -Wextra -Werror
 CPPFLAGS    	:= -I includes
-FSANITIZE_FLAG	:= -g3 -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -fstack-protector-strong -fno-optimize-sibling-calls 
+# FSANITIZE_FLAG	:= -g3 -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -fstack-protector-strong -fno-optimize-sibling-calls 
 
 RM				:= rm -rf
 DIR_DUP     	= mkdir -p $(@D)

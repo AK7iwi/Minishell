@@ -22,11 +22,6 @@
 #include <readline/history.h>
 
 //**********************************************//
-//					DEFINES						//
-//**********************************************//
-
-
-//**********************************************//
 //					ENUM						//
 //**********************************************//
 
@@ -303,12 +298,12 @@ bool	ast_creator(t_data *data);
 //**********************************************//
 
 /* syn_checker.c */
-bool 	check_paren(t_tok *current, uint32_t *o_counter, uint32_t *c_counter);
-bool 	check_redir(t_tok *current);
-bool 	check_operator(t_tok *current);
+bool 		check_redir(t_tok *current);
+bool 		check_paren(t_tok *current, uint32_t *o_counter, uint32_t *c_counter);
+bool 		check_operator(t_tok *current);
 
 /* syn_analyzer.c */
-bool	syn_analyzer(t_data *data);
+bool		syn_analyzer(t_data *data);
 
 //**********************************************//
 //					LEXER   					//
