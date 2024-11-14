@@ -26,6 +26,9 @@ echo < input.txt < output.txt
 >> output.txt
 >> output.txt echo a
 
+echo a >> output.txt > output2.txt
+echo a > output.txt >> output2.txt
+
 ""
 ''
 '

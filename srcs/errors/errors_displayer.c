@@ -6,50 +6,46 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 08:49:38 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/13 16:38:58 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:05:51 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ft_putstr(char *str)
-{
-	while (*str)
-		write(STDERR_FILENO, str++, 1);
-}
 static void	display_exec_errors(uint16_t exec_errors)
 {
 	if (exec_errors & ERR_PWD)
 		perror(E_PWD);
-	if (exec_errors & ERR_CD1)
+	else if (exec_errors & ERR_CD1)
 		ft_putstr(E_CD1);
-	if (exec_errors & ERR_CD2)
+	else if (exec_errors & ERR_CD2)
 		perror(E_CD2);
-	if (exec_errors & ERR_UNSET)
+	else if (exec_errors & ERR_UNSET)
 		ft_putstr(E_UNSET);
-	if (exec_errors & ERR_EXIT)
+	else if (exec_errors & ERR_EXIT)
 		ft_putstr(E_EXIT);
-	if (exec_errors & ERR_FORK)
+	else if (exec_errors & ERR_FORK)
 		perror(E_FORK);
-	if (exec_errors & ERR_PIPE)
-		perror(E_PIPE);
+	else if (exec_errors & ERR_PIPE_CMD)
+		perror(E_PIPE_CMD);
 }
-static void	display_parsing_errors(uint8_t parsing_errors)
+
+static void	display_parsing_errors(uint16_t parsing_errors)
 {
 	if (parsing_errors & ERR_QUOTE)
 		ft_putstr(E_QUOTE);
-	if (parsing_errors & ERR_OPERATOR) //display operator 
-		ft_putstr(E_OPERATOR);
-	if (parsing_errors & ERR_REDIR) //display redir
-		ft_putstr(E_REDIR);
-	if (parsing_errors & ERR_PARAN) //dislay paran 
-		ft_putstr(E_PARAN);
+	else if (parsing_errors & ERR_OPERATOR)
+		display_operators_errors(parsing_errors);
+	else if (parsing_errors & ERR_PARAN)
+		display_parens_errors(parsing_errors);
+	else if (parsing_errors & ERR_REDIR)
+		display_redirs_errors(parsing_errors);
 }
 static void	display_gen_errors(uint8_t gen_errors)
 {
 	if (gen_errors & ERR_MALLOC)
 		ft_putstr(E_MALLOC);
-	if (gen_errors & ERR_ARG)
+	else if (gen_errors & ERR_ARG)
 		ft_putstr(E_ARGS);
 }
 void	errors_displayer(t_err error)

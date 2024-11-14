@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/07 09:19:14 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/13 22:20:02 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	handle_pipe(t_data *data)
 	int tube[2];
 
 	if (pipe(tube) == -1) //to test 
-		return (data->err.exec_errors |= ERR_PIPE, EXIT_FAILURE);
+		return (data->err.exec_errors |= ERR_PIPE_CMD, EXIT_FAILURE); // pipe_error??
 
 	if (!fork_and_exec_left(data, tube))
 		return (EXIT_FAILURE);

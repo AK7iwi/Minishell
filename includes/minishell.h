@@ -45,8 +45,8 @@ typedef enum e_tok_type
 	T_PIPE,
 	T_S_REDIR_OUT,
 	T_D_REDIR_OUT,
-	T_S_REDIR_IN,
-	T_HERE_DOC, //HEREDOC
+	T_REDIR_IN,
+	T_HEREDOC,
 	T_ENV_VAR,
 	T_AND,
 	T_OR,
@@ -152,6 +152,9 @@ bool	ft_isdigit(int c);
 bool	ft_isalnum(int c);
 bool	ft_isalpha(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+/* print_str.c */
+void	ft_putstr(char *str);
 
 /* len.c */
 size_t	ft_strlen(const char *s);
@@ -305,9 +308,9 @@ bool	ast_creator(t_data *data);
 //**********************************************//
 
 /* syn_checker.c */
-bool 		check_redir(t_tok *current);
-bool 		check_paren(t_tok *current, uint32_t *o_count, uint32_t *c_count);
-bool 		check_operator(t_tok *current);
+bool		check_redir(t_err *err, t_tok *current);
+bool		check_operator(t_err *err, t_tok *current);
+bool		check_paren(t_err *err, t_tok *current, uint32_t *o, uint32_t *c);
 
 /* syn_analyzer.c */
 bool		syn_analyzer(t_data *data);

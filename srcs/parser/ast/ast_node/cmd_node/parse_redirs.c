@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:08:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:40:27 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	fill_file(t_redir **redir, char *red, char *file)
 {
+	//possible to refacto
 	char	*cpy_file;
 
 	cpy_file = ft_strdup(file);

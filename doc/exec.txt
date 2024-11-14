@@ -1,6 +1,12 @@
 
 
 
-a) echo a || << pp
+I) Heredoc 
 
-Need to exec the heredoc 
+
+Heredoc should be execute first
+
+echo a || << pp
+
+echo a | >> output.txt << EOF
+

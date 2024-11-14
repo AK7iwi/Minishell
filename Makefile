@@ -4,7 +4,7 @@ SRC_DIR			:= srcs
 OBJ_DIR			:= obj
 
 SRCS			:=	main.c \
-					errors/errors_displayer.c errors/error_and_exit.c \
+					errors/errors_displayer.c errors/error_and_exit.c errors/display_parsing_errors.c \
 					initializer/init.c \
 					signals/signals.c \
 					env/init_env.c env/create_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
@@ -27,8 +27,9 @@ SRCS			:=	main.c \
 					exec/pipe/pipe.c \
 					tools/checker.c tools/len.c tools/memory.c \
 					tools/str_manip/str_manip.c tools/str_manip/str_manip2.c \
+					tools/print_str.c \
 					tools/free/free.c \
-					tools/print/print_token.c tools/print/print_ast.c 
+					tools/print_debug/print_token.c tools/print_debug/print_ast.c 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:07:29 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/12 09:51:20 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/13 23:00:16 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static	t_tok_type	get_spe_char_type(char *spe_char)
     if (spe_char[0] == '|' && !spe_char[1])
         return (T_PIPE);
     else if (spe_char[0] == '<' && !spe_char[1])
-        return (T_S_REDIR_IN);
+        return (T_REDIR_IN);
     else if (spe_char[0] == '>' && !spe_char[1])
         return (T_S_REDIR_OUT);
     else if (spe_char[0] == '<' && spe_char[1] == '<' && !spe_char[2])
-        return (T_HERE_DOC);
+        return (T_HEREDOC);
     else if (spe_char[0] == '>' && spe_char[1] == '>' && !spe_char[2])
         return (T_D_REDIR_OUT);
     else if (spe_char[0] == '&' && spe_char[1] == '&' && !spe_char[2])
