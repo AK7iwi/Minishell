@@ -19,7 +19,7 @@ static	bool	handle_quotes(char *input, char *str, size_t *start, size_t *i, bool
 	quote_char = '\0';
 	if (input[*start] == '\"')
 	{
-		*need_expand = false;
+		*need_expand = true;
 		quote_char = input[*start];
 		(*start)++;
 		while (input[*start] != quote_char && input[*start] != NULL_CHAR)
@@ -28,7 +28,7 @@ static	bool	handle_quotes(char *input, char *str, size_t *start, size_t *i, bool
 	}
 	else if (input[*start] == '\'')
 	{
-		*need_expand = true; 
+		*need_expand = false;
 		quote_char = input[*start];
 		(*start)++;
 		while (input[*start] != quote_char && input[*start] != NULL_CHAR)

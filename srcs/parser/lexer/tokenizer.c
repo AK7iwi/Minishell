@@ -44,12 +44,12 @@ bool tokenizer(t_data *data, char *input, bool need_expand)
         token = 0;
         if (str_handler(data, input, &token, &i))
             return EXIT_FAILURE;
-        if (special_char_handler(data, input, &token, &i, need_expand))
+        if (special_char_handler(data, input, &token, &i, need_expand)) // Gère les caractères spéciaux
             return EXIT_FAILURE;
     }
 
     // Expansion des wildcards
-    if (!expand_tokens(data->token))
+    if (!expand_tokens(data->token))  // Ajoute cette ligne
         return EXIT_FAILURE;
 
     return EXIT_SUCCESS;

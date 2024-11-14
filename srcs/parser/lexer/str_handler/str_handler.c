@@ -15,7 +15,7 @@
 bool str_handler(t_data *data, char *input, t_tok_type *token, size_t *index)
 {
 	char	*str_token;
-	bool	need_expand = false;
+	bool	need_expand = true;
 
 	str_token = str_extracter(&data->error, input, token, index, &need_expand); //extract_str
 	if (!str_token)
