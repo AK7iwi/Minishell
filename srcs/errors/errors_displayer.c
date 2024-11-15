@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 08:49:38 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/14 12:05:51 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:40:04 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	display_parsing_errors(uint16_t parsing_errors)
 		ft_putstr(E_QUOTE);
 	else if (parsing_errors & ERR_OPERATOR)
 		display_operators_errors(parsing_errors);
-	else if (parsing_errors & ERR_PARAN)
+	else if (parsing_errors & ERR_PAREN)
 		display_parens_errors(parsing_errors);
 	else if (parsing_errors & ERR_REDIR)
 		display_redirs_errors(parsing_errors);

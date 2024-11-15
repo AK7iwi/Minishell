@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:02:32 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/14 12:38:45 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:44:36 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	syn_analyzer(t_data *data)
     while (current)
     {
 		if (check_paren(&data->err, current, &o_count, &c_count))
-			return (data->err.parsing_errors |= ERR_PARAN, EXIT_FAILURE);
+			return (data->err.parsing_errors |= ERR_PAREN, EXIT_FAILURE);
 		else if (check_operator(&data->err, current))
 			return (data->err.parsing_errors |= ERR_OPERATOR, EXIT_FAILURE);
 		else if (check_redir(&data->err, current))
@@ -33,8 +33,8 @@ bool	syn_analyzer(t_data *data)
 		current = current->next;
     }
 	
-	if (o_count != c_count) // display_error
-		return (data->err.parsing_errors |= ERR_PARAN, EXIT_FAILURE);
+	if (o_count != c_count)
+		return (data->err.parsing_errors |= ERR_PAREN , EXIT_FAILURE);
 	
     return (EXIT_SUCCESS);
 }

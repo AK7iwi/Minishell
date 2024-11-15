@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:13:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/13 23:00:16 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:35:33 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ inline bool	is_d_redir_out(t_tok_type type)
 {
 	return (type == T_D_REDIR_OUT);
 }
-inline bool is_redin_in(t_tok_type type)
+inline bool is_redir_in(t_tok_type type)
 {
 	return (type == T_REDIR_IN);
 }

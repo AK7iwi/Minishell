@@ -260,7 +260,7 @@ void	handle_redirs(t_data *data, t_cmd *cmd);
 /* parse_checker3.c */
 bool	is_s_redir_out(t_tok_type type);
 bool	is_d_redir_out(t_tok_type type);
-bool 	is_redin_in(t_tok_type type);
+bool 	is_redir_in(t_tok_type type);
 bool 	is_heredoc(t_tok_type type);
 
 /* parse_checker2.c */

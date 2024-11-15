@@ -19,15 +19,15 @@ II) Parse for paren
 
 a) O_paren:
 
-- Before: \, OPERATOR
+- Before: \, OPERATOR, O_PAREN
 
-- After: WORD, REDIR
+- After: WORD, REDIR, O_PAREN
 
 b) C_paren:
 
-- Before: WORD 
+- Before: WORD, C_PAREN
 
-- After: \ , OPERATOR, REDIR
+- After: \ , OPERATOR, REDIR, C_PAREN
 
 III) Parse for redirection:
 
