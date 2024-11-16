@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 21:46:36 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/14 12:28:47 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:14:50 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	display_operators_errors(uint16_t parsing_errors)
 
 void	display_parens_errors(uint16_t parsing_errors)
 {
+	if (parsing_errors & ERR_G_PAREN)
+		return (ft_putstr(E_G_PAREN));
 	ft_putstr(E_SYN);
 	if (parsing_errors & ERR_O_PAREN)
 		ft_putstr(E_O_PAREN);

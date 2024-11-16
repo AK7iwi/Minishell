@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:19:06 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/15 12:24:53 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:15:20 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,26 @@
 # define ERR_QUOTE			0x1
 
 # define ERR_PAREN			0x2
-# define ERR_G_PAREN 		
-# define ERR_O_PAREN		0x4
-# define ERR_C_PAREN		0x8
+# define ERR_G_PAREN 		0x4
+# define ERR_O_PAREN		0x8
+# define ERR_C_PAREN		0x10
 
-# define ERR_OPERATOR		0x10
-# define ERR_PIPE			0x20
-# define ERR_AND 			0x40
-# define ERR_OR 			0x80
+# define ERR_OPERATOR		0x20
+# define ERR_PIPE			0x40
+# define ERR_AND 			0x80
+# define ERR_OR 			0x100
 
-# define ERR_REDIR			0x100
-# define ERR_S_REDIR_OUT	0X200
-# define ERR_D_REDIR_OUT	0X400
-# define ERR_REDIR_IN		0X800
-# define ERR_HEREDOC		0X1000
-//0x2000
+# define ERR_REDIR			0x200
+# define ERR_S_REDIR_OUT	0X400
+# define ERR_D_REDIR_OUT	0X800
+# define ERR_REDIR_IN		0X1000
+# define ERR_HEREDOC		0X2000
 
 # define E_SYN				"mimishell: syntax error near "
 
 # define E_QUOTE			"mimishell: syntax error, missing closing quotation mark\n"
 
-# define E_G_PAREN 			
+# define E_G_PAREN 			"mimishell: syntax error, mismatched parentheses.\n"
 # define E_O_PAREN 			"`('\n"
 # define E_C_PAREN 			"`)'\n"
 
