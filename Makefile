@@ -13,7 +13,7 @@ SRCS			:=	main.c \
 					parser/lexer/spe_char_handler/handle_spe_char.c parser/lexer/spe_char_handler/extract_spe_char.c parser/lexer/spe_char_handler/spe_char_len.c \
 					parser/lexer/lexer_tools/token_tools.c parser/lexer/lexer_tools/lexer_tools.c \
 					parser/syn_analyzer/syn_analyzer.c parser/syn_analyzer/check_paren.c parser/syn_analyzer/check_op_and_redir.c \
-					parser/ast/ast.c parser/ast/ast_freer.c \
+					parser/ast/ast.c \
 					parser/ast/ast_node/cmd_node/cmd_node.c parser/ast/ast_node/cmd_node/parse_args.c parser/ast/ast_node/cmd_node/parse_redirs.c \
 					parser/ast/ast_node/operator_node.c parser/ast/ast_node/subsh_node.c \
 					parser/parser_tools/parser_checker.c parser/parser_tools/parser_checker2.c parser/parser_tools/parser_checker3.c \
@@ -28,7 +28,7 @@ SRCS			:=	main.c \
 					tools/checker.c tools/len.c tools/memory.c \
 					tools/str_manip/str_manip.c tools/str_manip/str_manip2.c \
 					tools/print_str.c \
-					tools/free/free.c \
+					tools/free/free.c tools/free/free_ast.c \
 					tools/print_debug/print_token.c tools/print_debug/print_ast.c 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

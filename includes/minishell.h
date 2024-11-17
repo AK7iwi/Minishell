@@ -177,6 +177,9 @@ int		ft_atoi(const char *nptr);
 char	*ft_strjoin(const char *s1, const char *s2);
 
 ///////////// free /////////////////////////
+
+/* free_ast.c */
+void	free_ast(t_ast **ast);
 /* free.c */
 void 	free_tab(char **tab);
 void	free_tokens(t_tok **tok);
@@ -267,10 +270,11 @@ bool 	is_heredoc(t_tok_type type);
 bool	is_or(t_tok_type type);
 bool	is_and(t_tok_type type);
 bool	is_pipe(t_tok_type type);
-bool 	is_open_paren(t_tok_type type);
-bool 	is_closed_paren(t_tok_type type);
+bool 	is_o_paren(t_tok_type type);
+bool 	is_c_paren(t_tok_type type);
 
 /* parse_checker.c */
+bool 	is_paren(t_tok_type type);
 bool 	is_word(t_tok_type type);
 bool 	is_cmd(t_tok_type type);
 bool	is_redir(t_tok_type type);
@@ -279,9 +283,6 @@ bool	is_operator(t_tok_type type);
 //**********************************************//
 //					AST   						//
 //**********************************************//
-
-/* ast_free.c */
-void	free_ast(t_ast **ast); //in exec
 
 /////// ast_node ////////////
 

@@ -6,12 +6,16 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:17:29 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/15 11:36:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/17 16:16:13 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+inline 	bool 	is_paren(t_tok_type type)
+{
+	return (is_o_paren(type) || is_c_paren(type));
+}
 inline  bool 	is_word(t_tok_type type)
 {
 	return (type == T_WORD || type == T_ENV_VAR);
@@ -20,8 +24,8 @@ inline  bool 	is_word(t_tok_type type)
 inline	bool	is_cmd(t_tok_type type)
 {
 	return (!is_operator(type) 
-			&& !is_closed_paren(type) 
-			&& !is_open_paren(type));
+			&& !is_c_paren(type) 
+			&& !is_o_paren(type));
 }
 inline	bool	is_redir(t_tok_type type)
 {

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/13 17:28:24 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/17 16:18:12 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,17 @@ t_ast *handle_cmd_and_subsh(t_tok **current)
 t_ast *ast_algo(t_tok **current, uint8_t min_prec)
 {
 	t_ast 		*result;
-
+	
 	result = handle_cmd_and_subsh(current);
 	if (!result)
     	return (NULL); //test
 	else if ((*current) && (*current)->type == T_C_PAREN)
 		return (result);
 	handle_operator(&result, current, min_prec); // protect
-
     return (result);
 }
 bool	ast_creator(t_data *data)
 {
-	printf("AST_CREATOR\n");
 	t_tok *current;
 	current = data->tok;
 	data->ast = ast_algo(&current, 0);

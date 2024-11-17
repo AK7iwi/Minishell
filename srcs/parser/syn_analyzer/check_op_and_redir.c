@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syn_checker.c                                      :+:      :+:    :+:   */
+/*   check_op_and_redir.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:09:55 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/17 14:26:37 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:15:15 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ bool	check_operator(t_err *err, t_tok *current)
 		if (!current->prev || !current->next)
 			return (err->parsing_errors |= error, EXIT_FAILURE);
 		else if (!is_word(current->prev->type) 
-			&& !is_closed_paren(current->prev->type))
+			&& !is_c_paren(current->prev->type))
 			return (err->parsing_errors |= error, EXIT_FAILURE);
 		else if (!is_word(current->next->type)
-				&& !is_open_paren(current->next->type)
+				&& !is_o_paren(current->next->type)
 				&& !is_redir(current->next->type))
 			return (err->parsing_errors |= error, EXIT_FAILURE);
 	}

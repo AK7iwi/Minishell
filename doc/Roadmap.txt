@@ -4,7 +4,6 @@ Switch ERR an E for errors
 Rename of file and folder + same var name for the whole project
 Check copy of list (current)
 int --> int32t / norme
-protect ft_strdup
 protect readline ~~ recheck
 Use strcmp instead of strncmp, check this fct when used
 Handle exit code ,check exit value
@@ -15,13 +14,9 @@ I) Lexer:
 
 OK
 
-check tokenisation file(doc) to improve the shell
-
 II) Synthesis_analysis:
 
-Rename files
-
-check parser_rules file(doc)
+OK
 
 III) AST: 
 

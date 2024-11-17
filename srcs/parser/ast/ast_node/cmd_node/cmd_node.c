@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:29:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:08:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/17 16:17:40 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t get_cmd_len(t_tok *current)
 
 	cmd_len = 0;
 	
-    while (current && !is_operator(current->type))
+    while (current && !is_operator(current->type) && !is_paren(current->type))
     {
         cmd_len++;
         current = current->next;

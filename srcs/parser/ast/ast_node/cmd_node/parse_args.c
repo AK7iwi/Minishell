@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:08:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/17 16:17:15 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t get_args_len(t_tok *current, size_t *i)
 
 	args_len = 0;
 	
-    while (current && is_cmd(current->type) && !is_redir(current->type))
+    while (current && is_cmd(current->type) && !is_redir(current->type)) // more simple
     {
         args_len++;
 		(*i)++;
