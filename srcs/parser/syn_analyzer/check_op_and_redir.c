@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:09:55 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/15 12:27:05 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/17 14:26:37 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	check_operator(t_err *err, t_tok *current)
 		if (!current->prev || !current->next)
 			return (err->parsing_errors |= error, EXIT_FAILURE);
 		else if (!is_word(current->prev->type) 
-				&& !is_closed_paren(current->prev->type))
+			&& !is_closed_paren(current->prev->type))
 			return (err->parsing_errors |= error, EXIT_FAILURE);
 		else if (!is_word(current->next->type)
 				&& !is_open_paren(current->next->type)
@@ -70,41 +70,5 @@ bool	check_operator(t_err *err, t_tok *current)
 			return (err->parsing_errors |= error, EXIT_FAILURE);
 	}
 	
-	return (EXIT_SUCCESS);
-}
-
-bool	check_paren(t_err *err, t_tok *current, uint32_t *o, uint32_t *c)
-{
-	//two fct 
-	if (is_open_paren(current->type))
-	{
-		if (current->prev 
-			&& !is_operator(current->prev->type)
-			&& !is_open_paren(current->prev->type))
-			return (err->parsing_errors |= ERR_O_PAREN, EXIT_FAILURE);
-		else if (!current->next
-				|| (!is_word(current->next->type)
-				&& !is_redir(current->next->type)
-				&& !is_open_paren(current->next->type)))
-			return (err->parsing_errors |= ERR_O_PAREN, EXIT_FAILURE);
-		(*o)++;
-	}
-	else if (is_closed_paren(current->type))
-	{
-		if (!current->prev
-			|| (!is_word(current->prev->type) 
-			&& !is_closed_paren(current->prev->type)))
-			return (err->parsing_errors |= ERR_C_PAREN, EXIT_FAILURE);
-		else if (current->next 
-				&& !is_operator(current->next->type)
-				&& !is_redir(current->next->type)
-				&& !is_closed_paren(current->next->type))
-			return (err->parsing_errors |= ERR_C_PAREN, EXIT_FAILURE);
-		(*c)++;
-	}
-	
-	if ((*c) > (*o))
-		return (err->parsing_errors |= ERR_C_PAREN, EXIT_FAILURE);
-	 
 	return (EXIT_SUCCESS);
 }

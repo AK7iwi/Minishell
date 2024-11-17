@@ -1,8 +1,3 @@
-
-First check the operator
-After the paren
-After the redir
-
 OPERATOR (&&, ||, |)
 REDIR (<,<<,>,>>)
 O_PAREN 
@@ -33,4 +28,4 @@ III) Parse for redirection:
 
 - Before: \, OPERATOR, O_PAREN, C_PAREN, WORD
 
-- After: WORD, 
+- After: WORD

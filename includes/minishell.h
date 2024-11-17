@@ -307,9 +307,11 @@ bool	ast_creator(t_data *data);
 //					SYN_ANALYZER   				//
 //**********************************************//
 
-/* syn_checker.c */
+/* check_op_and_redir.c */
 bool		check_redir(t_err *err, t_tok *current);
 bool		check_operator(t_err *err, t_tok *current);
+
+/* check_paren.c */
 bool		check_paren(t_err *err, t_tok *current, uint32_t *o, uint32_t *c);
 
 /* syn_analyzer.c */

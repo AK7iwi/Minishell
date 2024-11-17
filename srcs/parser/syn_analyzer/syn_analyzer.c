@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:02:32 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/16 12:11:11 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:16:54 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ bool	syn_analyzer(t_data *data)
 		data->err.parsing_errors |= (ERR_PAREN | ERR_G_PAREN);
 		return (EXIT_FAILURE);
 	}
-	
     return (EXIT_SUCCESS);
 }
 
