@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/14 12:40:27 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:56:20 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ bool	parse_redirs(t_ast **new_node, t_tok **current, size_t *i)
 
 	redirs = copy_redirs(new_node, current, i);
 	if (!redirs)
-		return (EXIT_FAILURE);
+		return (free(*new_node), EXIT_FAILURE);
 	
 	if ((*new_node)->cmd.redirs_count)
 	{

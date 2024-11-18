@@ -21,9 +21,7 @@ OK
 III) AST: 
 
 Find the right precedence, compare with bash result
-issue with paren
-loop in ast_creator, in subsh_node, here: (*new_node)->subshell.root = ast_algo(current, 0);
-Recheck logic of ast_node/cmd_node parsing 
+Recheck logic of ast_node/cmd_node parsing
 
 IV)ENV:
 
@@ -32,6 +30,11 @@ OK
 V) Exec: 
 
 handle error in ast_exec ~~ to recheck 
+if (cmd not found)
+	exit the loop
+
+gergre && ls : pas exec ls
+
 
 	a) Prompt: OK
 

@@ -6,85 +6,80 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/17 16:18:12 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/18 02:13:44 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//ast tools
-uint8_t get_prec(t_tok_type type)
-{
-	//verif
-	if (is_pipe(type))
-		return (1);
-	else if (is_and(type) || is_or(type))
-		return (2);
-
-	return (3);
-}
-
-t_op_type get_op_type(t_tok_type type)
-{
-	t_op_type operator_type;
-
-	operator_type = 0; //verif 
-	
-	if (is_pipe(type))
-		operator_type = OP_PIPE;	
-	else if (is_and(type))
-		operator_type = OP_AND;
-	else if (is_or(type))
-		operator_type = OP_OR;
-
-	return (operator_type);
-}
-void	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
+bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 {
 	uint8_t 	next_min_prec;
 	t_op_type	op_type;
 	t_ast 		*right_side;
 	
-	while ((*current) && is_operator((*current)->type) && get_prec((*current)->type) >= min_prec)
+	while ((*current) 
+		&& is_operator((*current)->type)
+		&& get_prec((*current)->type) >= min_prec)
 	{
 		next_min_prec = get_prec((*current)->type);
 		op_type = get_op_type((*current)->type);
 		(*current) = (*current)->next;
-		right_side = ast_algo(current, next_min_prec);
-		(*result) = create_operator_node((*result), right_side, op_type); // protect
+		if (ast_algo(&right_side, current, next_min_prec))
+			return (EXIT_FAILURE);
+		(*result) = create_operator_node((*result), right_side, op_type);
+		if (!(*result))
+			return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
 }
-t_ast *handle_cmd_and_subsh(t_tok **current)
+bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 {
-	t_ast *new_node;
+	(*ast) = malloc(sizeof(t_ast));
+	if (!(*ast))
+		return (EXIT_FAILURE);
 	
-	new_node = malloc(sizeof(t_ast));
-	if (!new_node)
-		return (NULL);
-	
-	if ((*current) && (*current)->type == T_O_PAREN)
-		new_node = create_subsh_node(&new_node, current);
+	if (is_o_paren((*current)->type))
+	{
+		printf("create_subsh_node\n");
+		if (create_subsh_node(ast, current))
+			return (EXIT_FAILURE);
+	}
 	else
-		new_node = create_cmd_node(&new_node, current);
+	{
+		printf("create_cmd_node\n");
+		if (create_cmd_node(ast, current))
+			return (EXIT_FAILURE);
+	}
 	
-	return (new_node);
+	return (EXIT_SUCCESS);
 }
-t_ast *ast_algo(t_tok **current, uint8_t min_prec)
+bool	ast_algo(t_ast **ast, t_tok **current, uint8_t min_prec)
 {
-	t_ast 		*result;
-	
-	result = handle_cmd_and_subsh(current);
-	if (!result)
-    	return (NULL); //test
-	else if ((*current) && (*current)->type == T_C_PAREN)
-		return (result);
-	handle_operator(&result, current, min_prec); // protect
-    return (result);
+	if (handle_cmd_and_subsh(ast, current))
+	{
+		printf("Error handle_cmd_and_subsh\n");
+    	return (EXIT_FAILURE);
+	}
+	else if ((*current) && is_c_paren((*current)->type))
+		return (EXIT_SUCCESS);
+	if (handle_operator(ast, current, min_prec))
+	{
+		printf("Error handle_operator\n");
+		return (EXIT_FAILURE);
+	}
+    return (EXIT_SUCCESS);
 }
+
 bool	ast_creator(t_data *data)
 {
-	t_tok *current;
+	t_tok	*current;
+	
 	current = data->tok;
-	data->ast = ast_algo(&current, 0);
-	return (!data->ast);
+	if (ast_algo(&data->ast, &current, 0))
+	{
+		printf("AST ERROR\n");
+		return (data->err.gen_errors |= ERR_MALLOC, EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }

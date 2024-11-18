@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:18:32 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:41:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool subshell(t_data *data, t_subshell *subsh)
 }
 static bool cmd(t_data *data, t_cmd *cmd)
 {	
-	if (cmd->args && is_non_fork_builtins(cmd->args))
+	if (cmd->args && is_non_fork_builtins(cmd->args)) //need cmd->args
 	{
 		if (builtins(data, cmd->args))
 			return (EXIT_SUCCESS);

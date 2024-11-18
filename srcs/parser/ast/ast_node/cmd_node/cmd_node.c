@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:29:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/17 16:17:40 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/11/18 01:43:05 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ static size_t get_cmd_len(t_tok *current)
         cmd_len++;
         current = current->next;
     } 
-
 	return (cmd_len);
 }
 
-t_ast	*create_cmd_node(t_ast **new_node, t_tok **current)
+bool	create_cmd_node(t_ast **new_node, t_tok **current)
 {	
 	size_t cmd_len;
 	size_t i;
@@ -41,10 +40,15 @@ t_ast	*create_cmd_node(t_ast **new_node, t_tok **current)
 	while (i < cmd_len)
 	{
 		if (parse_args(new_node, current, &i))
-			return (NULL);
+		{
+			printf("parse_arg\n");
+			return (EXIT_FAILURE);
+		}
 		if (parse_redirs(new_node, current, &i))
-			return (NULL);
+		{
+			printf("parse_redirs\n");
+			return (EXIT_FAILURE);
+		}
 	}
-	
-	return ((*new_node));
+	return (EXIT_SUCCESS);
 }
