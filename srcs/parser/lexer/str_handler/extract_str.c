@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   extract_str.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 15:21:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/12 09:28:02 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static	bool	handle_quotes(char *input, char *str, size_t *start, size_t *i)
@@ -48,6 +36,7 @@ static char	*copy_str(char *input, size_t start, size_t *end, size_t len)
 	str[i] = '\0';
 	return (str);
 }
+
 char	*extract_str(t_err *err, char *input, t_tok_type *type, size_t *i)
 {
 	size_t 	start;

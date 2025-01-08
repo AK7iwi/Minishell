@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   str_len.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 16:20:33 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/12 09:41:44 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static	bool	get_quotes_len(char *inp, ssize_t *l, t_tok_type *t, size_t *i)
@@ -34,6 +22,7 @@ static	bool	get_quotes_len(char *inp, ssize_t *l, t_tok_type *t, size_t *i)
     }
 	return (EXIT_SUCCESS);
 }
+
 ssize_t	get_str_len(char *input, t_tok_type *type, size_t *i)
 {
     ssize_t	str_len;

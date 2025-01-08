@@ -344,7 +344,6 @@ char		*extract_str(t_err *err, char *input, t_tok_type *type, size_t *i);
 bool		handle_str(t_data *data, char *input, size_t *i);
 
 /////////////////////////////////////////////////
-
 /* tokenizer.c */
 bool		tokenizer(t_data *data, char *input);
 
@@ -355,14 +354,12 @@ bool		tokenizer(t_data *data, char *input);
 //**********************************************// 
 
 //////// env_tools ///////
-
 /* env_tools2.c */
 void 	remove_env_node(t_env **env, t_env *to_remove);
 bool	is_var(t_env *current, char *var_name);
 bool 	is_in_env(t_env *env, char *var_name);
 bool 	find_equal(char *var);
 bool	is_valid_var(char *var);
-
 /* env_tools.c */
 void	free_env(t_env **env_var);
 void	unset_env_var(t_env **env, char *var_name);
