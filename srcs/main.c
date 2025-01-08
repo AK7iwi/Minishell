@@ -1,24 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 14:03:03 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/13 16:30:09 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
-//ternaire cond 
-static bool is_arg(t_err *error, int argc) 
+static inline bool is_arg(t_err *error, int argc)
 {
-	if (argc != 1)
-		return (error->gen_errors |= ERR_ARG, true);
-
-	return (false);
+	return ((argc != 1) && (error->gen_errors |= ERR_ARG));
 }
 
 int main(int argc, char **argv, char **envp)

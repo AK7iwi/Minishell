@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static	void 	init_struct(t_data *data)
+static void	init_struct(t_data *data)
 {
 	data->tok = NULL;
 	data->ast = NULL;
