@@ -28,5 +28,3 @@ bool	syn_analyzer(t_data *data)
 	}
     return (EXIT_SUCCESS);
 }
-
-

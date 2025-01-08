@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ast.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 16:25:53 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/18 02:13:44 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
@@ -33,6 +21,7 @@ bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 	}
 	return (EXIT_SUCCESS);
 }
+
 bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 {
 	(*ast) = malloc(sizeof(t_ast));
@@ -43,17 +32,24 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 	{
 		printf("create_subsh_node\n");
 		if (create_subsh_node(ast, current))
+		{
+			printf("create_subsh_node error\n");
 			return (EXIT_FAILURE);
+		}
 	}
 	else
 	{
 		printf("create_cmd_node\n");
 		if (create_cmd_node(ast, current))
+		{
+			printf("create_cmd_node error\n");
 			return (EXIT_FAILURE);
+		}
 	}
 	
 	return (EXIT_SUCCESS);
 }
+
 bool	ast_algo(t_ast **ast, t_tok **current, uint8_t min_prec)
 {
 	if (handle_cmd_and_subsh(ast, current))

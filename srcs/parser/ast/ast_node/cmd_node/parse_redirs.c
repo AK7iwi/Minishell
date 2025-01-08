@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_redirs.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 10:16:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/17 20:56:20 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static bool	fill_file(t_redir **redir, char *red, char *file)
@@ -42,6 +30,7 @@ static bool	fill_file(t_redir **redir, char *red, char *file)
 	}
 	return (EXIT_SUCCESS);
 }
+
 static t_redir	*fill_redir_struct(char **redirs)
 {
 	t_redir *redir;
@@ -65,6 +54,7 @@ static t_redir	*fill_redir_struct(char **redirs)
 	
 	return (redir);
 }
+
 static size_t get_redirs_len(t_tok *current, size_t *i)
 {
 	size_t	redirs_len;
@@ -90,6 +80,7 @@ static size_t get_redirs_len(t_tok *current, size_t *i)
 	
 	return (redirs_len);
 }
+
 static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 {
 	char	**redirs;
@@ -110,6 +101,7 @@ static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 	
 	return (redirs);
 }
+
 bool	parse_redirs(t_ast **new_node, t_tok **current, size_t *i)
 {
 	char 	**redirs;

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 10:16:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/18 02:19:25 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static size_t get_args_len(t_tok *current, size_t *i)
@@ -27,6 +15,7 @@ static size_t get_args_len(t_tok *current, size_t *i)
 
 	return (args_len);
 }
+
 static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 {
 	char **args;
@@ -54,6 +43,7 @@ static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 	
 	return (args);
 }
+
 bool	parse_args(t_ast **new_node, t_tok **current, size_t *i)
 {
 	char **args;

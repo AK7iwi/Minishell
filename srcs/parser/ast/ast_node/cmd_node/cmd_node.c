@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cmd_node.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 11:29:27 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/18 01:43:05 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static size_t get_cmd_len(t_tok *current)
@@ -50,5 +38,5 @@ bool	create_cmd_node(t_ast **new_node, t_tok **current)
 			return (EXIT_FAILURE);
 		}
 	}
-	return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS); //EXIT_FAILURE to test
 }
