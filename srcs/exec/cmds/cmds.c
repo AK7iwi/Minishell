@@ -47,7 +47,7 @@ bool	cmds(t_data *data, char **args)
 	cmd_path = find_command_in_path(args[0]);
 	if (cmd_path == NULL)
 	{
-		printf("bash: %s command not found\n", args[0]); //in stderr
+		printf("mimishell: %s command not found\n", args[0]); //in stderr
 		return (free(cmd_path), false); //retest
 	}
 	

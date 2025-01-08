@@ -140,12 +140,6 @@ typedef struct s_data
 //												//
 //**********************************************// 
 
-/* error_and_exit.c */
-void 	fork_error(t_data *data);
-void	pipe_error(t_data *data);
-void	open_error(t_data *data);
-void	dup2_error(t_data *data, int fd);
-
 /* checker.c */
 bool 	is_number(char *c);
 bool	ft_isdigit(int c);
@@ -381,11 +375,23 @@ char 	*extract_var_name(char *args);
 /* sort_env.c */
 bool	print_sorted_env(t_env *env);
 
-/* create_env.c */
-bool	create_env(t_data *data);
-
 /* init_env.c */
 bool	init_env(t_data *data, char **envp);
+
+//**********************************************//
+//												//
+//					ERRORS       				//
+//												//
+//**********************************************// 
+
+/* error_and_exit.c */
+void 	fork_error(t_data *data);
+void	pipe_error(t_data *data);
+void	open_error(t_data *data);
+void	dup2_error(t_data *data, int fd);
+
+/* init_errors.c */
+void 	init_errors(t_data *data); 
 
 //**********************************************//
 //												//

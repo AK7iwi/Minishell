@@ -4,10 +4,10 @@ SRC_DIR			:= srcs
 OBJ_DIR			:= obj
 
 SRCS			:=	main.c \
-					errors/errors_displayer.c errors/error_and_exit.c errors/display_parsing_errors.c \
+					errors/init_errors.c errors/errors_displayer.c errors/error_and_exit.c errors/display_parsing_errors.c \
 					initializer/init.c \
 					signals/signals.c \
-					env/init_env.c env/create_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
+					env/init_env.c env/sort_env.c env/extract_env.c env/env_tools/env_tools.c env/env_tools/env_tools2.c \
 					parser/lexer/tokenizer.c \
 					parser/lexer/str_handler/handle_str.c parser/lexer/str_handler/extract_str.c parser/lexer/str_handler/str_len.c \
 					parser/lexer/spe_char_handler/handle_spe_char.c parser/lexer/spe_char_handler/extract_spe_char.c parser/lexer/spe_char_handler/spe_char_len.c \

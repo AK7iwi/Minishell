@@ -84,7 +84,7 @@
 # define E_CD2				"cd"
 # define E_EXPORT			"unset: not enough arguments\n"
 # define E_UNSET			"unset: not enough arguments\n"
-# define E_EXIT 			"bash: exit: too many arguments\n"
+# define E_EXIT 			"mimishell: exit: too many arguments\n"
 
 /* CMDS errors */
 # define ERR_FORK			0x40

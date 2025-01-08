@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   env_tools.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 08:40:13 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/06 14:56:26 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 void	free_env(t_env **env_var)
@@ -24,6 +12,7 @@ void	free_env(t_env **env_var)
         *env_var = tmp;
     }
 }
+
 void	unset_env_var(t_env **env, char *var)
 {
     t_env *current;
@@ -36,6 +25,7 @@ void	unset_env_var(t_env **env, char *var)
         current = current->next;
     }
 }
+
 bool	set_env_var(t_env **env, char *var_name, char *new_env_var)
 {
 	t_env *current;
@@ -55,6 +45,7 @@ bool	set_env_var(t_env **env, char *var_name, char *new_env_var)
 	
 	return (EXIT_SUCCESS);
 }
+
 bool	add_env_var(t_env **env, char *envp)
 {
     t_env *new_env_var;

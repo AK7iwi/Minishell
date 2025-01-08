@@ -16,4 +16,5 @@ valgrind --suppressions="srcs/tools/readline_by_pass.txt" --leak-check=full --tr
 Test: 
 
 Large texte
+No env
 

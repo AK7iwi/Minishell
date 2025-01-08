@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+//ternaire cond 
 static bool is_arg(t_err *error, int argc) 
 {
 	if (argc != 1)
@@ -25,7 +26,7 @@ int main(int argc, char **argv, char **envp)
 	t_data	data;
 	char	*input;
 	
-	signals();
+	signals(); 
 	if (init(&data, argv, envp) || is_arg(&data.err, argc))
 		return (errors_displayer(data.err), free_all(&data), EXIT_FAILURE);
 	
