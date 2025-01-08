@@ -1,21 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser_checker.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 13:17:29 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/17 16:16:13 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 inline 	bool 	is_paren(t_tok_type type)
 {
 	return (is_o_paren(type) || is_c_paren(type));
 }
+
 inline  bool 	is_word(t_tok_type type)
 {
 	return (type == T_WORD || type == T_ENV_VAR);

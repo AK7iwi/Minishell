@@ -1,37 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_op_and_redir.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 13:09:55 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/17 15:15:15 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static	uint16_t	get_type_error(t_tok_type type)
 {
-	uint16_t err;
-	err = 0;
+	uint16_t error;
+	error = 0;
 
 	if (is_pipe(type))
-		err = ERR_PIPE;
+		error = ERR_PIPE;
 	else if (is_and(type))
-		err = ERR_AND; 
+		error = ERR_AND; 
 	else if (is_or(type))
-		err = ERR_OR;
+		error = ERR_OR;
 	else if (is_s_redir_out(type))
-		err = ERR_S_REDIR_OUT;
+		error = ERR_S_REDIR_OUT;
 	else if (is_d_redir_out(type))
-		err = ERR_D_REDIR_OUT;
+		error = ERR_D_REDIR_OUT;
 	else if (is_redir_in(type))
-		err = ERR_REDIR_IN;
+		error = ERR_REDIR_IN;
 	else if (is_heredoc(type))
-		err = ERR_HEREDOC;
-	return (err);
+		error = ERR_HEREDOC;
+	return (error);
 }
 
 bool	check_redir(t_err *err, t_tok *current)
