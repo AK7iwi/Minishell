@@ -46,6 +46,8 @@ DEF_COLOR	= \033[0;39m
 RED 		= \033[0;36m
 
 all: $(NAME)
+	@clear
+	@echo "$(RED)Minishell ready$(DEF_COLOR)"
 
 $(NAME): $(OBJS)
 	$(CC) $(OBJS)  -lreadline -o $(NAME)
@@ -57,13 +59,14 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(OBJ_DIR)
-	@echo "$(RED)Minishell objects cleaned!$(DEF_COLOR)"
+	@clear
+	@echo "$(RED)Minishell objects cleaned$(DEF_COLOR)"
 
 fclean: clean
 	$(RM) $(NAME)
-	@echo "$(RED)Minishell cleaned!$(DEF_COLOR)"
+	@echo "$(RED)Minishell cleaned$(DEF_COLOR)"
 
 re:	fclean all
-	@echo "$(RED)Cleaned and rebuilt!$(DEF_COLOR)"
+	@echo "$(RED)Cleaned and rebuilt$(DEF_COLOR)"
 
 .PHONY: all clean fclean re
