@@ -94,7 +94,7 @@ static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 	j = 0;
 	while (j < (*new_node)->cmd.redirs_count)
 	{
-		redirs[j++] = ft_strdup((*current)->str);
+		redirs[j++] = ft_strdup((*current)->str); //protect
 		(*current) = (*current)->next;
 	}
 	redirs[j] = NULL;
@@ -108,14 +108,14 @@ bool	parse_redirs(t_ast **new_node, t_tok **current, size_t *i)
 
 	redirs = copy_redirs(new_node, current, i);
 	if (!redirs)
-		return (free(*new_node), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	
 	if ((*new_node)->cmd.redirs_count)
 	{
 		(*new_node)->cmd.redirs = redirs;
 		(*new_node)->cmd.redir = fill_redir_struct(redirs);
 		if (!(*new_node)->cmd.redir)
-			return (EXIT_FAILURE); // free
+			return (EXIT_FAILURE); // free_redirs
 	}
 	else 
 		free(redirs);

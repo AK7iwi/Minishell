@@ -14,10 +14,16 @@ bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 		op_type = get_op_type((*current)->type);
 		(*current) = (*current)->next;
 		if (ast_algo(&right_side, current, next_min_prec))
+		{
+			printf("ast_algo error in handle operator\n");
 			return (EXIT_FAILURE);
+		}
 		(*result) = create_operator_node((*result), right_side, op_type);
 		if (!(*result))
+		{
+			printf("create_operator_node error\n");
 			return (EXIT_FAILURE);
+		}
 	}
 	return (EXIT_SUCCESS);
 }
@@ -34,6 +40,7 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 		if (create_subsh_node(ast, current))
 		{
 			printf("create_subsh_node error\n");
+			// free_ast(ast);
 			return (EXIT_FAILURE);
 		}
 	}
@@ -46,7 +53,6 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 			return (EXIT_FAILURE);
 		}
 	}
-	
 	return (EXIT_SUCCESS);
 }
 

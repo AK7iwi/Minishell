@@ -1,27 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   free_ast.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 15:16:41 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/18 00:34:03 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static void free_subshell(t_subshell *subsh)
 {
 	free_ast(&subsh->root);
 }
+
 static void free_redirs(t_cmd *cmd)
 {
 	size_t i;
 	
 	i = 0;
-	while (cmd->redirs[i])
+	while (cmd->redirs[i]) //free_tab
 	{
 		free(cmd->redirs[i]);
 		i++;
@@ -39,6 +28,7 @@ static void free_redirs(t_cmd *cmd)
 		free(cmd->redir);
 	}
 }
+
 static void free_args(t_cmd *cmd)
 {
 	size_t i;
@@ -46,12 +36,15 @@ static void free_args(t_cmd *cmd)
 	i = 0;
 	while (cmd->args[i])
 	{
+		printf("Je free bien mes arguments\n");
+		printf("cm->args[i]:%s\n", cmd->args[i]);
 		free(cmd->args[i]);
 		i++;
 	}
 	free(cmd->args);
 	cmd->args = NULL;
 }
+
 static void free_cmd(t_cmd *cmd)
 {
 	if (cmd->args) //free_tab
@@ -61,6 +54,7 @@ static void free_cmd(t_cmd *cmd)
 	cmd->args_count = 0;
 	cmd->redirs_count = 0;
 }
+
 static void free_operator(t_op *op)
 {
     if (op->left)

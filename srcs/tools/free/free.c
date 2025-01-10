@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 14:02:39 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/18 01:59:19 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 void free_tab(char **tab)
@@ -24,6 +12,7 @@ void free_tab(char **tab)
     }
     free(tab);
 }
+
 void	free_tokens(t_tok **tok)
 {
 	t_tok	*tmp;
@@ -41,6 +30,7 @@ void	free_tokens(t_tok **tok)
 	}
 	*tok = NULL;
 }
+
 void 	free_errors(t_err *err)
 {
 	err->gen_errors = 0;

@@ -13,5 +13,5 @@ bool	create_subsh_node(t_ast **new_node, t_tok **current)
 		(*current) = (*current)->next;
 	(*current) = (*current)->next;
 	
-	return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS); //FAILURE to test 
 }

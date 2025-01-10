@@ -38,5 +38,5 @@ bool	create_cmd_node(t_ast **new_node, t_tok **current)
 			return (EXIT_FAILURE);
 		}
 	}
-	return (EXIT_SUCCESS); //EXIT_FAILURE to test
+	return (EXIT_SUCCESS);
 }

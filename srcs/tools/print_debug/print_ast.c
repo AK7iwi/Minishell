@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_ast.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 08:27:23 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:21:09 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static void print_subshell(t_ast *ast, int *depth)
@@ -57,6 +45,7 @@ static void print_cmd(t_ast *ast)
 
 	printf("\n");
 }
+
 static void print_op(t_ast *ast, int *depth)
 {	
 	printf("[Operator] ");
@@ -83,6 +72,7 @@ static void print_op(t_ast *ast, int *depth)
         print_ast(ast->op.right, (*depth) + 1);
     }
 }
+
 void print_ast(t_ast *ast, int depth)
 {
 	if (ast->type == AST_OPERATOR)
