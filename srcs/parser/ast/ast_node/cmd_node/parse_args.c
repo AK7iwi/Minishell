@@ -23,31 +23,19 @@ static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 
 	(*new_node)->cmd.args_count = get_args_len((*current), i);
 	args = malloc(((*new_node)->cmd.args_count + 1) * sizeof(char *));
-	// args = NULL;
 	if (!args)
-	{
-		printf("cpy_args\n");
         return (NULL);
-	}
 	
 	j = 0;
 	while (j < (*new_node)->cmd.args_count)
 	{
-		//test
-		if (j != 2)
-			args[j] = ft_strdup((*current)->str);
-		else 
-			args[j] = NULL;
+		args[j] = ft_strdup((*current)->str);
 		if (!args[j])
-		{
-			printf("args[j]\n");
 			return (free_tab(args), NULL);
-		}
 		(*current) = (*current)->next;
 		j++;
 	}
 	args[j] = NULL;
-	
 	return (args);
 }
 

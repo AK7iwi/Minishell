@@ -36,8 +36,6 @@ static void free_args(t_cmd *cmd)
 	i = 0;
 	while (cmd->args[i])
 	{
-		printf("Je free bien mes arguments\n");
-		printf("cm->args[i]:%s\n", cmd->args[i]);
 		free(cmd->args[i]);
 		i++;
 	}

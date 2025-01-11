@@ -40,7 +40,7 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 		if (create_subsh_node(ast, current))
 		{
 			printf("create_subsh_node error\n");
-			// free_ast(ast);
+			free_ast(ast);
 			return (EXIT_FAILURE);
 		}
 	}
