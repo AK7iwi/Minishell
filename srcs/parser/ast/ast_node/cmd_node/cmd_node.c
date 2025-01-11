@@ -6,7 +6,7 @@ static size_t get_cmd_len(t_tok *current)
 
 	cmd_len = 0;
 	
-    while (current && !is_operator(current->type) && !is_paren(current->type))
+    while (current && is_cmd(current->type))
     {
         cmd_len++;
         current = current->next;

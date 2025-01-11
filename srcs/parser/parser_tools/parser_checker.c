@@ -12,10 +12,9 @@ inline  bool 	is_word(t_tok_type type)
 
 inline	bool	is_cmd(t_tok_type type)
 {
-	return (!is_operator(type) 
-			&& !is_c_paren(type) 
-			&& !is_o_paren(type));
+	return (!is_operator(type) && !is_paren(type));
 }
+
 inline	bool	is_redir(t_tok_type type)
 {
 	return (is_s_redir_out(type) 
@@ -23,6 +22,7 @@ inline	bool	is_redir(t_tok_type type)
 			|| is_redir_in(type)
 			|| is_heredoc(type));
 }
+
 inline	bool	is_operator(t_tok_type type)
 {
 	return ((is_pipe(type) 
