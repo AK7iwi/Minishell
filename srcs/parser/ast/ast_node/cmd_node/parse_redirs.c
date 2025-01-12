@@ -51,7 +51,6 @@ static t_redir	*fill_redir_struct(char **redirs)
 			return (NULL);
 		i += 2;
 	}
-	
 	return (redir);
 }
 
@@ -77,7 +76,6 @@ static size_t get_redirs_len(t_tok *current, size_t *i)
 		(*i)++;
         current = current->next;
     }
-	
 	return (redirs_len);
 }
 
@@ -98,7 +96,6 @@ static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 		(*current) = (*current)->next;
 	}
 	redirs[j] = NULL;
-	
 	return (redirs);
 }
 
@@ -115,10 +112,9 @@ bool	parse_redirs(t_ast **new_node, t_tok **current, size_t *i)
 		(*new_node)->cmd.redirs = redirs;
 		(*new_node)->cmd.redir = fill_redir_struct(redirs);
 		if (!(*new_node)->cmd.redir)
-			return (EXIT_FAILURE); // free_redirs
+			return (free_tab(redirs), EXIT_FAILURE);
 	}
 	else 
-		free(redirs);
-	
+		free_tab(redirs);
 	return (EXIT_SUCCESS);
 }

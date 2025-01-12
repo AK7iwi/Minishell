@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   exec_cmd_node.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 11:54:48 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/07 09:11:19 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static void	exec_args(t_data *data, char **args)
@@ -21,6 +9,7 @@ static void	exec_args(t_data *data, char **args)
 		exit (EXIT_SUCCESS);
 	}
 }
+
 static void exec_redirs(t_data *data, t_cmd *cmd)
 {
 	handle_redirs(data, cmd);
@@ -30,6 +19,7 @@ static void exec_redirs(t_data *data, t_cmd *cmd)
 		exit(EXIT_SUCCESS);	
 	}
 }
+
 bool exec_cmd_node(t_data *data, t_cmd *cmd)
 {
 	pid_t	pid;

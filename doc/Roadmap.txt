@@ -22,8 +22,9 @@ III) AST:
 
 Find the right precedence, compare with bash result
 Recheck logic of ast_node/cmd_node parsing
-
+loop conditions
 Rename ast_tools.c
+
 
 IV)ENV:
 
@@ -35,9 +36,6 @@ handle error in ast_exec ~~ to recheck
 if (cmd not found)
 	exit the loop
 
-gergre && ls : pas exec ls
-
-
 	a) Prompt: OK
 
 	b) Working History ~
@@ -45,7 +43,7 @@ gergre && ls : pas exec ls
 	c) Builtins OK~~
 
 		test with no env, need protect ~
-		handle paramaters (if args[1]) return ;
+		handle parameters (if args[1]) return ;
 
 		echo OK
 		cd OK, but need better error handling 

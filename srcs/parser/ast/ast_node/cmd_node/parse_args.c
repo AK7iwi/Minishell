@@ -6,7 +6,7 @@ static size_t get_args_len(t_tok *current, size_t *i)
 
 	args_len = 0;
 	
-    while (current && is_cmd(current->type) && !is_redir(current->type)) // more simple
+    while (current && is_word(current->type))
     {
         args_len++;
 		(*i)++;
@@ -30,7 +30,6 @@ static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 	j = 0;
 	while (j < (*new_node)->cmd.args_count)
 	{
-		//test
 		args[j] = ft_strdup((*current)->str);
 		if (!args[j])
 		{
@@ -59,7 +58,7 @@ bool	parse_args(t_ast **new_node, t_tok **current, size_t *i)
 	if ((*new_node)->cmd.args_count)
 		(*new_node)->cmd.args = args;
 	else
-		free(args);
+		free_tab(args);
 	
 	return (EXIT_SUCCESS);
 }

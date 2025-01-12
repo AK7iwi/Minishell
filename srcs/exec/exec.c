@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/27 11:38:35 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/18 00:41:58 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static bool subshell(t_data *data, t_subshell *subsh)
@@ -17,6 +5,7 @@ static bool subshell(t_data *data, t_subshell *subsh)
 	//change the subshell level
 	return (exec(data, subsh->root));
 }
+
 static bool cmd(t_data *data, t_cmd *cmd)
 {	
 	if (cmd->args && is_non_fork_builtins(cmd->args)) //need cmd->args
@@ -29,6 +18,7 @@ static bool cmd(t_data *data, t_cmd *cmd)
 	
 	return (EXIT_FAILURE);
 }
+
 static bool	operator(t_data *data, t_op *op)
 {
 	if (op->type == OP_PIPE)
@@ -47,6 +37,7 @@ static bool	operator(t_data *data, t_op *op)
 
 	return (EXIT_FAILURE);
 }
+
 bool	exec(t_data *data, t_ast *ast)
 {
 	if (ast->type == AST_OPERATOR)
