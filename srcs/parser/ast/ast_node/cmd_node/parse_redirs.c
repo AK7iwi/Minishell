@@ -7,7 +7,10 @@ static bool	fill_file(t_redir **redir, char *red, char *file)
 
 	cpy_file = ft_strdup(file);
 	if (!cpy_file)
+	{
+		printf("cpy_file\n");
 		return (EXIT_FAILURE);
+	}
 	
 	if (ft_strncmp(red, "<", 2) == 0)
 	{
@@ -33,12 +36,15 @@ static bool	fill_file(t_redir **redir, char *red, char *file)
 
 static t_redir	*fill_redir_struct(char **redirs)
 {
-	t_redir *redir;
-	size_t i;
+	t_redir	*redir;
+	size_t	i;
 	
 	redir = malloc(sizeof(t_redir));
 	if (!redir)
+	{
+		printf("redir\n");
 		return (NULL);
+	}
 	
 	redir->i_file = NULL; 
 	redir->o_file = NULL;
@@ -48,7 +54,10 @@ static t_redir	*fill_redir_struct(char **redirs)
 	while (redirs[i])
 	{
 		if (fill_file(&redir, redirs[i], redirs[i + 1]))
-			return (NULL);
+		{
+			printf("fill_file error\n");
+			return (free(redir), NULL);
+		}
 		i += 2;
 	}
 	return (redir);
@@ -87,13 +96,22 @@ static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 	(*new_node)->cmd.redirs_count = get_redirs_len((*current), i);
 	redirs = malloc(((*new_node)->cmd.redirs_count + 1) * sizeof(char *));
 	if (!redirs)
+	{
+		printf("redirs\n");
         return (NULL);
+	}
 	
 	j = 0;
 	while (j < (*new_node)->cmd.redirs_count)
 	{
-		redirs[j++] = ft_strdup((*current)->str); //protect
+		redirs[j] = ft_strdup((*current)->str);
+		if (!redirs[j])
+		{
+			printf("redirs[j]\n");
+			return (free_tab(redirs), NULL);
+		}
 		(*current) = (*current)->next;
+		j++;
 	}
 	redirs[j] = NULL;
 	return (redirs);
@@ -105,16 +123,23 @@ bool	parse_redirs(t_ast **new_node, t_tok **current, size_t *i)
 
 	redirs = copy_redirs(new_node, current, i);
 	if (!redirs)
+	{
+		printf("copy_redirs\n");
 		return (EXIT_FAILURE);
+	}
 	
 	if ((*new_node)->cmd.redirs_count)
 	{
 		(*new_node)->cmd.redirs = redirs;
 		(*new_node)->cmd.redir = fill_redir_struct(redirs);
 		if (!(*new_node)->cmd.redir)
+		{
+			printf("fill_redir_struct errors\n");
 			return (free_tab(redirs), EXIT_FAILURE);
+		}
 	}
 	else 
 		free_tab(redirs);
+
 	return (EXIT_SUCCESS);
 }
