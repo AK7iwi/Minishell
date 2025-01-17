@@ -34,8 +34,9 @@ static void free_args(t_cmd *cmd)
 	size_t i;
 	
 	i = 0;
-	while (cmd->args[i])
+	while (cmd->args[i]) //free_tab
 	{
+		printf("cmd->args[i]:%s\n", cmd->args[i]);
 		free(cmd->args[i]);
 		i++;
 	}

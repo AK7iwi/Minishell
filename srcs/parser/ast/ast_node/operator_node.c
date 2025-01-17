@@ -5,6 +5,7 @@ t_ast	*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type)
 	t_ast *new_node;
 
 	new_node = malloc(sizeof(t_ast));
+	// new_node = NULL;
 	if (!new_node)
 		return (NULL);
 	

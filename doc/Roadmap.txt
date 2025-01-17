@@ -9,6 +9,7 @@ Handle exit code ,check exit value
 Rename tube when pipe 
 Increment shell lvl
 Check for free_tab
+error if only space
 
 I) Lexer: 
 
@@ -22,8 +23,8 @@ III) AST:
 
 Find the right precedence, compare with bash result
 Recheck logic of ast_node/cmd_node parsing
-loop conditions
 Rename ast_tools.c
+Recheck for heredorc logic, nned t o add delim??
 
 
 IV)ENV:

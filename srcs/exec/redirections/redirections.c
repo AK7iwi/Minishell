@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   redirections.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 10:14:25 by mfeldman          #+#    #+#             */
-/*   Updated: 2024/11/04 12:00:59 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static void exec_heredoc(int tube[2], char *delim)
@@ -19,7 +7,7 @@ static void exec_heredoc(int tube[2], char *delim)
 	close(tube[0]);
 	while (1)
 	{
-		line = readline("> ");
+		line = readline("> "); //test
 		if (!line)
 			break ;
 		if (ft_strncmp(line, delim, ft_strlen(delim) + 1) == 0)
@@ -33,6 +21,7 @@ static void exec_heredoc(int tube[2], char *delim)
 	}
 	close(tube[1]);
 }
+
 static void handle_heredoc(t_data *data, char *r_delim, char *delim)
 {
 	int 	tube[2];
@@ -57,6 +46,7 @@ static void handle_heredoc(t_data *data, char *r_delim, char *delim)
 			dup2_error(data, tube[0]);
     close(tube[0]);
 }
+
 static void handle_o_files(t_data *data, char *o_file, char *redir, char *file)
 {
 	int fd;
@@ -78,6 +68,7 @@ static void handle_o_files(t_data *data, char *o_file, char *redir, char *file)
 	}
 	close(fd);
 }
+
 static void	handle_i_files(t_data *data, char *i_file, char *file)
 {
 	int fd;
@@ -92,6 +83,7 @@ static void	handle_i_files(t_data *data, char *i_file, char *file)
 	}
 	close(fd);
 } 
+
 void	handle_redirs(t_data *data, t_cmd *cmd)
 {
 	size_t i;

@@ -1,3 +1,13 @@
+AST test leaks: 
+
+
+(echo a)
+
+>> output.txt && echo a
+
+
+
+
 
 // to test where it fail 
 		// if (!tokenizer(&data, input))
@@ -17,4 +27,6 @@ Test:
 
 Large texte
 No env
+
+
 

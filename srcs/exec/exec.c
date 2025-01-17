@@ -8,7 +8,7 @@ static bool subshell(t_data *data, t_subshell *subsh)
 
 static bool cmd(t_data *data, t_cmd *cmd)
 {	
-	if (cmd->args && is_non_fork_builtins(cmd->args)) //need cmd->args
+	if (cmd->args && is_non_fork_builtins(cmd->args)) //need cmd->args?
 	{
 		if (builtins(data, cmd->args))
 			return (EXIT_SUCCESS);

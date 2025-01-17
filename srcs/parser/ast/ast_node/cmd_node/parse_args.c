@@ -11,7 +11,6 @@ static size_t get_args_len(t_tok *current, size_t *i)
 		(*i)++;
         current = current->next;
     } 
-
 	return (args_len);
 }
 
@@ -30,7 +29,11 @@ static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 	while (j < (*new_node)->cmd.args_count)
 	{
 		//test
+		// if (j != 1)
 		args[j] = ft_strdup((*current)->str);
+		// else
+			// args[j] = NULL;
+
 		if (!args[j])
 		{
 			printf("args[j]\n");
