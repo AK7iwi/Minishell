@@ -2,10 +2,12 @@ AST test leaks:
 
 
 (echo a)
+(echo a && ls)
+(echo a && >> output.txt)
 
 >> output.txt && echo a
 
-
+>> output.txt && (echo a)
 
 
 
@@ -27,6 +29,7 @@ Test:
 
 Large texte
 No env
+space 
 
 
 
