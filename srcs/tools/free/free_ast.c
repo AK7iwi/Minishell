@@ -12,6 +12,7 @@ static void free_redirs(t_cmd *cmd)
 	i = 0;
 	while (cmd->redirs[i]) //free_tab
 	{
+		printf("cmd->redirs[i]:%s\n", cmd->redirs[i]);
 		free(cmd->redirs[i]);
 		i++;
 	}

@@ -1,5 +1,8 @@
 AST test leaks: 
 
+Subshell:
+check when args fail
+check when redirs fail
 
 (echo a)
 (echo a && ls)
