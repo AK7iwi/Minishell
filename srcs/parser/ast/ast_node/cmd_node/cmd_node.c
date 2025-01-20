@@ -27,7 +27,7 @@ bool	create_cmd_node(t_ast **new_node, t_tok **current)
 	i = 0;
 	while (i < cmd_len)
 	{
-		// one cond 
+		// one cond ||
 		if (parse_args(new_node, current, &i))
 		{
 			printf("parse_arg\n");
