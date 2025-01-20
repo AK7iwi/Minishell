@@ -7,16 +7,7 @@ static void free_subshell(t_subshell *subsh)
 
 static void free_redirs(t_cmd *cmd)
 {
-	size_t i;
-	
-	i = 0;
-	while (cmd->redirs[i]) //free_tab
-	{
-		printf("cmd->redirs[i]:%s\n", cmd->redirs[i]);
-		free(cmd->redirs[i]);
-		i++;
-	}
-	free(cmd->redirs);
+	free_tab(cmd->redirs);
 	cmd->redirs = NULL;
 	if (cmd->redir) 
 	{
@@ -32,23 +23,14 @@ static void free_redirs(t_cmd *cmd)
 
 static void free_args(t_cmd *cmd)
 {
-	size_t i;
-	
-	i = 0;
-	while (cmd->args[i]) //free_tab
-	{
-		printf("cmd->args[i]:%s\n", cmd->args[i]);
-		free(cmd->args[i]);
-		i++;
-	}
-	free(cmd->args);
+	free_tab(cmd->args);
 	cmd->args = NULL;
 }
 
 static void free_cmd(t_cmd *cmd)
 {
-	if (cmd->args) //free_tab
-		free_args(cmd); //cmd->args
+	if (cmd->args)
+		free_args(cmd);
 	if (cmd->redirs)
 		free_redirs(cmd);
 	cmd->args_count = 0;

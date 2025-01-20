@@ -8,9 +8,8 @@ t_ast	*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type)
 	new_node = NULL;
 	if (!new_node)
 	{
-		free_ast(&left);
 		printf("operator new node\n");
-		return (NULL);
+		return (free_ast(&left), NULL);
 	}
 	
 	new_node->type = AST_OPERATOR;
