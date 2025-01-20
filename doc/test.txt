@@ -7,10 +7,11 @@ check when redirs fail
 (echo a)
 (echo a && ls)
 (echo a && >> output.txt)
-
 >> output.txt && echo a
-
 >> output.txt && (echo a)
+ls && echo a
+pwd && ls && echo a
+echo Hello Word
 
 
 

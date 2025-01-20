@@ -16,8 +16,8 @@ static size_t get_cmd_len(t_tok *current)
 
 bool	create_cmd_node(t_ast **new_node, t_tok **current)
 {	
-	size_t cmd_len;
-	size_t i;
+	size_t	cmd_len;
+	size_t	i;
 	
 	cmd_len = get_cmd_len((*current));
 	(*new_node)->type = AST_COMMAND;
@@ -27,6 +27,7 @@ bool	create_cmd_node(t_ast **new_node, t_tok **current)
 	i = 0;
 	while (i < cmd_len)
 	{
+		// one cond 
 		if (parse_args(new_node, current, &i))
 		{
 			printf("parse_arg\n");

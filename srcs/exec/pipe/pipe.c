@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/28 12:41:20 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/13 22:20:02 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static	bool	fork_and_exec_right(t_data *data, int tube[2])
@@ -34,6 +22,7 @@ static	bool	fork_and_exec_right(t_data *data, int tube[2])
 	close(tube[0]);
 	return (WIFEXITED(status) && !WEXITSTATUS(status));
 }
+
 static bool	fork_and_exec_left(t_data *data, int tube[2])
 {
     pid_t pid;
@@ -57,6 +46,7 @@ static bool	fork_and_exec_left(t_data *data, int tube[2])
 	close(tube[1]);
 	return (WIFEXITED(status) && !WEXITSTATUS(status));
 }
+
 bool	handle_pipe(t_data *data)
 {
 	int tube[2];

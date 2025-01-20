@@ -16,7 +16,7 @@ bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 		if (ast_algo(&right_side, current, next_min_prec))
 		{
 			printf("ast_algo error in handle operator\n");
-			return (EXIT_FAILURE);
+			return (free_ast(&right_side), EXIT_FAILURE);
 		}
 		(*result) = create_operator_node((*result), right_side, op_type);
 		if (!(*result))
@@ -32,8 +32,12 @@ bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 {
 	(*ast) = malloc(sizeof(t_ast));
+	// (*ast) = NULL;
 	if (!(*ast))
+	{
+		printf("(*ast)\n");
 		return (EXIT_FAILURE);
+	}
 	
 	if (is_o_paren((*current)->type))
 	{
@@ -41,7 +45,7 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 		if (create_subsh_node(ast, current))
 		{
 			printf("create_subsh_node error\n");
-			return (free_ast(ast), EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		}
 	}
 	else
@@ -50,7 +54,7 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 		if (create_cmd_node(ast, current))
 		{
 			printf("create_cmd_node error\n");
-			return (EXIT_FAILURE); //free_ast(ast)
+			return (EXIT_FAILURE);
 		}
 	}
 	return (EXIT_SUCCESS);
@@ -65,6 +69,7 @@ bool	ast_algo(t_ast **ast, t_tok **current, uint8_t min_prec)
 	}
 	else if ((*current) && is_c_paren((*current)->type))
 		return (EXIT_SUCCESS);
+	
 	if (handle_operator(ast, current, min_prec))
 	{
 		printf("Error handle_operator\n");
