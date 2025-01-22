@@ -10,8 +10,8 @@ check when redirs fail
 >> output.txt && echo a
 >> output.txt && (echo a)
 ls && echo a
-pwd && ls && echo a
 echo Hello Word
+pwd && ls && echo a
 
 
 

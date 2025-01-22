@@ -61,6 +61,6 @@ bool	parse_args(t_ast **new_node, t_tok **current, size_t *i)
 		(*new_node)->cmd.args = args;
 	else
 		free_tab(args);
-
+	
 	return (EXIT_SUCCESS);
 }

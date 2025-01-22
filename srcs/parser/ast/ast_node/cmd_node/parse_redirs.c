@@ -147,5 +147,6 @@ bool	parse_redirs(t_ast **new_node, t_tok **current, size_t *i)
 	}
 	else
 		free_tab(redirs);
+	
 	return (EXIT_SUCCESS);
 }
