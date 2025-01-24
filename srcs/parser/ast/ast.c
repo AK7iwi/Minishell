@@ -62,6 +62,14 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 
 bool	ast_algo(t_ast **ast, t_tok **current, uint8_t min_prec)
 {
+	// (*ast) = malloc(sizeof(t_ast));
+	// (*ast) = NULL;
+	// if (!(*ast))
+	// {
+		// printf("(*ast)\n");
+		// return (EXIT_FAILURE);
+	// }
+
 	if (handle_cmd_and_subsh(ast, current))
 	{
 		printf("Error handle_cmd_and_subsh\n");
