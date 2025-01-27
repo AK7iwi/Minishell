@@ -47,6 +47,9 @@ static void free_operator(t_op *op)
 
 void	free_ast(t_ast **ast)
 {
+	if (!(*ast))
+		return ;
+	
 	if ((*ast)->type == AST_OPERATOR)
 		free_operator(&(*ast)->op);
 	else if ((*ast)->type == AST_COMMAND)
