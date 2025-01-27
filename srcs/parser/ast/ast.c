@@ -32,16 +32,11 @@ bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 {
 	(*ast) = malloc(sizeof(t_ast));
-	// (*ast) = NULL;
 	if (!(*ast))
-	{
-		printf("(*ast)\n");
 		return (EXIT_FAILURE);
-	}
 	
 	if (is_o_paren((*current)->type))
 	{
-		printf("create_subsh_node\n");
 		if (create_subsh_node(ast, current))
 		{
 			printf("create_subsh_node error\n");
@@ -50,7 +45,6 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 	}
 	else
 	{
-		printf("create_cmd_node\n");
 		if (create_cmd_node(ast, current))
 		{
 			printf("create_cmd_node error\n");
@@ -62,14 +56,6 @@ bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 
 bool	ast_algo(t_ast **ast, t_tok **current, uint8_t min_prec)
 {
-	// (*ast) = malloc(sizeof(t_ast));
-	// (*ast) = NULL;
-	// if (!(*ast))
-	// {
-		// printf("(*ast)\n");
-		// return (EXIT_FAILURE);
-	// }
-
 	if (handle_cmd_and_subsh(ast, current))
 	{
 		printf("Error handle_cmd_and_subsh\n");

@@ -10,7 +10,7 @@ static size_t get_cmd_len(t_tok *current)
     {
         cmd_len++;
         current = current->next;
-    } 
+    }
 	return (cmd_len);
 }
 
