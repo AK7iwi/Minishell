@@ -31,9 +31,21 @@ bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 
 bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current)
 {
-	(*ast) = malloc(sizeof(t_ast));
+	static int i = 0;
+
+	printf("i:%i\n", i);
+	if (i != 1)
+	{
+		(*ast) = malloc(sizeof(t_ast));
+	}
+	else
+		(*ast) = NULL;
+	i++;
 	if (!(*ast))
+	{
+		printf("*ast\n");
 		return (EXIT_FAILURE);
+	}
 	
 	if (is_o_paren((*current)->type))
 	{

@@ -108,10 +108,10 @@ static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 	j = 0;
 	while (j < (*new_node)->cmd.redirs_count)
 	{
-		if (j != 1)
-			redirs[j] = ft_strdup((*current)->str);
-		else 
-			redirs[j] = NULL;
+		// if (j != 1)
+		redirs[j] = ft_strdup((*current)->str);
+		// else 
+			// redirs[j] = NULL;
 		if (!redirs[j])
 		{
 			printf("redirs[j]\n");
