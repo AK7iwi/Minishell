@@ -20,7 +20,6 @@ static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 	size_t j;
 
 	(*new_node)->cmd.args_count = get_args_len((*current), i);
-	printf("args len:%zu\n", (*new_node)->cmd.args_count);
 	args = malloc(((*new_node)->cmd.args_count + 1) * sizeof(char *));
 	// args= NULL;
 	if (!args)
