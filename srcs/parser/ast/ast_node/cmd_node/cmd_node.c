@@ -29,10 +29,7 @@ bool	create_cmd_node(t_ast **new_node, t_tok **current)
 	{
 		// one cond ||
 		if (parse_args(new_node, current, &i))
-		{
-			printf("parse_arg\n");
 			return (EXIT_FAILURE);
-		}
 		if (parse_redirs(new_node, current, &i))
 		{
 			printf("parse_redirs\n");

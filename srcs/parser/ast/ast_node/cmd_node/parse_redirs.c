@@ -98,20 +98,16 @@ static char	**copy_redirs(t_ast **new_node, t_tok **current, size_t *i)
 
 	(*new_node)->cmd.redirs_count = get_redirs_len((*current), i);
 	redirs = malloc(((*new_node)->cmd.redirs_count + 1) * sizeof(char *));
-	// redirs = NULL;
 	if (!redirs)
-	{
-		printf("redirs\n");
         return (NULL);
-	}
 	
 	j = 0;
 	while (j < (*new_node)->cmd.redirs_count)
 	{
-		// if (j != 1)
-		redirs[j] = ft_strdup((*current)->str);
-		// else 
-			// redirs[j] = NULL;
+		if (j != 1)
+			redirs[j] = ft_strdup((*current)->str);
+		else 
+			redirs[j] = NULL;
 		if (!redirs[j])
 		{
 			printf("redirs[j]\n");

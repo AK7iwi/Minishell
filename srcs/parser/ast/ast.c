@@ -21,9 +21,8 @@ bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec)
 		(*result) = create_operator_node((*result), right_side, op_type);
 		if (!(*result))
 		{
-			free_ast(&right_side);
 			printf("create_operator_node error\n");
-			return (EXIT_FAILURE);
+			return (free_ast(&right_side), EXIT_FAILURE);
 		}
 	}
 	return (EXIT_SUCCESS);

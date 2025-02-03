@@ -21,24 +21,16 @@ static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 
 	(*new_node)->cmd.args_count = get_args_len((*current), i);
 	args = malloc(((*new_node)->cmd.args_count + 1) * sizeof(char *));
-	// args = NULL;
 	if (!args)
         return (NULL);
 	
 	j = 0;
 	while (j < (*new_node)->cmd.args_count)
 	{
-		//test
-		if (j != 1)
-			args[j] = ft_strdup((*current)->str);
-		else
-			args[j] = NULL;
-
+	
+		args[j] = ft_strdup((*current)->str);
 		if (!args[j])
-		{
-			printf("args[j]\n");
 			return (free_tab(args), NULL);
-		}
 		(*current) = (*current)->next;
 		j++;
 	}
@@ -52,10 +44,7 @@ bool	parse_args(t_ast **new_node, t_tok **current, size_t *i)
 
 	args = copy_args(new_node, current, i);
 	if (!args)
-	{
-		printf("copy_args\n");
 		return (EXIT_FAILURE);
-	}
 	
 	if ((*new_node)->cmd.args_count)
 		(*new_node)->cmd.args = args;
