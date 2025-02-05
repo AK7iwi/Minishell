@@ -282,6 +282,8 @@ bool	is_operator(t_tok_type type);
 
 /* operator_node.c */
 t_ast		*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type);
+t_op_type	get_op_type(t_tok_type type);
+bool        get_prec(t_tok_type type);
 /*subsh_node.c */
 bool		create_subsh_node(t_ast **new_node, t_tok **current);
 /////// cmd_node //////////
@@ -291,10 +293,6 @@ bool		parse_redirs(t_ast **new_node, t_tok **current, size_t *i);
 bool		parse_args(t_ast **new_node, t_tok **current, size_t *i);
 /* cmd_node.c */
 bool		create_cmd_node(t_ast **new_node, t_tok **current);
-
-/* ast_tools.c */
-uint8_t 	get_prec(t_tok_type type);
-t_op_type	get_op_type(t_tok_type type);
 
 /* ast.c */
 bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec);

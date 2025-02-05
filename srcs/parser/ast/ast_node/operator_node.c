@@ -15,3 +15,20 @@ t_ast	*create_operator_node(t_ast *left, t_ast *right, t_op_type op_type)
 	
 	return (new_node);
 }
+
+t_op_type get_op_type(t_tok_type type)
+{	
+	if (is_and(type))
+		return (OP_AND);
+	else if (is_or(type))
+		return (OP_OR);
+
+	return (OP_PIPE);
+}
+
+bool get_prec(t_tok_type type)
+{
+	if (is_pipe(type))
+		return (1);
+	return (2);
+}

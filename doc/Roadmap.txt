@@ -18,9 +18,7 @@ II) Synthesis_analysis: OK
 III) AST: 
 
 Find the right precedence, compare with bash result
-Recheck logic of ast_node/cmd_node parsing
 Rename ast_tools.c
-test if NULL during process
 
 IV)ENV: OK
 
