@@ -27,7 +27,6 @@ static	char **copy_args(t_ast **new_node, t_tok **current, size_t *i)
 	j = 0;
 	while (j < (*new_node)->cmd.args_count)
 	{
-	
 		args[j] = ft_strdup((*current)->str);
 		if (!args[j])
 			return (free_tab(args), NULL);

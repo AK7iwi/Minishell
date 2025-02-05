@@ -27,14 +27,9 @@ bool	create_cmd_node(t_ast **new_node, t_tok **current)
 	i = 0;
 	while (i < cmd_len)
 	{
-		// one cond ||
-		if (parse_args(new_node, current, &i))
+		if (parse_args(new_node, current, &i)
+			|| parse_redirs(new_node, current, &i))
 			return (EXIT_FAILURE);
-		if (parse_redirs(new_node, current, &i))
-		{
-			printf("parse_redirs\n");
-			return (EXIT_FAILURE);
-		}
 	}
 	return (EXIT_SUCCESS);
 }
