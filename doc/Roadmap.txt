@@ -28,6 +28,8 @@ handle error in ast_exec ~~ to recheck
 if (cmd not found)
 	exit the loop
 
+Leaks, open fd and infinite loop for pipe: echo a | >> output.txt
+
 	a) Prompt: OK
 
 	b) Working History ~
