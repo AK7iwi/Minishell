@@ -15,10 +15,7 @@ I) Lexer: OK
 
 II) Synthesis_analysis: OK
 
-III) AST: 
-
-Find the right precedence, compare with bash result
-Rename ast_tools.c
+III) AST: OK
 
 IV)ENV: OK
 

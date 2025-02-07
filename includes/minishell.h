@@ -242,7 +242,7 @@ bool 	exec(t_data *data, t_ast *ast);
 //**********************************************//
 
 /* redirections.c */
-void	handle_redirs(t_data *data, t_cmd *cmd);
+void	    handle_redirs(t_data *data, t_cmd *cmd);
 
 //**********************************************//
 //												//
@@ -255,24 +255,24 @@ void	handle_redirs(t_data *data, t_cmd *cmd);
 //**********************************************//
 
 /* parse_checker3.c */
-bool	is_s_redir_out(t_tok_type type);
-bool	is_d_redir_out(t_tok_type type);
-bool 	is_redir_in(t_tok_type type);
-bool 	is_heredoc(t_tok_type type);
+bool	    is_s_redir_out(t_tok_type type);
+bool	    is_d_redir_out(t_tok_type type);
+bool 	    is_redir_in(t_tok_type type);
+bool 	    is_heredoc(t_tok_type type);
 
 /* parse_checker2.c */
-bool	is_or(t_tok_type type);
-bool	is_and(t_tok_type type);
-bool	is_pipe(t_tok_type type);
-bool 	is_o_paren(t_tok_type type);
-bool 	is_c_paren(t_tok_type type);
+bool	    is_or(t_tok_type type);
+bool	    is_and(t_tok_type type);
+bool	    is_pipe(t_tok_type type);
+bool 	    is_o_paren(t_tok_type type);
+bool 	    is_c_paren(t_tok_type type);
 
 /* parse_checker.c */
-bool 	is_paren(t_tok_type type);
-bool 	is_word(t_tok_type type);
-bool 	is_cmd(t_tok_type type);
-bool	is_redir(t_tok_type type);
-bool	is_operator(t_tok_type type);
+bool 	    is_paren(t_tok_type type);
+bool 	    is_word(t_tok_type type);
+bool 	    is_cmd(t_tok_type type);
+bool	    is_redir(t_tok_type type);
+bool	    is_operator(t_tok_type type);
 
 //**********************************************//
 //					AST   						//
@@ -295,10 +295,10 @@ bool		parse_args(t_ast **new_node, t_tok **current, size_t *i);
 bool		create_cmd_node(t_ast **new_node, t_tok **current);
 
 /* ast.c */
-bool	handle_operator(t_ast **result, t_tok **current, uint8_t min_prec);
-bool	handle_cmd_and_subsh(t_ast **ast, t_tok **current);
-bool	ast_algo(t_ast **ast, t_tok **current, uint8_t min_prec);
-bool	ast_creator(t_data *data);
+bool	    handle_operator(t_ast **result, t_tok **current, uint8_t min_prec);
+bool	    handle_cmd_and_subsh(t_ast **ast, t_tok **current);
+bool	    ast_algo(t_ast **ast, t_tok **current, uint8_t min_prec);
+bool	    ast_creator(t_data *data);
 
 //**********************************************//
 //					SYN_ANALYZER   				//
@@ -353,25 +353,25 @@ bool		tokenizer(t_data *data, char *input);
 
 //////// env_tools ///////
 /* env_tools2.c */
-void 	remove_env_node(t_env **env, t_env *to_remove);
-bool	is_var(t_env *current, char *var_name);
-bool 	is_in_env(t_env *env, char *var_name);
-bool 	find_equal(char *var);
-bool	is_valid_var(char *var);
+void 	    remove_env_node(t_env **env, t_env *to_remove);
+bool	    is_var(t_env *current, char *var_name);
+bool 	    is_in_env(t_env *env, char *var_name);
+bool 	    find_equal(char *var);
+bool	    is_valid_var(char *var);
 /* env_tools.c */
-void	free_env(t_env **env_var);
-void	unset_env_var(t_env **env, char *var_name);
-bool 	set_env_var(t_env **env, char *var_name, char *new_env_var);
-bool	add_env_var(t_env **env, char *envp);
+void	    free_env(t_env **env_var);
+void	    unset_env_var(t_env **env, char *var_name);
+bool 	    set_env_var(t_env **env, char *var_name, char *new_env_var);
+bool	    add_env_var(t_env **env, char *envp);
 
 /* extract_env.c */
-char 	*extract_var_value(char *args);
-char 	*extract_var_name(char *args);
+char 	    *extract_var_value(char *args);
+char 	    *extract_var_name(char *args);
 /* sort_env.c */
-bool	print_sorted_env(t_env *env);
+bool	    print_sorted_env(t_env *env);
 
 /* init_env.c */
-bool	init_env(t_data *data, char **envp);
+bool	    init_env(t_data *data, char **envp);
 
 //**********************************************//
 //												//
@@ -380,13 +380,13 @@ bool	init_env(t_data *data, char **envp);
 //**********************************************// 
 
 /* error_and_exit.c */
-void 	fork_error(t_data *data);
-void	pipe_error(t_data *data);
-void	open_error(t_data *data);
-void	dup2_error(t_data *data, int fd);
+void 	    fork_error(t_data *data);
+void	    pipe_error(t_data *data);
+void	    open_error(t_data *data);
+void	    dup2_error(t_data *data, int fd);
 
 /* init_errors.c */
-void 	init_errors(t_data *data); 
+void 	    init_errors(t_data *data); 
 
 //**********************************************//
 //												//
@@ -395,7 +395,7 @@ void 	init_errors(t_data *data);
 //**********************************************// 
 
 /* init.c */
-bool	init(t_data *data, char **argv, char **envp);
+bool	    init(t_data *data, char **argv, char **envp);
 
 //**********************************************//
 //												//
@@ -404,6 +404,6 @@ bool	init(t_data *data, char **argv, char **envp);
 //**********************************************// 
 
 /* signals.c*/
-void	signals(void);
+void	    signals(void);
 
 #endif /* MINISHELL_H */
