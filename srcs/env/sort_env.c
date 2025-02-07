@@ -28,10 +28,10 @@ static void	sort_env(t_env **env)
 bool	print_sorted_env(t_env *env)
 {
 	t_env *current;
-	current = env;
 	char *var_name;
 	char *var_value;
 	
+	current = env;
 	sort_env(&current);
 	
 	while (current)

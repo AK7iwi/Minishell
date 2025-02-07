@@ -1,4 +1,14 @@
-General: 
+0) General: 
+
+a) Main
+
+Exec: 
+Handle errors(pipe, EXIT_FAILURE, ...)
+Expand
+Export
+
+
+b) Unmain 
 
 Switch ERR an E for errors 
 Rename of file and folder + same var name for the whole project
@@ -11,6 +21,7 @@ Increment shell lvl
 Check for free_tab
 error if only space
 
+
 I) Lexer: OK
 
 II) Synthesis_analysis: OK
@@ -21,10 +32,10 @@ IV)ENV: OK
 
 V) Exec:
 
-handle error in ast_exec ~~ to recheck 
+E)  
+handle error in ast_exec
 if (cmd not found)
 	exit the loop
-
 Leaks, open fd and infinite loop for pipe: echo a | >> output.txt
 
 	a) Prompt: OK
@@ -37,7 +48,7 @@ Leaks, open fd and infinite loop for pipe: echo a | >> output.txt
 		handle parameters (if args[1]) return ;
 
 		echo OK
-		cd OK, but need better error handling 
+		cd OK, leaks with set_env_var
 		pwd OK
 		export: ~, need to handle when no equal 
 		env: OK, 
@@ -54,7 +65,7 @@ Leaks, open fd and infinite loop for pipe: echo a | >> output.txt
 
 		2) AND and OR OK
 
-	g)Handle environment variables 
+	g)Handle environment variables/ Expand 
 
 	h) Signals OK
 

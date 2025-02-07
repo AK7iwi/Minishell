@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 14:08:47 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/07 09:11:19 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
-static bool update_dir(t_env *env, char *old_cwd) //two errors to handle 
+static bool update_dir(t_env *env, char *old_cwd)
 {
 	char *cwd;
 	char *new_pwd;
@@ -22,12 +10,17 @@ static bool update_dir(t_env *env, char *old_cwd) //two errors to handle
 	if (!cwd)
 		return (EXIT_FAILURE);
 	
-	new_pwd = ft_strjoin("PWD=", cwd); // protect 
-	n_old_pwd = ft_strjoin("OLDPWD=", old_cwd); //protect 
+	new_pwd = ft_strjoin("PWD=", cwd);
+	if (!new_pwd)
+		return (free(cwd), EXIT_FAILURE);
+	n_old_pwd = ft_strjoin("OLDPWD=", old_cwd);
+	if (!n_old_pwd)
+		return (free(cwd), free(new_pwd), EXIT_FAILURE);
+	//one cond
 	if (set_env_var(&env, "PWD", new_pwd))
-		return (EXIT_FAILURE);
+		return (free(cwd), free(new_pwd), free(n_old_pwd), EXIT_FAILURE); 
 	if (set_env_var(&env, "OLD_PWD", n_old_pwd))
-		return (EXIT_FAILURE);
+		return (free(cwd), free(new_pwd), free(n_old_pwd), EXIT_FAILURE);
 		
 	free(cwd);
 	free(new_pwd);
@@ -44,12 +37,13 @@ static bool	set_dir(char **dir, char *arg)
         (*dir) = getenv("OLDPWD");
 	else
         (*dir) = arg;
-
+	
 	return ((*dir));
 }
+
 bool	cd(t_data *data, char **args)
 {
-    char *old_cwd;
+    char *old_cwd; //old_dir
     char *dir;
 
 	if (args[2])
@@ -59,6 +53,7 @@ bool	cd(t_data *data, char **args)
 	if (!old_cwd || !set_dir(&dir, args[1]) || chdir(dir) 
 		|| update_dir(data->env, old_cwd))
 	{
+		printf("Ya une erreur afou\n");
 		free(old_cwd);
 		return (data->err.exec_errors |= ERR_CD2, EXIT_FAILURE);
 	}
@@ -66,4 +61,3 @@ bool	cd(t_data *data, char **args)
 	free(old_cwd);
     return (EXIT_SUCCESS);
 }
-

@@ -28,6 +28,7 @@ char *extract_var_value(char *args)
 	var_value[j] = '\0';
 	return (var_value);
 }
+
 char *extract_var_name(char *args)
 {
 	char *var_name;

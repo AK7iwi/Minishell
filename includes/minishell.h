@@ -208,8 +208,6 @@ bool	cmds(t_data *data, char **args);
 /////// builtins_cmds //////////
 /* exit.c */
 bool	ft_exit(t_data *data, char **args);
-/* history.c */
-bool	history(char **args);
 /* env.c */
 bool	env(t_env *env);
 /* unset.c */

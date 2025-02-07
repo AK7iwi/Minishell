@@ -22,7 +22,7 @@ SRCS			:=	main.c \
 					exec/redirections/redirections.c \
 					exec/builtins/builtins_cmds/echo.c exec/builtins/builtins_cmds/pwd.c exec/builtins/builtins_cmds/env.c \
 					exec/builtins/builtins_cmds/cd.c  exec/builtins/builtins_cmds/unset.c exec/builtins/builtins_cmds/export.c \
-				 	exec/builtins/builtins_cmds/history.c exec/builtins/builtins_cmds/exit.c \
+				 	exec/builtins/builtins_cmds/exit.c \
 					exec/cmds/cmds.c \
 					exec/pipe/pipe.c \
 					tools/checker.c tools/len.c tools/memory.c \
