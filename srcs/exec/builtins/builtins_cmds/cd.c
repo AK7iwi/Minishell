@@ -31,9 +31,9 @@ static bool update_dir(t_env *env, char *old_cwd)
 
 static bool	set_dir(char **dir, char *arg)
 {
-	if (!arg || ft_strncmp(arg, "~", 1) == 0)
+	if (!arg || ft_strncmp(arg, "~", 2) == 0)
         (*dir) = getenv("HOME");
-    else if (ft_strncmp(arg, "-", 1) == 0)
+    else if (ft_strncmp(arg, "-", 2) == 0)
         (*dir) = getenv("OLDPWD");
 	else
         (*dir) = arg;

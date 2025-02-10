@@ -6,6 +6,8 @@ Exec:
 Handle errors(pipe, EXIT_FAILURE, ...)
 Expand
 Export
+perror: if error in code (return EXIT_FAILURE) but perror success (:success) dont print the errors with perror
+
 
 
 b) Unmain 
@@ -20,7 +22,6 @@ Rename tube when pipe
 Increment shell lvl
 Check for free_tab
 error if only space
-
 
 I) Lexer: OK
 
@@ -48,7 +49,7 @@ Leaks, open fd and infinite loop for pipe: echo a | >> output.txt
 		handle parameters (if args[1]) return ;
 
 		echo OK
-		cd OK, leaks with set_env_var
+		cd OK, leaks with set_env_var with cd Minishell + retest with cd .. and cd Minishell
 		pwd OK
 		export: ~, need to handle when no equal 
 		env: OK, 
