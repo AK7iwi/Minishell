@@ -12,8 +12,8 @@ perror: if error in code (return EXIT_FAILURE) but perror success (:success) don
 
 b) Unmain 
 
-Switch ERR an E for errors 
 Rename of file and folder + same var name for the whole project
+Switch ERR an E for errors 
 Check copy of list (current)
 int --> int32t / norme
 Use strcmp instead of strncmp, check this fct when used
@@ -22,6 +22,7 @@ Rename tube when pipe
 Increment shell lvl
 Check for free_tab
 error if only space
+add const to checker 
 
 I) Lexer: OK
 

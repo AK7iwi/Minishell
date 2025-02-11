@@ -20,7 +20,7 @@ void	unset_env_var(t_env **env, char *var)
 	current = *env;
     while (current)
     {
-        if (is_var(current, var))
+        if (is_var(current->env_var, var))
             return (remove_env_node(env, current));
         current = current->next;
     }
@@ -33,7 +33,7 @@ bool	set_env_var(t_env **env, char *var_name, char *new_env_var)
 	current = *env;
 	while (current)
 	{
-		if (is_var(current, var_name))
+		if (is_var(current->env_var, var_name))
 		{
 			free(current->env_var);
 			// current->env_var = ft_strdup(new_env_var);

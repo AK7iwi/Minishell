@@ -19,7 +19,7 @@ static bool update_dir(t_env *env, char *old_cwd)
 	//one cond
 	if (set_env_var(&env, "PWD", new_pwd))
 		return (free(cwd), free(new_pwd), free(n_old_pwd), EXIT_FAILURE); 
-	if (set_env_var(&env, "OLD_PWD", n_old_pwd))
+	if (set_env_var(&env, "OLDPWD", n_old_pwd))
 		return (free(cwd), free(new_pwd), free(n_old_pwd), EXIT_FAILURE);
 		
 	free(cwd);
@@ -44,7 +44,7 @@ static bool	set_dir(char **dir, char *arg)
 bool	cd(t_data *data, char **args)
 {
     char *old_cwd; //old_dir
-    char *dir;
+    char *dir; //new_dir
 
 	if (args[2])
 		return (data->err.exec_errors |= ERR_CD1, EXIT_FAILURE);

@@ -1,3 +1,18 @@
+I) Init
+
+II) Parser
+
+a) lexer
+
+b) syn_analyzer
+
+c) ast_creator
+
+III) Exec
+
+fct: 
+
+
 
 Synthax rules: 
 

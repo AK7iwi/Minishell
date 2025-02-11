@@ -352,7 +352,7 @@ bool		tokenizer(t_data *data, char *input);
 //////// env_tools ///////
 /* env_tools2.c */
 void 	    remove_env_node(t_env **env, t_env *to_remove);
-bool	    is_var(t_env *current, char *var_name);
+bool	    is_var(char *env_var, char *var_name);
 bool 	    is_in_env(t_env *env, char *var_name);
 bool 	    find_equal(char *var);
 bool	    is_valid_var(char *var);
