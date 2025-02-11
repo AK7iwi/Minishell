@@ -6,14 +6,6 @@ a) lexer
 
 b) syn_analyzer
 
-c) ast_creator
-
-III) Exec
-
-fct: 
-
-
-
 Synthax rules: 
 
 OPERATOR (&&, ||, |)
@@ -47,3 +39,13 @@ III) Parse for redirection:
 - Before: \, OPERATOR, O_PAREN, C_PAREN, WORD
 
 - After: WORD
+
+c) ast_creator
+
+III) Exec
+
+fct: 
+
+chdir: 
+
+
