@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-static bool update_dir(t_env *env, char *old_cwd)
+static bool update_dir(t_env *env, char *old_dir)
 {
 	char *cwd;
 	char *new_pwd;
-	char *n_old_pwd;
+	char *old_pwd;
 	
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
@@ -13,51 +13,45 @@ static bool update_dir(t_env *env, char *old_cwd)
 	new_pwd = ft_strjoin("PWD=", cwd);
 	if (!new_pwd)
 		return (free(cwd), EXIT_FAILURE);
-	n_old_pwd = ft_strjoin("OLDPWD=", old_cwd);
-	if (!n_old_pwd)
+	old_pwd = ft_strjoin("OLDPWD=", old_dir);
+	if (!old_pwd)
 		return (free(cwd), free(new_pwd), EXIT_FAILURE);
-	//one cond
-	if (set_env_var(&env, "PWD", new_pwd))
-		return (free(cwd), free(new_pwd), free(n_old_pwd), EXIT_FAILURE); 
-	if (set_env_var(&env, "OLDPWD", n_old_pwd))
-		return (free(cwd), free(new_pwd), free(n_old_pwd), EXIT_FAILURE);
+	if (set_env_var(&env, "PWD", new_pwd)
+		|| set_env_var(&env, "OLDPWD", old_pwd))
+		return (free(cwd), free(new_pwd), free(old_pwd), EXIT_FAILURE); 
 		
 	free(cwd);
 	free(new_pwd);
-	free(n_old_pwd);
+	free(old_pwd);
 	
 	return (EXIT_SUCCESS);
 }
 
-static bool	set_dir(char **dir, char *arg)
+static bool	set_dir(char **new_dir, char *arg)
 {
 	if (!arg || ft_strncmp(arg, "~", 2) == 0)
-        (*dir) = getenv("HOME");
+        (*new_dir) = getenv("HOME");
     else if (ft_strncmp(arg, "-", 2) == 0)
-        (*dir) = getenv("OLDPWD");
+        (*new_dir) = getenv("OLDPWD");
 	else
-        (*dir) = arg;
+        (*new_dir) = arg;
 	
-	return ((*dir));
+	return ((*new_dir));
 }
 
 bool	cd(t_data *data, char **args)
 {
-    char *old_cwd; //old_dir
-    char *dir; //new_dir
+    char *old_dir;
+    char *new_dir;
 
 	if (args[2])
 		return (data->err.exec_errors |= ERR_CD1, EXIT_FAILURE);
 	
-	old_cwd = getcwd(NULL, 0);
-	if (!old_cwd || !set_dir(&dir, args[1]) || chdir(dir) 
-		|| update_dir(data->env, old_cwd))
-	{
-		printf("Ya une erreur afou\n");
-		free(old_cwd);
-		return (data->err.exec_errors |= ERR_CD2, EXIT_FAILURE);
-	}
+	old_dir = getcwd(NULL, 0);
+	if (!old_dir || !set_dir(&new_dir, args[1]) || chdir(new_dir) 
+		|| update_dir(data->env, old_dir))
+		return (free(old_dir), data->err.exec_errors |= ERR_CD2, EXIT_FAILURE);
 	
-	free(old_cwd);
+	free(old_dir);
     return (EXIT_SUCCESS);
 }

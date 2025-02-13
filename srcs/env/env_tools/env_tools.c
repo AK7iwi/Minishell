@@ -36,9 +36,7 @@ bool	set_env_var(t_env **env, char *var_name, char *new_env_var)
 		if (is_var(current->env_var, var_name))
 		{
 			free(current->env_var);
-			// current->env_var = ft_strdup(new_env_var);
-            current->env_var = NULL;
-            (void)new_env_var;
+			current->env_var = ft_strdup(new_env_var);
 			if (!current->env_var)
 				return (EXIT_FAILURE);
 		}

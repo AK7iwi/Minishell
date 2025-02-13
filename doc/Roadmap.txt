@@ -3,20 +3,18 @@
 a) Main
 
 Exec: 
-Handle errors(pipe, EXIT_FAILURE, ...)
+Handle errors(MALLOC, pipe, EXIT_FAILURE, ...)
 Expand
 Export
 perror: if error in code (return EXIT_FAILURE) but perror success (:success) dont print the errors with perror
 
-
-
 b) Unmain 
 
 Rename of file and folder + same var name for the whole project
+Use strcmp instead of strncmp, check this fct when used
 Switch ERR an E for errors 
 Check copy of list (current)
 int --> int32t / norme
-Use strcmp instead of strncmp, check this fct when used
 Handle exit code ,check exit value
 Rename tube when pipe 
 Increment shell lvl
@@ -50,7 +48,7 @@ Leaks, open fd and infinite loop for pipe: echo a | >> output.txt
 		handle parameters (if args[1]) return ;
 
 		echo OK
-		cd OK, leaks with set_env_var with cd Minishell + retest with cd .. and cd Minishell
+		cd OK,retest with cd .. and cd Minishell
 		pwd OK
 		export: ~, need to handle when no equal 
 		env: OK, 

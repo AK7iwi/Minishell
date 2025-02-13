@@ -29,6 +29,7 @@ static void	display_parsing_errors(uint16_t parsing_errors)
 	else if (parsing_errors & ERR_REDIR)
 		display_redirs_errors(parsing_errors);
 }
+
 static void	display_gen_errors(uint8_t gen_errors)
 {
 	if (gen_errors & ERR_MALLOC)
@@ -36,6 +37,7 @@ static void	display_gen_errors(uint8_t gen_errors)
 	else if (gen_errors & ERR_ARG)
 		ft_putstr(E_ARGS);
 }
+
 void	errors_displayer(t_err error)
 {
 	if (error.gen_errors)
