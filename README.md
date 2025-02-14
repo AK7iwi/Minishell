@@ -1,5 +1,7 @@
 I) Init
 
+- getenv: 
+
 II) Parser
 
 a) lexer
@@ -46,6 +48,19 @@ III) Exec
 
 fct: 
 
-chdir: 
+a) cd
+
+- getcwd:
+
+1) char *getcwd(char *buf, size_t size);
+
+2) 
+
+
+- chdir:
+
+
+- getenv:
+
 
 

@@ -28,7 +28,7 @@
 # define COLOR_RED     "\x1b[31m"
 
 /* General errors */
-# define ERR_MALLOC			0x1
+# define ERR_MALLOC			0x1 //ERR_MEMORY
 # define ERR_ARG			0x2
 
 # define E_MALLOC			"mimishell: Insufficient system resources. Terminating program.\n"

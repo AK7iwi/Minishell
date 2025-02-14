@@ -36,6 +36,7 @@ static bool	set_dir(char **new_dir, char *arg)
 	else
         (*new_dir) = arg;
 	
+	//return (NULL);
 	return ((*new_dir));
 }
 
@@ -47,7 +48,8 @@ bool	cd(t_data *data, char **args)
 	if (args[2])
 		return (data->err.exec_errors |= ERR_CD1, EXIT_FAILURE);
 	
-	old_dir = getcwd(NULL, 0);
+	// old_dir = getcwd(NULL, 0);
+	old_dir = NULL;
 	if (!old_dir || !set_dir(&new_dir, args[1]) || chdir(new_dir) 
 		|| update_dir(data->env, old_dir))
 		return (free(old_dir), data->err.exec_errors |= ERR_CD2, EXIT_FAILURE);

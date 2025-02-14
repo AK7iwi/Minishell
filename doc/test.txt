@@ -1,31 +1,3 @@
-AST test leaks: 
-
-Subshell:
-check when args fail
-check when redirs fail
-
-echo a
-(echo a)
-(echo a && ls)
-(echo a && >> output.txt)
->> output.txt && echo a
->> output.txt && (echo a)
-ls && echo a
-echo Hello Word
-pwd && ls && echo a
-
-
-
-// to test where it fail 
-		// if (!tokenizer(&data, input))
-		// 	printf("Ici1\n");
-		// if (!syn_analyzer(&data))
-		// 	printf("Ici2\n");
-		// if (!ast_creator(&data))
-		// 	printf("Ici3\n");
-		// if (!exec(&data, data.ast))
-		// 	printf("Ici4\n");
-
 Valgrind without readline leaks:
 
 valgrind --suppressions="srcs/tools/readline_by_pass.txt" --leak-check=full --track-fds=yes --show-leak-kinds=all ./minishell

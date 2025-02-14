@@ -12,6 +12,7 @@ void	display_redirs_errors(uint16_t parsing_errors)
 	else if (parsing_errors & ERR_HEREDOC)
 		ft_putstr(E_HEREDOC);
 }
+
 void	display_operators_errors(uint16_t parsing_errors)
 {
 	ft_putstr(E_SYN);

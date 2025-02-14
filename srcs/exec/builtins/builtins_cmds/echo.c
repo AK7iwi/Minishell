@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 14:53:11 by diguler           #+#    #+#             */
-/*   Updated: 2024/11/07 09:51:03 by mfeldman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static bool	check_n_flag(char **args, size_t *i)
@@ -35,6 +23,7 @@ static bool	check_n_flag(char **args, size_t *i)
 
     return (n_flag);
 }
+
 bool	echo(char **args)
 {
 	size_t 	i;

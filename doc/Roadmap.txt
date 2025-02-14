@@ -2,6 +2,9 @@
 
 a) Main
 
+Parser: 
+Check errors type(ERR_MALLOC)
+
 Exec: 
 Handle errors(MALLOC, pipe, EXIT_FAILURE, ...)
 Expand
