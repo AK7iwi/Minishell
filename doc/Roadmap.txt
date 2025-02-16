@@ -23,7 +23,8 @@ Rename tube when pipe
 Increment shell lvl
 Check for free_tab
 error if only space
-add const to checker 
+add const to checker
+check ft_strjoin and and ft_strdup
 
 I) Lexer: OK
 

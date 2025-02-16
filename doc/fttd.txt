@@ -1,0 +1,7 @@
+cd : 
+
+set_dir + chdir
+Test :
+
+cd    : Invalid read of size 8
+cd - && cd ~ with env -i

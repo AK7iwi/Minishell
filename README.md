@@ -1,11 +1,13 @@
 I) Init
 
+
+env) 
+
 - getenv: 
 
 II) Parser
 
 a) lexer
-
 
 
 b) syn_analyzer
@@ -45,7 +47,6 @@ III) Redirections:
 - After: WORD
 
 c) ast_creator
-
 
 
 III) Exec
@@ -137,5 +138,3 @@ path: The path to the new working directory. It can be:
     EACCES: Permission denied.
     ENOENT: The specified path does not exist.
     ENOTDIR: A component of the path is not a directory.
-
-
