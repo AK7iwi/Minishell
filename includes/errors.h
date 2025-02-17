@@ -75,13 +75,15 @@
 # define ERR_PWD			0x1
 # define ERR_CD1 			0x2
 # define ERR_CD2 			0x4
-# define ERR_EXPORT			0x8
-# define ERR_UNSET			0x10
-# define ERR_EXIT			0x20
+# define ERR_CD3 			0x8
+# define ERR_EXPORT			0x10
+# define ERR_UNSET			0x20
+# define ERR_EXIT			0x40
 
 # define E_PWD 				"pwd"
 # define E_CD1				"cd: too many arguments\n"
 # define E_CD2				"cd"
+# define E_CD3				"cd: required environment variable not set (HOME or OLDPWD missing)\n"
 # define E_EXPORT			"unset: not enough arguments\n"
 # define E_UNSET			"unset: not enough arguments\n"
 # define E_EXIT 			"mimishell: exit: too many arguments\n"

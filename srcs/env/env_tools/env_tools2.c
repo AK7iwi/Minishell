@@ -14,9 +14,10 @@ void	remove_env_node(t_env **env, t_env *to_remove)
     free(to_remove);
 }
 
-bool	is_var(char *env_var, char *var_name)
+bool	is_var(char *env_var, char *var_name) //env_var_name
 {
-	return (ft_strncmp(env_var, var_name, ft_strlen(env_var)) == 0
+	//print to debug 
+	return (ft_strncmp(env_var, var_name, ft_strlen(var_name)) == 0
 			&& ((env_var[ft_strlen(env_var + 1)] == '='
 			|| env_var[ft_strlen(env_var + 1)] == '\0')));
 }

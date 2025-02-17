@@ -8,6 +8,8 @@ static void	display_exec_errors(uint16_t exec_errors)
 		ft_putstr(E_CD1);
 	else if (exec_errors & ERR_CD2)
 		perror(E_CD2);
+	else if (exec_errors & ERR_CD3)
+		ft_putstr(E_CD3);
 	else if (exec_errors & ERR_UNSET)
 		ft_putstr(E_UNSET);
 	else if (exec_errors & ERR_EXIT)
