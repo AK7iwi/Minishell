@@ -1,6 +1,4 @@
 cd : 
 
-
-Test :
-
-cd - && cd ~ with env -i
+set_env_var --> is_var
+retest cd 
